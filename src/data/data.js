@@ -170,8 +170,8 @@ export const data = [
     others: [""],
   },
   {
-    id: 18,
-    title: "Title of the news item",
+    id: 'abc',
+    title: "Title of the news item LAST",
     source: "Expansión",
     date: "06/09/2021",
     zone: ["ue", "germany"],
