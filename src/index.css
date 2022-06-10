@@ -25,10 +25,8 @@ li {
   align-items: center;
 }
 
-.vertical-gap{
-  display: flex;
-  flex-direction: column;
-  gap: 5vh;
+.margin-lines{
+  margin: 0.75vh 0;
 }
 
 .news-item-title{
