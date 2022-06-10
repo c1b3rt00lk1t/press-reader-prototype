@@ -30,7 +30,7 @@ export const data = [
     sector: ["financiero"],
     tags: ["especulación", "moneda digital"],
     others: [""],
-    url: "https://drive.google.com/file/d/1g1N5SLsyC27EP6yIgKpEK33x5FwWx5XQ/view?usp=sharing"
+    url: "https://firebasestorage.googleapis.com/v0/b/gatsby-book-test-87142.appspot.com/o/20220518%20-%20Expansi%C3%B3n%20-%20Los%20inversores%20pulverizan%207.000%20millones%20en%20tether%20en%20la%20tormenta.pdf?alt=media&token=5bdc01af-4308-4e37-83cb-dad9c7391622"
   },
   {
     id: 4,
