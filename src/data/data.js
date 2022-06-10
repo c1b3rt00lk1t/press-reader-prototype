@@ -8,7 +8,7 @@ export const data = [
     sector: ["financiero"],
     tags: ["dividendos"],
     others: [""],
-    url: "/static/20220525 - Expansión - Lluvia global de dividendos en el mundo 1,44 billones.pdf",
+    url: "https://firebasestorage.googleapis.com/v0/b/gatsby-book-test-87142.appspot.com/o/20220518%20-%20Expansi%C3%B3n%20-%20Los%20inversores%20pulverizan%207.000%20millones%20en%20tether%20en%20la%20tormenta.pdf?alt=media&token=5bdc01af-4308-4e37-83cb-dad9c7391622",
   },
   {
     id: 2,
@@ -19,7 +19,7 @@ export const data = [
     sector: ["financiero"],
     tags: ["inflación", "tipos"],
     others: [""],
-    url: "http://pcielcomunista.org/attachments/article/649/4_El%20Comunista_68%20Estertores%20y%20espasmos%20(abril%2022).pdf"
+    url: "https://firebasestorage.googleapis.com/v0/b/gatsby-book-test-87142.appspot.com/o/20220531%20-%20Expansi%C3%B3n%20-%20Ola%20de%20subidas%20de%20tipos%20de%20inter%C3%A9s%20en%20los%20bancos%20centrales%20del%20mundo.pdf?alt=media&token=f68dea90-d0a9-4503-a73b-ce70eeefaaf5"
   },
   {
     id: 3,
@@ -63,7 +63,7 @@ export const data = [
     sector: ["marte", "china", "eeuu", "rusia", "zimbabwe", "opep","marte", "china", "eeuu", "rusia", "zimbabwe", "opep","petróleo", "apicultura","abejas", "locura", "potencias mundiales"],
     tags: ["abejas", "locura", "potencias mundiales"],
     others: [""],
-    url: "https://www.ieee.es/Galerias/fichero/docs_opinion/2019/DIEEEO13_VAZVAZ-Marte.pdf"
+    url: "http://www.fis.puc.cl/~jalfaro/astrobiologia/clases/marte.pdf"
 
   },
   {
