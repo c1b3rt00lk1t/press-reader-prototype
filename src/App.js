@@ -18,6 +18,8 @@ function App() {
             }
           />
           <Route path="/search" element={<h1>Search</h1>} />
+          <Route path="/settings" element={<h1>Settings</h1>} />
+          <Route path="/share" element={<h1>Share</h1>} />
         </Routes>
         <Footer />
       </Router>
