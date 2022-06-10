@@ -15,7 +15,7 @@ const Post = ({ data }) => {
       {/* <p>{item.title}</p> */}
       {!!item.url && <embed
         src={item.url}
-        style={{margin: '-2.5vw',width:'100vw',height:'100vh' }}
+        style={{margin: '-2.5vw',width:'100vw',height:'90vh' }}
         type="application/pdf"
       ></embed>}
     </>
