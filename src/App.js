@@ -6,7 +6,7 @@ import { data } from "./data/data.js";
 function App() {
   return (
     <>
-      <h1>Press reader prototype</h1>
+      <h1>Press reader</h1>
       <NewsList data = {data}/>
       <Footer />  
     </>

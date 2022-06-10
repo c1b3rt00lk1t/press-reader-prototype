@@ -51,12 +51,12 @@ export const data = [
   },
   {
     id: 6,
-    title: "Title of the news item",
-    source: "Expansión",
-    date: "06/09/2021",
-    zone: ["ue", "germany"],
-    sector: ["financiero"],
-    tags: ["deflación"],
+    title: "Una embajadora de Marte da una gira por China, EEUU, Rusia y Zimbabwe para acordar con las grandes potencias mundiales la disolución de la OPEP y la intensificación de la extracción de miel de las abejas",
+    source: "Marte News",
+    date: "30/02/2025",
+    zone: ["marte", "china", "eeuu", "rusia", "zimbabwe", "opep","marte", "china", "eeuu", "rusia", "zimbabwe", "opep","petróleo", "apicultura","abejas", "locura", "potencias mundiales"],
+    sector: ["marte", "china", "eeuu", "rusia", "zimbabwe", "opep","marte", "china", "eeuu", "rusia", "zimbabwe", "opep","petróleo", "apicultura","abejas", "locura", "potencias mundiales"],
+    tags: ["abejas", "locura", "potencias mundiales"],
     others: [""],
   },
   {
