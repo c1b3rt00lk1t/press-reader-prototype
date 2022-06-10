@@ -30,7 +30,7 @@ const Post = ({ data }) => {
         {!!item.url && (
           <embed
             src={item.url}
-            style={{ margin: "0 -2.5vw", width: "100vw", height: "95vh" }}
+            style={{ margin: "-2.5vw", width: "100vw", height: "95vh", paddingBottom: "10vh" }}
             type="application/pdf"
           ></embed>
         )}

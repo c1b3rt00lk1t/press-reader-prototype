@@ -12,7 +12,7 @@ const NewsItem = ({ item }) => {
 
   const handleClick = () => {
     setSelectedPost(item.id);
-    navigate('/post/1')
+    navigate(`/post/${item.id}`)
   }
 
   return (

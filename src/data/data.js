@@ -59,6 +59,7 @@ export const data = [
     sector: ["marte", "china", "eeuu", "rusia", "zimbabwe", "opep","marte", "china", "eeuu", "rusia", "zimbabwe", "opep","petróleo", "apicultura","abejas", "locura", "potencias mundiales"],
     tags: ["abejas", "locura", "potencias mundiales"],
     others: [""],
+    url: "http://pcielcomunista.org/attachments/article/649/4_El%20Comunista_68%20Estertores%20y%20espasmos%20(abril%2022).pdf"
   },
   {
     id: 7,
