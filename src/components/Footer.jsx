@@ -6,8 +6,8 @@ const Footer = () => {
   return (
     <footer>
         <IoMdSearch className='footer-icon'/>
-        <IoMdShareAlt className='footer-icon'/>
         <IoMdEye className='footer-icon'/>
+        <IoMdShareAlt className='footer-icon'/>
         <IoMdSettings className='footer-icon'/>
     </footer>
   )
