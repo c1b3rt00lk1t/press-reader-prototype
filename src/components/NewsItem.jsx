@@ -1,10 +1,22 @@
 import React from "react";
 import Tags from "./Tags";
 import { FaTag, FaIndustry, FaLocationArrow } from "react-icons/fa";
+import { useContext } from 'react';
+import PressReaderContext from "../contexts/PressReaderContext";
+import { useNavigate } from 'react-router-dom'
 
 const NewsItem = ({ item }) => {
+
+  const {setSelectedPost} = useContext(PressReaderContext);
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    setSelectedPost(item.id);
+    navigate('/post/1')
+  }
+
   return (
-    <li className="news-item">
+    <li onClick={handleClick} className="news-item">
       <div >
       <div className="horizontal align-items-center margin-lines">
             <FaTag className="news-item-tag " />
