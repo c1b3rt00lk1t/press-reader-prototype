@@ -20,7 +20,7 @@ ul {
 }
 
 li {
-  height: 15vh;
+  min-height: 15vh;
 }
 
 .news-item {
