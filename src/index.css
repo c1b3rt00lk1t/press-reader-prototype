@@ -25,6 +25,14 @@ li {
   align-items: center;
 }
 
+.news-item-title{
+  font-weight: bold;
+}
+.news-item-source{
+  font-size: 0.9em;
+  color: rgb(170, 170, 170);
+}
+
 
 
 
