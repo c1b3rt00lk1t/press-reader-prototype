@@ -1,14 +1,13 @@
 import React from "react";
+import NewsList from "./components/NewsList.jsx";
 import { data } from "./data/data.js";
 
 function App() {
   return (
     <>
       <div>Press reader prototype</div>
-      <ul>
-      {data.map(d => <li key={d.id}>{d.title}</li> )}
-      </ul>
-</>
+      <NewsList data = {data}/>
+      </>
   );
 }
 
