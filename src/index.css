@@ -11,12 +11,21 @@ body {
 ul {
   list-style-type: none;
   margin: 0;
-  padding: 0;
+  padding: 1vh 1vw;
 }
 
 li {
   height: 10vh;
 }
+
+.news-item {
+  border-bottom: 1px dotted grey;
+
+  display: flex;
+  align-items: center;
+}
+
+
 
 
 footer {

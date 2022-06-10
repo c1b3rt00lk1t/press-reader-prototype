@@ -1,7 +1,7 @@
 import React from "react";
 
 const NewsItem = ({item}) => {
-  return <li >{item.title}</li>;
+  return <li className="news-item" >{item.title}</li>;
 };
 
 export default NewsItem;
