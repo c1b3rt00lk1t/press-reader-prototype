@@ -8,6 +8,7 @@ export const data = [
     sector: ["financiero"],
     tags: ["dividendos"],
     others: [""],
+    url: "/static/20220525 - Expansión - Lluvia global de dividendos en el mundo 1,44 billones.pdf",
   },
   {
     id: 2,

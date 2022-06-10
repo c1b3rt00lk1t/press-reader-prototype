@@ -1,15 +1,22 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 
-const Post = ({data}) => {
+const Post = ({ data }) => {
   const params = useParams();
-  console.log(data.filter(a => `${a.id}` === params.id))
-  console.log(typeof(params.id))
+  const item =data.filter((a) => `${a.id}` === params.id)[0];
+  const width = window.innerWidth;
+  const height = window.innerHeight;
   return (
     <div>
       {/* <h1>Post {params.id}</h1> */}
       {/* <p>{data[params.id].title}</p> */}
-      <p>{data.filter(a => `${a.id}` === params.id).map(a => a.title)}</p>
+      <p>{item.title}</p>
+      {!!item.url && <embed
+        src={item.url}
+        width={width}
+        height={height}
+        type="application/pdf"
+      ></embed>}
     </div>
   );
 };
