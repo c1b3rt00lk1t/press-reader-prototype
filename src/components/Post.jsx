@@ -9,16 +9,16 @@ const Post = ({ data }) => {
   // console.log(width);
   // console.log(height);
   return (
-    <div>
+    <>
       {/* <h1>Post {params.id}</h1> */}
       {/* <p>{data[params.id].title}</p> */}
-      <p>{item.title}</p>
+      {/* <p>{item.title}</p> */}
       {!!item.url && <embed
         src={item.url}
-        style={{width:'95vw',height:'80vh' }}
+        style={{margin: '-2.5vw',width:'100vw',height:'100vh' }}
         type="application/pdf"
       ></embed>}
-    </div>
+    </>
   );
 };
 
