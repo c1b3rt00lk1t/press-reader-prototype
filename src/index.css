@@ -28,7 +28,7 @@ li {
 .vertical-gap{
   display: flex;
   flex-direction: column;
-  gap: 0.5vh;
+  gap: 1vh;
 }
 
 .news-item-title{
