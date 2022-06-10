@@ -1,13 +1,15 @@
 import React from "react";
+import Footer from "./components/Footer.jsx";
 import NewsList from "./components/NewsList.jsx";
 import { data } from "./data/data.js";
 
 function App() {
   return (
     <>
-      <div>Press reader prototype</div>
+      <h1>Press reader prototype</h1>
       <NewsList data = {data}/>
-      </>
+      <Footer />  
+    </>
   );
 }
 

@@ -17,3 +17,15 @@ ul {
 li {
   height: 10vh;
 }
+
+
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 5vh;
+  background-color: whitesmoke;
+  color: rgb(0, 0, 30);
+  text-align: center;
+}
