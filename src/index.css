@@ -19,8 +19,16 @@ ul {
   padding: 1vh 0;
 }
 
-li {
-  height: 17.5vh;
+@media (min-height: 701px){
+  li {
+    height: 17.5vh;
+  }
+}
+
+@media (max-height: 700px){
+  li {
+    height: 19vh;
+  }
 }
 
 .news-item {
