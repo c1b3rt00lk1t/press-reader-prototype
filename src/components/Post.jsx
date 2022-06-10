@@ -1,23 +1,40 @@
 import React from "react";
 import { useParams } from "react-router-dom";
+import { FaTag, FaIndustry, FaLocationArrow } from "react-icons/fa";
+import Tags from "./Tags";
 
 const Post = ({ data }) => {
   const params = useParams();
-  const item =data.filter((a) => `${a.id}` === params.id)[0];
-  // const width = window.innerWidth;
-  // const height = window.innerHeight;
-  // console.log(width);
-  // console.log(height);
+  const item = data.filter((a) => `${a.id}` === params.id)[0];
+
   return (
     <>
-      {/* <h1>Post {params.id}</h1> */}
-      {/* <p>{data[params.id].title}</p> */}
-      {/* <p>{item.title}</p> */}
-      {!!item.url && <embed
-        src={item.url}
-        style={{margin: '-2.5vw',width:'100vw',height:'90vh' }}
-        type="application/pdf"
-      ></embed>}
+      <div
+        className="horizontal align-items-center margin-lines"
+        style={{ justifyContent: "space-between" }}
+      >
+        <div className="horizontal align-items-center">
+          <FaTag className="news-item-tag " />
+          <Tags tags={item.tags} />
+        </div>
+        <div className="horizontal align-items-center">
+          <FaLocationArrow className="news-item-tag" />
+          <Tags tags={item.zone} />
+        </div>
+        <div className="horizontal align-items-center">
+          <FaIndustry className="news-item-tag" />
+          <Tags tags={item.sector} />
+        </div>
+      </div>
+      <div>
+        {!!item.url && (
+          <embed
+            src={item.url}
+            style={{ margin: "0 -2.5vw", width: "100vw", height: "95vh" }}
+            type="application/pdf"
+          ></embed>
+        )}
+      </div>
     </>
   );
 };
