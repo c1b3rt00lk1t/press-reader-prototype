@@ -1,6 +1,11 @@
+:root{
+  --small-screen-em-small: 0.7em;
+  --small-screen-em-normal: 1.1em;
+}
+
 body {
   margin: 0;
-  padding: 0 2vw;
+  padding: 0 2.5vw;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -31,6 +36,7 @@ li {
 
 .news-item-title{
   font-weight: bold;
+  font-size: var(--small-screen-em-normal);
   line-height: 1;
   overflow: hidden;
 }
@@ -47,7 +53,7 @@ li {
 }
 
 .news-item-source{
-  font-size: 0.6em;
+  font-size: var(--small-screen-em-small);
   text-transform: uppercase;
   color: rgb(170, 170, 170);
 }
@@ -78,13 +84,13 @@ li {
 }
 
 .news-item-tag{
-  font-size: 0.6em;
+  font-size: var(--small-screen-em-small);
   color:rgb(170, 170, 170);
   margin-right: 2vw;
 }
 
 .tags{
-  font-size: 0.6em;
+  font-size: var(--small-screen-em-small);
   color: rgb(0, 0, 100);
 }
 
