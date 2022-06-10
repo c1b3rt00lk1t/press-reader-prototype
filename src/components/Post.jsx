@@ -11,7 +11,7 @@ const Post = ({ data }) => {
     <>
       <div
         className="horizontal align-items-center margin-lines"
-        style={{ justifyContent: "space-between" }}
+        style={{ justifyContent: "space-between" , marginBottom: "1vh"}}
       >
         <div className="horizontal align-items-center">
           <FaTag className="news-item-tag " />
@@ -30,7 +30,7 @@ const Post = ({ data }) => {
         {!!item.url && (
           <embed
             src={item.url}
-            style={{ margin: "-2.5vw", width: "100vw", height: "95vh", paddingBottom: "10vh" }}
+            style={{ margin: "-2.5vw", width: "100vw", height: "95vh", paddingBottom: "5vh" }}
             type="application/pdf"
           ></embed>
         )}

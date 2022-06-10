@@ -41,6 +41,7 @@ export const data = [
     sector: ["financiero"],
     tags: ["sanciones"],
     others: [""],
+    url: "https://firebasestorage.googleapis.com/v0/b/gatsby-book-test-87142.appspot.com/o/20220530%20-%20Expansi%C3%B3n%20-%20El%20rublo%20destaca%20en%20un%20mercado%20de%20divisas%20agitado%20por%20la%20guerra%20y%20los%20tipos.pdf?alt=media&token=982e0d68-3a7d-45cd-8bf6-2e148e654a15"
   },
   {
     id: 5,
@@ -51,6 +52,7 @@ export const data = [
     sector: ["petróleo"],
     tags: ["opep", "g7"],
     others: [""],
+    url: "https://firebasestorage.googleapis.com/v0/b/gatsby-book-test-87142.appspot.com/o/20220528%20-%20Expansi%C3%B3n%20-%20El%20G7%20pide%20a%20la%20OPEP%20que%20eleve%20el%20suministro%20de%20crudo.pdf?alt=media&token=411eb088-da84-43ea-8f0e-b374c6288d40"
   },
   {
     id: 6,
@@ -61,6 +63,7 @@ export const data = [
     sector: ["marte", "china", "eeuu", "rusia", "zimbabwe", "opep","marte", "china", "eeuu", "rusia", "zimbabwe", "opep","petróleo", "apicultura","abejas", "locura", "potencias mundiales"],
     tags: ["abejas", "locura", "potencias mundiales"],
     others: [""],
+    url: "https://www.ieee.es/Galerias/fichero/docs_opinion/2019/DIEEEO13_VAZVAZ-Marte.pdf"
 
   },
   {
