@@ -1,11 +1,12 @@
 import React from "react";
+import NewsItem from "./NewsItem";
 
 const NewsList = ({ data }) => {
   return (
     <>
       <ul>
-        {data.map((d) => (
-          <li key={d.id}>{d.title}</li>
+        {data.map((item) => (
+          <NewsItem key={item.id} item={item} />
         ))}
       </ul>
     </>
