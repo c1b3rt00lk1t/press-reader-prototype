@@ -8,7 +8,7 @@ export const data = [
     sector: ["financiero"],
     tags: ["dividendos"],
     others: [""],
-    url: "https://firebasestorage.googleapis.com/v0/b/gatsby-book-test-87142.appspot.com/o/20220518%20-%20Expansi%C3%B3n%20-%20Los%20inversores%20pulverizan%207.000%20millones%20en%20tether%20en%20la%20tormenta.pdf?alt=media&token=5bdc01af-4308-4e37-83cb-dad9c7391622",
+    url: "https://firebasestorage.googleapis.com/v0/b/gatsby-book-test-87142.appspot.com/o/20220525%20-%20Expansi%C3%B3n%20-%20Lluvia%20global%20de%20dividendos%20en%20el%20mundo%201%2C44%20billones.pdf?alt=media&token=20ffd441-1558-40b2-8bc2-fef8a04e1c2f",
   },
   {
     id: 2,

@@ -4,6 +4,8 @@ import { FaTag, FaIndustry, FaLocationArrow } from "react-icons/fa";
 import Tags from "./Tags";
 import PressReaderContext from "../contexts/PressReaderContext";
 
+import {MdNavigateBefore, MdNavigateNext} from "react-icons/md";
+
 
 const Post = ({ data }) => {
   const params = useParams();
@@ -13,9 +15,14 @@ const Post = ({ data }) => {
   const {setSelectedPost} = useContext(PressReaderContext);
   const navigate = useNavigate();
 
-  const handleTouch = () => {
-    setSelectedPost(data[indexItem + 1 ].id);
-    navigate(`/post/${data[indexItem + 1 ].id}`)
+  const handleTouch = (ev) => {
+    let el = ev.target;
+    while(!el.classList.value.includes('on-touch')){
+        el = el.parentElement;
+    }
+    const sign = el.classList.value.includes('to-next') ? 1 : -1;
+    setSelectedPost(data[indexItem + (1 * sign) ].id);
+    navigate(`/post/${data[indexItem + ( 1 * sign) ].id}`);
   }
 
   return (
@@ -38,8 +45,9 @@ const Post = ({ data }) => {
         </div>
       </div>
       
-      <div style={{position: "relative"}} onTouchStart={handleTouch} >
-        {/* <div className="on-touch" ></div> */}
+      <div style={{position: "relative"}} >
+        <div className="on-touch to-previous horizontal align-items-center justify-items-center" onTouchStart={handleTouch}><MdNavigateBefore className="previous-next"/></div>
+        <div className="on-touch to-next horizontal align-items-center justify-items-center" onTouchStart={handleTouch}><MdNavigateNext  className="previous-next"/></div>
         {!!item.url && (
           <embed 
             src={item.url}

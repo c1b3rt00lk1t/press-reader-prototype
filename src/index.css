@@ -78,6 +78,9 @@ ul {
   align-items: center;
 }
 
+.justify-items-center{
+  justify-content: center;
+}
 
 
 .vw-40{
@@ -130,11 +133,27 @@ embed{
   position: relative;
 }
 
-/* .on-touch{
-  position: relative;
-  background-color: transparent;
-  width: 100vw;
-  height: 80vh;
-  bottom: 10vh;
+.on-touch{
+  position: absolute;
+  background-color: rgb(185, 185, 185, 0.1);
+  border-radius: 50%;
+  width: 10vw;
+  height: 10vw;
+ 
   z-index: 10;
-} */
+}
+
+.to-next{
+  right:0;
+  top: 40vh;
+}
+.to-previous{
+  left:0;
+  top: 40vh;
+}
+.previous-next{
+ color:rgb(0, 0, 55, 0.3);
+ font-size: calc(var(--small-screen-em-normal)*2);
+ z-index: -1;
+ /* width: 3vw; */
+}
