@@ -47,14 +47,12 @@ const Post = ({ data }) => {
       <div style={{ position: "relative" }}>
         <div
           className="on-touch to-previous horizontal align-items-center justify-items-center"
-          onTouchStart={handleTouch}
           onClick={handleTouch}
         >
           <MdNavigateBefore className="previous-next" />
         </div>
         <div
           className="on-touch to-next horizontal align-items-center justify-items-center"
-          onTouchStart={handleTouch}
           onClick={handleTouch}
         >
           <MdNavigateNext className="previous-next" />
