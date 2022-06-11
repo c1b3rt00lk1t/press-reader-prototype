@@ -8,7 +8,7 @@ import PressReaderContext from "../contexts/PressReaderContext";
 const Post = ({ data }) => {
   const params = useParams();
   const item = data.filter((a) => `${a.id}` === params.id)[0];
-  const indexItem = data.indexof(item);
+  const indexItem = data.indexOf(item);
 
   const {setSelectedPost} = useContext(PressReaderContext);
   const navigate = useNavigate();
@@ -20,7 +20,7 @@ const Post = ({ data }) => {
 
   return (
     <>
-      <div onTouchStart={handleTouch}
+      <div 
         className="horizontal align-items-center margin-lines"
         style={{ justifyContent: "space-between" , marginBottom: "2.5vh"}}
       >
@@ -37,9 +37,11 @@ const Post = ({ data }) => {
           <Tags tags={item.sector} />
         </div>
       </div>
-      <div>
+      
+      <div style={{position: "relative"}} onTouchStart={handleTouch} >
+        {/* <div className="on-touch" ></div> */}
         {!!item.url && (
-          <embed
+          <embed 
             src={item.url}
             style={{ margin: "-2.5vw", width: "100vw", height: "95vh", paddingBottom: "5vh" }}
             type="application/pdf"
