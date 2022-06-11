@@ -1,5 +1,5 @@
-import React from "react";
-import { useParams, useNavigate, useContext } from "react-router-dom";
+import React , {useContext} from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import { FaTag, FaIndustry, FaLocationArrow } from "react-icons/fa";
 import Tags from "./Tags";
 import PressReaderContext from "../contexts/PressReaderContext";
