@@ -26,6 +26,7 @@ function App() {
             <Route path="/settings" element={<h1>Settings</h1>} />
             <Route path="/share" element={<h1>Share</h1>} />
             <Route path="/post/:id" element={<Post data={data} />} />
+            <Route path="*" element={<h1>404 Not found</h1>} />
           </Routes>
           <Footer />
         </Router>
