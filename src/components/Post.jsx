@@ -7,9 +7,10 @@ const Post = ({ data }) => {
   const params = useParams();
   const item = data.filter((a) => `${a.id}` === params.id)[0];
 
+  const handleTouch = () => {alert('touch')};
   return (
     <>
-      <div
+      <div onTouchStart={handleTouch}
         className="horizontal align-items-center margin-lines"
         style={{ justifyContent: "space-between" , marginBottom: "2.5vh"}}
       >
