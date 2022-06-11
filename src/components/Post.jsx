@@ -1,13 +1,23 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate, useContext } from "react-router-dom";
 import { FaTag, FaIndustry, FaLocationArrow } from "react-icons/fa";
 import Tags from "./Tags";
+import PressReaderContext from "../contexts/PressReaderContext";
+
 
 const Post = ({ data }) => {
   const params = useParams();
   const item = data.filter((a) => `${a.id}` === params.id)[0];
+  const indexItem = data.indexof(item);
 
-  const handleTouch = () => {alert('touch')};
+  const {setSelectedPost} = useContext(PressReaderContext);
+  const navigate = useNavigate();
+
+  const handleTouch = () => {
+    setSelectedPost(data[indexItem + 1 ].id);
+    navigate(`/post/${data[indexItem + 1 ].id}`)
+  }
+
   return (
     <>
       <div onTouchStart={handleTouch}
