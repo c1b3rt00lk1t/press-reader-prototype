@@ -55,18 +55,6 @@ export const data = [
     url: "https://firebasestorage.googleapis.com/v0/b/gatsby-book-test-87142.appspot.com/o/20220528%20-%20Expansi%C3%B3n%20-%20El%20G7%20pide%20a%20la%20OPEP%20que%20eleve%20el%20suministro%20de%20crudo.pdf?alt=media&token=411eb088-da84-43ea-8f0e-b374c6288d40"
   },
   {
-    id: 6,
-    title: "Una embajadora de Marte da una gira por China, EEUU, Rusia y Zimbabwe para acordar con las grandes potencias mundiales la disolución de la OPEP y la intensificación de la extracción de miel de las abejas",
-    source: "Marte News",
-    date: "30/02/2025",
-    zone: ["marte", "china", "eeuu", "rusia", "zimbabwe", "opep","marte", "china", "eeuu", "rusia", "zimbabwe", "opep","petróleo", "apicultura","abejas", "locura", "potencias mundiales"],
-    sector: ["marte", "china", "eeuu", "rusia", "zimbabwe", "opep","marte", "china", "eeuu", "rusia", "zimbabwe", "opep","petróleo", "apicultura","abejas", "locura", "potencias mundiales"],
-    tags: ["abejas", "locura", "potencias mundiales"],
-    others: [""],
-    url: "http://www.fis.puc.cl/~jalfaro/astrobiologia/clases/marte.pdf"
-
-  },
-  {
     id: 7,
     title: "Los talibanes prohíben el cultivo de la adormidera",
     source: "La Vanguardia",
