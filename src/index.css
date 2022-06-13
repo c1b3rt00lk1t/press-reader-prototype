@@ -32,7 +32,7 @@ ul {
 }
 
 .news-item {
-  border-bottom: 1px dotted grey;
+  border-bottom: 0.5px dotted grey;
 
   display: flex;
   align-items: center;
@@ -168,11 +168,6 @@ embed{
 /* For pdf */
 
 
-/* .react-pdf__Page__canvas {
-  width: 100vw !important;
-  height: auto !important;
-} */
-
 
 @media (min-height: 701px){
   .react-pdf__Page__canvas {
@@ -188,4 +183,8 @@ embed{
     width: 100vw !important;
     height: auto !important;
   }
+}
+
+.react-pdf__Document{
+  margin-bottom: 12.5vh;
 }
