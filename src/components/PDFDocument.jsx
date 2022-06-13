@@ -14,7 +14,7 @@ const PDFDocument = ({url}) => {
 
   const [numPages, setNumPages] = useState(null);
 //   const [pageNumber, setPageNumber] = useState(1);
-  const [pageNumber] = useState(1);
+  // const [pageNumber] = useState(1);
   const onDocumentLoadSuccess = ({ numPages }) => {
     setNumPages(numPages);
   }
