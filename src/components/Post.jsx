@@ -5,6 +5,7 @@ import Tags from "./Tags";
 import PressReaderContext from "../contexts/PressReaderContext";
 
 import { MdNavigateBefore, MdNavigateNext } from "react-icons/md";
+import PDFDocument from "./PDFDocument";
 
 const Post = ({ data }) => {
   const params = useParams();
@@ -57,18 +58,7 @@ const Post = ({ data }) => {
         >
           <MdNavigateNext className="previous-next" />
         </div>
-        {!!item.url && (
-          <embed
-            src={item.url}
-            style={{
-              margin: "-2.5vw",
-              width: "100vw",
-              height: "95vh",
-              paddingBottom: "5vh",
-            }}
-            type="application/pdf"
-          ></embed>
-        )}
+        {!!item.url && <PDFDocument url={item.url} />}
       </div>
     </>
   );
