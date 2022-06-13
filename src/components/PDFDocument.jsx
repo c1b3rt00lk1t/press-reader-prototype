@@ -31,9 +31,9 @@ const PDFDocument = ({url}) => {
         <Page key={`page_${index + 1}`} pageNumber={index + 1} />
       ))}
     </Document>
-      <p>
+      {/* <p>
         Page {pageNumber} of {numPages}
-      </p>
+      </p> */}
     </div>
   )
 }

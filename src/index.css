@@ -164,6 +164,6 @@ embed{
 
 .react-pdf__Page__canvas {
   margin: 0 auto;
-  width: 80vw !important;
+  width: 100vw !important;
   height: auto !important;
 }
