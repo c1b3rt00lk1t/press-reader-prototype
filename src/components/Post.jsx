@@ -29,7 +29,7 @@ const Post = ({ data }) => {
     <>
       <div
         className="horizontal align-items-center margin-lines"
-        style={{ justifyContent: "space-between", marginBottom: "2.5vh" }}
+        style={{ justifyContent: "space-between", marginTop: "2.5vh", marginBottom: "2.5vh" }}
       >
         <div className="horizontal align-items-center">
           <FaTag className="news-item-tag " />

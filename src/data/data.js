@@ -78,13 +78,14 @@ export const data = [
   },
   {
     id: 9,
-    title: "Title of the news item",
+    title: "Various pages",
     source: "Expansión",
     date: "06/09/2021",
     zone: ["ue", "germany"],
     sector: ["financiero"],
     tags: ["deflación"],
     others: [""],
+    url: "https://firebasestorage.googleapis.com/v0/b/gatsby-book-test-87142.appspot.com/o/20220518%20-%20Expansi%C3%B3n%20-%20TEST%20THREE%20PAGES.pdf?alt=media&token=e51bb07b-834c-479a-b785-ca46ab9bdb41"
   },
   {
     id: 10,
