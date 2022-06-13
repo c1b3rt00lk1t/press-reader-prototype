@@ -157,3 +157,20 @@ embed{
  z-index: -1;
  /* width: 3vw; */
 }
+
+
+/* For pdf */
+
+
+.react-pdf__Page__annotations.annotationLayer {
+  padding: 20px;
+}
+
+.react-pdf__Page__canvas {
+  margin: 0 auto;
+  width: 1500px;
+}
+
+.react-pdf__Page__textContent{
+  display: none;
+}
