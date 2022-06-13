@@ -17,7 +17,6 @@ const PDFDocument = ({url}) => {
   const onDocumentLoadSuccess = ({ numPages }) => {
     setNumPages(numPages);
   }
-  console.log(url)
   return (
     <div>
       <Document file={url} onLoadSuccess={onDocumentLoadSuccess}>
