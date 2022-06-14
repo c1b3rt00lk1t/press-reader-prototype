@@ -167,7 +167,7 @@ embed{
 
 /* For pdf */
 
-
+/* Mobile screens vertical */
 
 @media (min-height: 701px){
   .react-pdf__Page__canvas {
@@ -176,7 +176,7 @@ embed{
     height: 144vw !important;
   }
   .react-pdf__Document{
-    margin-bottom: 15vh;
+    margin-bottom: 12.5vh;
     margin-top: 5.5vh;
   }
 }
