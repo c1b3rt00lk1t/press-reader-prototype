@@ -5,6 +5,9 @@ import { data } from "./data/data.js";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Post from "./components/Post";
 import { PressReaderContextProvider } from "./contexts/PressReaderContext";
+import Search from "./pages/Search.jsx";
+import Settings from "./pages/Settings.jsx";
+import Share from "./pages/Share.jsx";
 
 function App() {
   return (
@@ -22,9 +25,9 @@ function App() {
                 </>
               }
             />
-            <Route path="/search" element={<h1>Search</h1>} />
-            <Route path="/settings" element={<h1>Settings</h1>} />
-            <Route path="/share" element={<h1>Share</h1>} />
+            <Route path="/search" element={<Search />} />
+            <Route path="/settings" element={<Settings />} />
+            <Route path="/share" element={<Share/>} />
             <Route path="/post/:id" element={<Post data={data} />} />
             <Route path="*" element={<h1>404 Not found</h1>} />
           </Routes>
