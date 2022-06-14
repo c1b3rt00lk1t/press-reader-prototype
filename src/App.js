@@ -7,7 +7,7 @@ import Post from "./components/Post";
 import { PressReaderContextProvider } from "./contexts/PressReaderContext";
 import Search from "./pages/Search.jsx";
 import Settings from "./pages/Settings.jsx";
-import Share from "./pages/Share.jsx";
+
 
 function App() {
   return (
@@ -27,7 +27,6 @@ function App() {
             />
             <Route path="/search" element={<Search />} />
             <Route path="/settings" element={<Settings />} />
-            <Route path="/share" element={<Share/>} />
             <Route path="/post/:id" element={<Post data={data} />} />
             <Route path="*" element={<h1>404 Not found</h1>} />
           </Routes>

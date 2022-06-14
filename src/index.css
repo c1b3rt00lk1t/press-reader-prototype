@@ -193,3 +193,8 @@ embed{
   }
 }
 
+.share{
+  font-size: var(--small-screen-em-normal);
+  color: rgb(0, 0, 100);
+  cursor:pointer;
+}

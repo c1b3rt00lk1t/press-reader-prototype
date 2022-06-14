@@ -9,6 +9,20 @@ import {
 } from "react-icons/io";
 
 const Footer = () => {
+  const shareData = {
+    title: "PressReader",
+    text: 'Try this prototype!',
+    url: "https://tourmaline-unicorn-2c62ec.netlify.app",
+  };
+
+  const handleShare = async () => {
+    try {
+      await navigator.share(shareData);
+    } catch (err) {
+      console.log("Error in the sharing process");
+    }
+  };
+
   return (
     <footer>
       <Link to="/search">
@@ -17,9 +31,9 @@ const Footer = () => {
       <Link to="/">
         <IoMdEye className="footer-icon" />
       </Link>
-      <Link to="/share">
+      <div onClick={handleShare}>
         <IoMdShareAlt className="footer-icon" />
-      </Link>
+      </div>
       <Link to="/settings">
         <IoMdSettings className="footer-icon" />
       </Link>
