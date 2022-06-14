@@ -20,7 +20,7 @@ function App() {
               path="/"
               element={
                 <>
-                  <h1>Press reader</h1>
+                  <h1>Reader</h1>
                   <NewsList data={data} />
                 </>
               }
