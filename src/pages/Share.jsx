@@ -1,9 +1,28 @@
-import React from 'react'
+import React from "react";
 
 const Share = () => {
-  return (
-    <h1>Share</h1>
-  )
-}
+  const shareData = {
+    title: "PressReader",
+    text: 'Try this prototype!',
+    url: "https://tourmaline-unicorn-2c62ec.netlify.app",
+  };
 
-export default Share
+  const handleClick = async () => {
+    try {
+      await navigator.share(shareData);
+    } catch (err) {
+      console.log("Error in the sharing process");
+    }
+  };
+
+  return (
+    <>
+      <h1>Share</h1>
+            <button  onClick={handleClick}>
+          Share the app
+          </button>
+      </>
+  );
+};
+
+export default Share;
