@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import PressReaderContext from "../contexts/PressReaderContext";
 
 import {
   IoMdSettings,
@@ -9,21 +10,8 @@ import {
 } from "react-icons/io";
 
 const Footer = () => {
-  const shareData = {
-    title: "PressReader",
-    text: 'Try this prototype!',
-    url: "https://tourmaline-unicorn-2c62ec.netlify.app",
-  };
 
-  const handleShare = async () => {
-    try {
-      await navigator.share(shareData);
-    } catch (err) {
-      console.log("Error in the sharing process");
-      //this will catch the second share attempt in iOS 14
-    	window.location.reload(true); // now share works again
-    }
-  };
+  const { handleShare } = useContext(PressReaderContext);
 
   return (
     <footer>

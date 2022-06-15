@@ -7,12 +7,18 @@ import PressReaderContext from "../contexts/PressReaderContext";
 import { MdNavigateBefore, MdNavigateNext } from "react-icons/md";
 import PDFDocument from "./PDFDocument";
 
-const Post = ({ data }) => {
+const Post = () => {
+  const { setPostSelected, dataOrdered: data } = useContext(PressReaderContext);
+
   const params = useParams();
+
+  
   const item = data.filter((a) => `${a.id}` === params.id)[0];
   const indexItem = data.indexOf(item);
 
-  const { setSelectedPost } = useContext(PressReaderContext);
+  setPostSelected(data[indexItem].id)
+
+
   const navigate = useNavigate();
 
   const handleTouch = (ev) => {
@@ -21,7 +27,7 @@ const Post = ({ data }) => {
       el = el.parentElement;
     }
     const sign = el.classList.value.includes("to-next") ? 1 : -1;
-    setSelectedPost(data[indexItem + 1 * sign].id);
+    setPostSelected(data[indexItem + 1 * sign].id);
     navigate(`/post/${data[indexItem + 1 * sign].id}`);
   };
 
