@@ -7,16 +7,21 @@ import { useNavigate } from 'react-router-dom'
 
 const NewsItem = ({ item }) => {
 
-  const {setSelectedPost} = useContext(PressReaderContext);
+  const {setPostSelected, setDataToShare} = useContext(PressReaderContext);
   const navigate = useNavigate();
 
-  const handleClick = () => {
-    setSelectedPost(item.id);
+  const handleClickOnItem = () => {
+    setPostSelected(item.id);
+    setDataToShare({
+      title: "PressReader",
+      text: item.title,
+      url: item.url,
+    });
     navigate(`/post/${item.id}`)
   }
 
   return (
-    <li onClick={handleClick} className="news-item">
+    <li onClick={handleClickOnItem} className="news-item">
       <div >
       <div className="horizontal align-items-center margin-lines">
             <FaTag className="news-item-tag " />

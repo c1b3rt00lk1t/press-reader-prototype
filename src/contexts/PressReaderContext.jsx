@@ -19,7 +19,10 @@ export const PressReaderContextProvider = ({ children }) => {
   });
 
 
-  const handleSelectedPost = (id) => {
+  
+
+
+  const getSelectedPost = (id) => {
     const item = dataOrdered.filter((a) => `${a.id}` === id)[0];
     const indexItem = dataOrdered.indexOf(item);
   
@@ -29,11 +32,12 @@ export const PressReaderContextProvider = ({ children }) => {
 
 
 
-  const handleNextPrevious = () => {};
+ 
 
   const handleShare = async () => {
     try {
       await navigator.share(dataToShare);
+      console.log(dataToShare)
     } catch (err) {
       console.log("Error in the sharing process");
       //this will catch the second share attempt in iOS 14
@@ -45,7 +49,7 @@ export const PressReaderContextProvider = ({ children }) => {
 
 
   return (
-    <PressReaderContext.Provider value={{ dataOrdered, postSelected, setPostSelected, handleShare,  }}>
+    <PressReaderContext.Provider value={{ dataOrdered, postSelected, setPostSelected, handleShare, setDataToShare }}>
       {children}
     </PressReaderContext.Provider>
   );

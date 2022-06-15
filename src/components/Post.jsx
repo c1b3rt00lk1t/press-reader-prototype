@@ -16,7 +16,7 @@ const Post = () => {
   const item = data.filter((a) => `${a.id}` === params.id)[0];
   const indexItem = data.indexOf(item);
 
-  setPostSelected(data[indexItem].id)
+
 
 
   const navigate = useNavigate();
