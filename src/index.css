@@ -67,7 +67,7 @@ ul {
 }
 
 
-/* FLexbox*/
+/* Flexbox*/
 .horizontal{
   display: flex;
   flex-direction: row;
@@ -127,8 +127,14 @@ ul {
   color: rgb(0, 0, 100);
 }
 
+/*Form*/
+legend{
+  font-weight: bold;
+}
 
 
+
+/* Footer */
 
 footer {
   position: fixed;

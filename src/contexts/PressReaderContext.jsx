@@ -17,7 +17,15 @@ export const PressReaderContextProvider = ({ children }) => {
     .sort()
     .filter((a, i, arr) => a !== arr[i - 1]);
 
+  const uniqueIndustries = dataAll
+  .flatMap((a) => a.sector)
+  .sort()
+  .filter((a, i, arr) => a !== arr[i - 1]);
 
+  const uniqueTags = dataAll
+  .flatMap((a) => a.tags)
+  .sort()
+  .filter((a, i, arr) => a !== arr[i - 1]);
 
 
   // const [criteriaToFilter, setCriteriaToFilter] = useState({});
@@ -62,7 +70,7 @@ export const PressReaderContextProvider = ({ children }) => {
 
 
   return (
-    <PressReaderContext.Provider value={{ dataAll, uniqueSessions, uniqueZones, dataOrdered, postSelected, setPostSelected, handleShare, setDataToShare,handleList }}>
+    <PressReaderContext.Provider value={{ dataAll, uniqueSessions, uniqueZones, uniqueIndustries, uniqueTags, dataOrdered, postSelected, setPostSelected, handleShare, setDataToShare,handleList }}>
       {children}
     </PressReaderContext.Provider>
   );
