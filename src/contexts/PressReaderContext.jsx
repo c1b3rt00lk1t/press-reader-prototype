@@ -1,16 +1,16 @@
 import { createContext, useState } from "react";
-import NewsItem from "../components/NewsItem.jsx";
 import { data } from "../data/data.js";
 
 const PressReaderContext = createContext();
 
 export const PressReaderContextProvider = ({ children }) => {
 
-  const [dataAll, setDataAll] = useState(data);
-  const [criteriaToFilter, setCriteriaToFilter] = useState({});
-  const [dataFiltered, setDataFiltered] = useState(data);
-  const [criteriaToOrder, setCriteriaToOrder] = useState({});
-  const [dataOrdered, setDataOrdered] = useState(data);
+  // const [dataAll, setDataAll] = useState(data);
+  // const [criteriaToFilter, setCriteriaToFilter] = useState({});
+  // const [dataFiltered, setDataFiltered] = useState(data);
+  // const [criteriaToOrder, setCriteriaToOrder] = useState({});
+  // const [dataOrdered, setDataOrdered] = useState(data);
+  const [dataOrdered] = useState(data);
   const [postSelected, setPostSelected] = useState(null);
   const [dataToShare, setDataToShare] = useState({
     title: "PressReader",
