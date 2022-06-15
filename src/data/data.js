@@ -97,6 +97,7 @@ export const data = [
   },
   {
     id: 10,
+    session: "20211006",
     title: "Title of the news item",
     source: "Expansión",
     date: "06/09/2021",
@@ -107,6 +108,7 @@ export const data = [
   },
   {
     id: 11,
+    session: "20211006",
     title: "Title of the news item",
     source: "Expansión",
     date: "06/09/2021",
@@ -117,6 +119,7 @@ export const data = [
   },
   {
     id: 12,
+    session: "20211006",
     title: "Title of the news item",
     source: "Expansión",
     date: "06/09/2021",
@@ -127,6 +130,7 @@ export const data = [
   },
   {
     id: 13,
+    session: "20211006",
     title: "Title of the news item",
     source: "Expansión",
     date: "06/09/2021",
@@ -137,6 +141,7 @@ export const data = [
   },
   {
     id: 14,
+    session: "20211006",
     title: "Title of the news item",
     source: "Expansión",
     date: "06/09/2021",
@@ -147,6 +152,7 @@ export const data = [
   },
   {
     id: 15,
+    session: "20211006",
     title: "Title of the news item",
     source: "Expansión",
     date: "06/09/2021",
@@ -157,6 +163,7 @@ export const data = [
   },
   {
     id: 16,
+    session: "20211006",
     title: "Title of the news item",
     source: "Expansión",
     date: "06/09/2021",
@@ -167,6 +174,7 @@ export const data = [
   },
   {
     id: 17,
+    session: "20211006",
     title: "Title of the news item",
     source: "Expansión",
     date: "06/09/2021",
@@ -177,6 +185,7 @@ export const data = [
   },
   {
     id: 'abc',
+    session: "20211006",
     title: "Title of the news item LAST",
     source: "Expansión",
     date: "06/09/2021",

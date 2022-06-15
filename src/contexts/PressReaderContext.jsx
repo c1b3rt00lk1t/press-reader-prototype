@@ -6,6 +6,20 @@ const PressReaderContext = createContext();
 export const PressReaderContextProvider = ({ children }) => {
 
   const [dataAll] = useState(data);
+
+  const uniqueSessions = dataAll
+    .map((a) => a.session)
+    .sort((a, b) => b - a)
+    .filter((a, i, arr) => a !== arr[i - 1]);
+
+  const uniqueZones = dataAll
+    .flatMap((a) => a.zone)
+    .sort()
+    .filter((a, i, arr) => a !== arr[i - 1]);
+
+
+
+
   // const [criteriaToFilter, setCriteriaToFilter] = useState({});
   // const [dataFiltered, setDataFiltered] = useState(data);
   // const [criteriaToOrder, setCriteriaToOrder] = useState({});
@@ -17,6 +31,11 @@ export const PressReaderContextProvider = ({ children }) => {
     text: "Try this prototype!",
     url: "https://tourmaline-unicorn-2c62ec.netlify.app",
   });
+
+
+
+
+
 
 
   const handleList = () => {
@@ -43,7 +62,7 @@ export const PressReaderContextProvider = ({ children }) => {
 
 
   return (
-    <PressReaderContext.Provider value={{ dataAll, dataOrdered, postSelected, setPostSelected, handleShare, setDataToShare,handleList }}>
+    <PressReaderContext.Provider value={{ dataAll, uniqueSessions, uniqueZones, dataOrdered, postSelected, setPostSelected, handleShare, setDataToShare,handleList }}>
       {children}
     </PressReaderContext.Provider>
   );
