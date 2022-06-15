@@ -9,6 +9,7 @@ const Search = () => {
       <h1>Search</h1>
       <form action="#">
         <fieldset className="horizontal justify-items-space-around">
+        <legend>Time</legend>
           <div>
             <div className="horizontal justify-items-space-between vw-35">
               <label htmlFor="session">Session</label>
@@ -34,8 +35,10 @@ const Search = () => {
           </div>
         </fieldset>
         <fieldset>
-          <div className="horizontal justify-items-space-between vw-35">
-            <label htmlFor="zone">Zone</label>
+        <legend>Zone</legend>
+          <div className="horizontal justify-items-space-around ">
+            <div className="vw-35  horizontal justify-items-space-around  ">
+            <label htmlFor="zone">OR</label>
             <select name="zone" id="zone" multiple>
               <option value="all">all</option>
               {uniqueZones.map((session, i) => (
@@ -44,6 +47,20 @@ const Search = () => {
                 </option>
               ))}
             </select>
+            </div>
+            <div className="vw-35  horizontal justify-items-space-around  ">
+            <label htmlFor="zone">AND</label>
+            <select name="zone" id="zone" multiple>
+              <option value="all">all</option>
+              {uniqueZones.map((session, i) => (
+                <option key={+i} value={session}>
+                  {session}
+                </option>
+              ))}
+            </select>
+            </div>
+
+
           </div>
         </fieldset>
       </form>
