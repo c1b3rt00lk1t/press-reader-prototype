@@ -5,7 +5,7 @@ const PressReaderContext = createContext();
 
 export const PressReaderContextProvider = ({ children }) => {
 
-  // const [dataAll, setDataAll] = useState(data);
+  const [dataAll] = useState(data);
   // const [criteriaToFilter, setCriteriaToFilter] = useState({});
   // const [dataFiltered, setDataFiltered] = useState(data);
   // const [criteriaToOrder, setCriteriaToOrder] = useState({});
@@ -43,7 +43,7 @@ export const PressReaderContextProvider = ({ children }) => {
 
 
   return (
-    <PressReaderContext.Provider value={{ dataOrdered, postSelected, setPostSelected, handleShare, setDataToShare,handleList }}>
+    <PressReaderContext.Provider value={{ dataAll, dataOrdered, postSelected, setPostSelected, handleShare, setDataToShare,handleList }}>
       {children}
     </PressReaderContext.Provider>
   );

@@ -1,6 +1,7 @@
 export const data = [
   {
     id: 1,
+    session: "20210906",
     title: "Lluvia global de dividendos en el mundo 1,44 billones",
     source: "Expansión",
     date: "06/09/2021",
@@ -12,6 +13,7 @@ export const data = [
   },
   {
     id: 2,
+    session: "20210906",
     title: "Ola de subidas de tipos de interés en los bancos centrales del mundo",
     source: "Expansión",
     date: "06/09/2021",
@@ -23,6 +25,7 @@ export const data = [
   },
   {
     id: 3,
+    session: "20210906",
     title: "Los inversores pulverizan 7.000 millones en tether en la tormenta",
     source: "Expansión",
     date: "06/09/2021",
@@ -34,6 +37,7 @@ export const data = [
   },
   {
     id: 4,
+    session: "20211006",
     title: "El rublo destaca en un mercado de divisas agitado por la guerra y los tipos",
     source: "Expansión",
     date: "06/09/2021",
@@ -45,6 +49,7 @@ export const data = [
   },
   {
     id: '411eb088-da84-43ea-8f0e-b374c6288d40',
+    session: "20211106",
     title: "El G7 pide a la OPEP que eleve el suministro de crudo",
     source: "Expansión",
     date: "06/09/2021",
@@ -56,6 +61,7 @@ export const data = [
   },
   {
     id: 7,
+    session: "20211106",
     title: "Los talibanes prohíben el cultivo de la adormidera",
     source: "La Vanguardia",
     date: "05/04/2022",
@@ -67,6 +73,7 @@ export const data = [
   },
   {
     id: 8,
+    session: "20211106",
     title: "Nuevas infraestructuras en Asia, África y América Latina",
     source: "El País",
     date: "28/04/2022",
@@ -79,6 +86,7 @@ export const data = [
   {
     id: 9,
     title: "Various pages",
+    session: "20210906",
     source: "Expansión",
     date: "06/09/2021",
     zone: ["ue", "germany"],
