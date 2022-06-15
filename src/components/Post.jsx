@@ -8,16 +8,11 @@ import { MdNavigateBefore, MdNavigateNext } from "react-icons/md";
 import PDFDocument from "./PDFDocument";
 
 const Post = () => {
-  const { setPostSelected, dataOrdered: data } = useContext(PressReaderContext);
+  const { setPostSelected, dataOrdered: data , setDataToShare} = useContext(PressReaderContext);
 
   const params = useParams();
-
-  
   const item = data.filter((a) => `${a.id}` === params.id)[0];
   const indexItem = data.indexOf(item);
-
-
-
 
   const navigate = useNavigate();
 
@@ -28,6 +23,11 @@ const Post = () => {
     }
     const sign = el.classList.value.includes("to-next") ? 1 : -1;
     setPostSelected(data[indexItem + 1 * sign].id);
+    setDataToShare({
+      title: "PressReader",
+      text: data[indexItem + 1 * sign].title,
+      url: data[indexItem + 1 * sign].url,
+    });
     navigate(`/post/${data[indexItem + 1 * sign].id}`);
   };
 
