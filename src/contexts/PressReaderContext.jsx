@@ -36,8 +36,6 @@ export const PressReaderContextProvider = ({ children }) => {
       console.log(dataToShare)
     } catch (err) {
       console.log("Error in the sharing process");
-      //this will catch the second share attempt in iOS 14
-    	window.location.reload(true); // now share works again
     }
   };
 
