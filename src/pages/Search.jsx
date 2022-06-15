@@ -5,7 +5,7 @@ const Search = () => {
   const { uniqueSessions, uniqueZones, uniqueIndustries, uniqueTags } =
     useContext(PressReaderContext);
 
-  const [text, setText] = useState("");
+  const [setText] = useState("");
 
   const handleTextChange = (e) => {
     setText(e.target.value)
@@ -126,7 +126,7 @@ const Search = () => {
         </fieldset>
 
         <fieldset>
-          <legend>Keyword</legend>
+          <legend>Text</legend>
           <input type="text" onChange={handleTextChange} />
         </fieldset>
       </form>
