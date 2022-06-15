@@ -19,18 +19,14 @@ export const PressReaderContextProvider = ({ children }) => {
   });
 
 
-  
+  const handleList = () => {
+    setDataToShare({
+      title: "PressReader",
+      text: "Try this prototype!",
+      url: "https://tourmaline-unicorn-2c62ec.netlify.app",
+    });
 
-
-  const getSelectedPost = (id) => {
-    const item = dataOrdered.filter((a) => `${a.id}` === id)[0];
-    const indexItem = dataOrdered.indexOf(item);
-  
-    postSelected(dataOrdered[indexItem].id)
-    return {item, indexItem};
-  };
-
-
+  }
 
  
 
@@ -49,7 +45,7 @@ export const PressReaderContextProvider = ({ children }) => {
 
 
   return (
-    <PressReaderContext.Provider value={{ dataOrdered, postSelected, setPostSelected, handleShare, setDataToShare }}>
+    <PressReaderContext.Provider value={{ dataOrdered, postSelected, setPostSelected, handleShare, setDataToShare,handleList }}>
       {children}
     </PressReaderContext.Provider>
   );

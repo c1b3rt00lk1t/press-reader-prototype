@@ -11,14 +11,14 @@ import {
 
 const Footer = () => {
 
-  const { handleShare } = useContext(PressReaderContext);
+  const { handleShare, handleList } = useContext(PressReaderContext);
 
   return (
     <footer>
       <Link to="/search">
         <IoMdSearch className="footer-icon" />
       </Link>
-      <Link to="/">
+      <Link onClick={handleList} to="/">
         <IoMdEye className="footer-icon" />
       </Link>
       <div onClick={handleShare}>
