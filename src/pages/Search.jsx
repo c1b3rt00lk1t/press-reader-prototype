@@ -167,14 +167,15 @@ const Search = () => {
       session: "all",
       startDate: "",
       endDate: "",
-      zonesOR: [],
-      zonesAND: [],
-      sectorsOR: [],
-      sectorsAND: [],
-      tagsOR: [],
-      tagsAND: [],
+      zonesOR: ["all"],
+      zonesAND: ["any"],
+      sectorsOR: ["all"],
+      sectorsAND: ["any"],
+      tagsOR: ["all"],
+      tagsAND: ["any"],
       text: "",
     });
+    applyFilters(dataAll, filter);
   };
 
   const handleSubmit = (e) => {
