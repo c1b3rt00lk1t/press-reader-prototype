@@ -246,7 +246,7 @@ const Search = () => {
             <div className="vw-35  horizontal justify-items-space-around  ">
               <label htmlFor="zone">AND</label>
               <select onChange={selectZonesAND} name="zone" id="zone" multiple>
-                <option value="all">all</option>
+                <option value="any">any</option>
                 {uniqueZones.map((session, i) => (
                   <option key={+i} value={session}>
                     {session}
@@ -279,7 +279,7 @@ const Search = () => {
                 id="zone"
                 multiple
               >
-                <option value="all">all</option>
+                <option value="any">any</option>
                 {uniqueIndustries.map((session, i) => (
                   <option key={+i} value={session}>
                     {session}
@@ -307,7 +307,7 @@ const Search = () => {
             <div className="vw-35  horizontal justify-items-space-around  ">
               <label htmlFor="zone">AND</label>
               <select onChange={selectTagsAND} name="zone" id="zone" multiple>
-                <option value="all">all</option>
+                <option value="any">any</option>
                 {uniqueTags.map((session, i) => (
                   <option key={+i} value={session}>
                     {session}
