@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import PressReaderContext from "../contexts/PressReaderContext";
+import { useNavigate } from "react-router-dom";
 
 const Search = () => {
   const {
@@ -12,6 +13,7 @@ const Search = () => {
     setFilter,
     setDataFiltered,
     setDataOrdered,
+
   } = useContext(PressReaderContext);
 
   // Functions to handle the onChange events in the Form
@@ -178,9 +180,14 @@ const Search = () => {
     applyFilters(dataAll, filter);
   };
 
+  const navigate = useNavigate();
+
   const handleSubmit = (e) => {
     e.preventDefault();
     applyFilters(dataAll, filter);
+    navigate(`/`);
+
+
   };
 
   return (
