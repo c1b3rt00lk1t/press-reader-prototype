@@ -4,7 +4,6 @@ import { data } from "../data/data.js";
 const PressReaderContext = createContext();
 
 export const PressReaderContextProvider = ({ children }) => {
-
   const [dataAll] = useState(data);
 
   const uniqueSessions = dataAll
@@ -18,21 +17,32 @@ export const PressReaderContextProvider = ({ children }) => {
     .filter((a, i, arr) => a !== arr[i - 1]);
 
   const uniqueIndustries = dataAll
-  .flatMap((a) => a.sector)
-  .sort()
-  .filter((a, i, arr) => a !== arr[i - 1]);
+    .flatMap((a) => a.sector)
+    .sort()
+    .filter((a, i, arr) => a !== arr[i - 1]);
 
   const uniqueTags = dataAll
-  .flatMap((a) => a.tags)
-  .sort()
-  .filter((a, i, arr) => a !== arr[i - 1]);
+    .flatMap((a) => a.tags)
+    .sort()
+    .filter((a, i, arr) => a !== arr[i - 1]);
 
+  const [filter, setFilter] = useState({
+    session: "all",
+    startDate: "",
+    endDate: "",
+    zonesOR: [],
+    zonesAND: [],
+    sectorsOR: [],
+    sectorsAND: [],
+    tagsOR: [],
+    tagsAND: [],
+    text: "",
+  });
 
-  // const [criteriaToFilter, setCriteriaToFilter] = useState({});
-  // const [dataFiltered, setDataFiltered] = useState(data);
+  const [dataFiltered, setDataFiltered] = useState(data);
   // const [criteriaToOrder, setCriteriaToOrder] = useState({});
   // const [dataOrdered, setDataOrdered] = useState(data);
-  const [dataOrdered] = useState(data);
+  const [dataOrdered, setDataOrdered] = useState(data);
   const [postSelected, setPostSelected] = useState(null);
   const [dataToShare, setDataToShare] = useState({
     title: "PressReader",
@@ -40,37 +50,44 @@ export const PressReaderContextProvider = ({ children }) => {
     url: "https://tourmaline-unicorn-2c62ec.netlify.app",
   });
 
-
-
-
-
-
-
   const handleList = () => {
     setDataToShare({
       title: "PressReader",
       text: "Try this prototype!",
       url: "https://tourmaline-unicorn-2c62ec.netlify.app",
     });
-
-  }
-
- 
+  };
 
   const handleShare = async () => {
     try {
       await navigator.share(dataToShare);
-      console.log(dataToShare)
+      console.log(dataToShare);
     } catch (err) {
       console.log("Error in the sharing process");
     }
   };
 
-
-
-
   return (
-    <PressReaderContext.Provider value={{ dataAll, uniqueSessions, uniqueZones, uniqueIndustries, uniqueTags, dataOrdered, postSelected, setPostSelected, handleShare, setDataToShare,handleList }}>
+    <PressReaderContext.Provider
+      value={{
+        dataAll,
+        uniqueSessions,
+        uniqueZones,
+        uniqueIndustries,
+        uniqueTags,
+        filter,
+        setFilter,
+        dataFiltered,
+        setDataFiltered,
+        dataOrdered,
+        setDataOrdered,
+        postSelected,
+        setPostSelected,
+        handleShare,
+        setDataToShare,
+        handleList,
+      }}
+    >
       {children}
     </PressReaderContext.Provider>
   );

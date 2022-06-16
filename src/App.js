@@ -21,7 +21,7 @@ function App() {
               element={
                 <>
                   <h1>Reader</h1>
-                  <NewsList data={data} />
+                  <NewsList />
                 </>
               }
             />

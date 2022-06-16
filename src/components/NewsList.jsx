@@ -1,11 +1,15 @@
-import React from "react";
+import React, {useContext} from "react";
+import PressReaderContext from "../contexts/PressReaderContext";
 import NewsItem from "./NewsItem";
 
-const NewsList = ({ data }) => {
+const NewsList = () => {
+
+  const {dataOrdered} = useContext(PressReaderContext)
+
   return (
     <>
       <ul>
-        {data.map((item) => (
+        {dataOrdered.map((item) => (
           <NewsItem key={item.id} item={item} />
         ))}
       </ul>
