@@ -25,7 +25,7 @@ const Post = () => {
     setPostSelected(data[indexItem + 1 * sign].id);
     setDataToShare({
       title: "PressReader",
-      text: data[indexItem + 1 * sign].title,
+      text: `${data[indexItem + 1 * sign].date} - ${data[indexItem + 1 * sign].source} - ${data[indexItem + 1 * sign].title}`,
       url: data[indexItem + 1 * sign].url,
     });
     navigate(`/post/${data[indexItem + 1 * sign].id}`);
