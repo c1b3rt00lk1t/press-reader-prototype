@@ -14,6 +14,7 @@ const Post = () => {
   const item = data.filter((a) => `${a.id}` === params.id)[0];
   const indexItem = data.indexOf(item);
 
+  console.log(item);
   const navigate = useNavigate();
 
   const handleTouch = (ev) => {
@@ -43,11 +44,11 @@ const Post = () => {
         </div>
         <div className="horizontal align-items-center">
           <FaLocationArrow className="news-item-tag" />
-          <Tags tags={item.zone} />
+          <Tags tags={item.zones} />
         </div>
         <div className="horizontal align-items-center">
           <FaIndustry className="news-item-tag" />
-          <Tags tags={item.sector} />
+          <Tags tags={item.sectors} />
         </div>
       </div>
 

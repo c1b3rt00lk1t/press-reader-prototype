@@ -13,11 +13,9 @@ const Search = () => {
     setFilter,
     setDataFiltered,
     setDataOrdered,
-
   } = useContext(PressReaderContext);
 
   // Functions to handle the onChange events in the Form
-
   const selectSession = (e) => {
     setFilter({ ...filter, session: e.target.value });
   };
@@ -82,10 +80,10 @@ const Search = () => {
     (x) =>
       fns.reduceRight((g, f) => f(g), x);
 
-  const trace = (value) => {
-    console.log(value);
-    return value;
-  };
+  // const trace = (value) => {
+  //   console.log(value);
+  //   return value;
+  // };
 
   const applySessionFilter = ({ data, selection }) => {
     const filtered = data.filter((a) =>
@@ -106,35 +104,48 @@ const Search = () => {
     return { filtered, selection };
   };
 
-  const applyZoneFilter = ({ filtered: data, selection }) => {
-    // Pending to be developed
+  const logicFilter = (item, selection, target, type) => {
+    const prop = target + type;
 
-    const ORfilter = (item) => {
-      for (let zone of selection.zonesOR) {
-        if (zone === "all"){
+    if (type === "AND") {
+      for (let a of selection[prop]) {
+        if (a === "any") {
           return true;
+        } else if (item[target].indexOf(a) < 0) {
+          return false;
         }
-        else if (item.zone.indexOf(zone) >= 0) {
+      }
+      return true;
+    } else if (type === "OR") {
+      for (let a of selection[prop]) {
+        if (a === "all") {
+          return true;
+        } else if (item[target].indexOf(a) >= 0) {
           return true;
         }
       }
       return false;
-    };
+    }
+  };
 
-    const filtered = data.filter((item) => ORfilter(item));
-
+  const applyZoneFilter = ({ filtered: data, selection }) => {
+    const filtered = data
+      .filter((item) => logicFilter(item, selection, "zones", "OR"))
+      .filter((item) => logicFilter(item, selection, "zones", "AND"));
     return { filtered, selection };
   };
 
   const applySectorFilter = ({ filtered: data, selection }) => {
-    // Pending to be developed
-    const filtered = data;
+    const filtered = data
+      .filter((item) => logicFilter(item, selection, "sectors", "OR"))
+      .filter((item) => logicFilter(item, selection, "sectors", "AND"));
     return { filtered, selection };
   };
 
   const applyTagsFilter = ({ filtered: data, selection }) => {
-    // Pending to be developed
-    const filtered = data;
+    const filtered = data
+      .filter((item) => logicFilter(item, selection, "tags", "OR"))
+      .filter((item) => logicFilter(item, selection, "tags", "AND"));
     return { filtered, selection };
   };
 
@@ -149,7 +160,7 @@ const Search = () => {
       applyTextFilter,
       applyTagsFilter,
       applySectorFilter,
-      trace,
+      // trace,
       applyZoneFilter,
       applyTimeRangeFilter,
       applySessionFilter
@@ -186,8 +197,6 @@ const Search = () => {
     e.preventDefault();
     applyFilters(dataAll, filter);
     navigate(`/`);
-
-
   };
 
   return (
@@ -240,12 +249,16 @@ const Search = () => {
           <div className="horizontal justify-items-space-around ">
             <div className="vw-35  horizontal justify-items-space-around  ">
               <label htmlFor="zone">OR</label>
-              <select onChange={selectZonesOR} name="zone" id="zone" multiple
-              value={filter.zonesOR}
+              <select
+                onChange={selectZonesOR}
+                name="zone"
+                id="zone"
+                multiple
+                value={filter.zonesOR}
               >
                 <option value="all">all</option>
                 {uniqueZones.map((session, i) => (
-                  <option key={+i} value={session} >
+                  <option key={+i} value={session}>
                     {session}
                   </option>
                 ))}
@@ -253,7 +266,13 @@ const Search = () => {
             </div>
             <div className="vw-35  horizontal justify-items-space-around  ">
               <label htmlFor="zone">AND</label>
-              <select onChange={selectZonesAND} name="zone" id="zone" multiple>
+              <select
+                onChange={selectZonesAND}
+                name="zone"
+                id="zone"
+                multiple
+                value={filter.zonesAND}
+              >
                 <option value="any">any</option>
                 {uniqueZones.map((session, i) => (
                   <option key={+i} value={session}>
@@ -270,7 +289,8 @@ const Search = () => {
           <div className="horizontal justify-items-space-around ">
             <div className="vw-35  horizontal justify-items-space-around  ">
               <label htmlFor="zone">OR</label>
-              <select onChange={selectSectorsOR} name="zone" id="zone" multiple>
+              <select onChange={selectSectorsOR} name="zone" id="zone" multiple
+              value={filter.sectorsOR}>
                 <option value="all">all</option>
                 {uniqueIndustries.map((session, i) => (
                   <option key={+i} value={session}>
@@ -286,6 +306,7 @@ const Search = () => {
                 name="zone"
                 id="zone"
                 multiple
+                value={filter.sectorsAND}
               >
                 <option value="any">any</option>
                 {uniqueIndustries.map((session, i) => (
@@ -303,7 +324,8 @@ const Search = () => {
           <div className="horizontal justify-items-space-around ">
             <div className="vw-35  horizontal justify-items-space-around  ">
               <label htmlFor="zone">OR</label>
-              <select onChange={selectTagsOR} name="zone" id="zone" multiple>
+              <select onChange={selectTagsOR} name="zone" id="zone" multiple
+              value={filter.tagsOR}>
                 <option value="all">all</option>
                 {uniqueTags.map((session, i) => (
                   <option key={+i} value={session}>
@@ -314,7 +336,8 @@ const Search = () => {
             </div>
             <div className="vw-35  horizontal justify-items-space-around  ">
               <label htmlFor="zone">AND</label>
-              <select onChange={selectTagsAND} name="zone" id="zone" multiple>
+              <select onChange={selectTagsAND} name="zone" id="zone" multiple
+              value={filter.tagsAND}>
                 <option value="any">any</option>
                 {uniqueTags.map((session, i) => (
                   <option key={+i} value={session}>

@@ -12,12 +12,12 @@ export const PressReaderContextProvider = ({ children }) => {
     .filter((a, i, arr) => a !== arr[i - 1]);
 
   const uniqueZones = dataAll
-    .flatMap((a) => a.zone)
+    .flatMap((a) => a.zones)
     .sort()
     .filter((a, i, arr) => a !== arr[i - 1]);
 
   const uniqueIndustries = dataAll
-    .flatMap((a) => a.sector)
+    .flatMap((a) => a.sectors)
     .sort()
     .filter((a, i, arr) => a !== arr[i - 1]);
 
@@ -61,7 +61,6 @@ export const PressReaderContextProvider = ({ children }) => {
   const handleShare = async () => {
     try {
       await navigator.share(dataToShare);
-      console.log(dataToShare);
     } catch (err) {
       console.log("Error in the sharing process");
     }

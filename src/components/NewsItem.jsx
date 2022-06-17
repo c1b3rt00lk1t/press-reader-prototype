@@ -36,11 +36,11 @@ const NewsItem = ({ item }) => {
         <div className="horizontal margin-lines">
           <div className="horizontal  align-items-center vw-40">
             <FaLocationArrow className="news-item-tag" />
-            <Tags  tags={item.zone} />
+            <Tags  tags={item.zones} />
           </div>
           <div className="horizontal  align-items-center vw-40">
             <FaIndustry className="news-item-tag" />
-            <Tags tags={item.sector} />
+            <Tags tags={item.sectors} />
           </div>
         </div>
         
