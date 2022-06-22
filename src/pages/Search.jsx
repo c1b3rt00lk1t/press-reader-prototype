@@ -93,7 +93,7 @@ const Search = () => {
 
   const applySessionFilter = ({ data, selection }) => {
     const filtered = data.filter((a) =>
-      selection.session !== "all" ? selection.session.includes(a.session) : true
+      !selection.session.includes("all") ? selection.session.includes(a.session) : true
     );
     return { filtered, selection };
   };
@@ -183,7 +183,7 @@ const Search = () => {
     [...document.getElementsByTagName("input")].map((a) => (a.value = ""));
 
     setFilter({
-      session: "all",
+      session: ["all"],
       startDate: "",
       endDate: "",
       zonesOR: ["all"],
