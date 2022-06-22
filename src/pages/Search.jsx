@@ -175,9 +175,6 @@ const Search = () => {
     const filtered = data.filter((item) =>
       checkText(item, selection.text.toLowerCase().split(" "))
     );
-    console.log(data);
-    console.log(selection.text.split(" "));
-
     return { filtered, selection };
   };
 
@@ -239,6 +236,7 @@ const Search = () => {
           />
           <SearchTags
             title="Zone"
+            type="zones"
             filter={filter}
             uniqueList={uniqueZones}
             selectOR={selectZonesOR}
@@ -246,6 +244,7 @@ const Search = () => {
           />
           <SearchTags
             title="Sector"
+            type="sectors"
             filter={filter}
             uniqueList={uniqueIndustries}
             selectOR={selectSectorsOR}
@@ -253,6 +252,7 @@ const Search = () => {
           />
           <SearchTags
             title="Tags"
+            type="tags"
             filter={filter}
             uniqueList={uniqueTags}
             selectOR={selectTagsOR}

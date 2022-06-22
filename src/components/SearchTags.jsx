@@ -1,18 +1,18 @@
 import React from 'react'
 
-const SearchTags = ({title, filter, selectOR, uniqueList, selectAND}) => {
+const SearchTags = ({title, type, filter, selectOR, uniqueList, selectAND}) => {
   return (
     <fieldset>
     <legend>{title}</legend>
     <div className="horizontal justify-items-space-around ">
       <div className="vw-35  horizontal justify-items-space-around  ">
-        <label htmlFor="zone">OR</label>
+        <label htmlFor={title}>OR</label>
         <select
           onChange={selectOR}
-          name="zone"
-          id="zone"
+          name={title}
+          id={title}
           multiple
-          value={filter.zonesOR}
+          value={filter[type+'OR']}
         >
           <option value="all">all</option>
           {uniqueList.map((item, i) => (
@@ -23,13 +23,13 @@ const SearchTags = ({title, filter, selectOR, uniqueList, selectAND}) => {
         </select>
       </div>
       <div className="vw-35  horizontal justify-items-space-around  ">
-        <label htmlFor="zone">AND</label>
+        <label htmlFor={title}>AND</label>
         <select
           onChange={selectAND}
-          name="zone"
-          id="zone"
+          name={title}
+          id={title}
           multiple
-          value={filter.zonesAND}
+          value={filter[type+'AND']}
         >
           <option value="any">any</option>
           {uniqueList.map((item, i) => (
