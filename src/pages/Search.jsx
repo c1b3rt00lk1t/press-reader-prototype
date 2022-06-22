@@ -78,6 +78,7 @@ const Search = () => {
   };
 
   const handleTextChange = (e) => {
+    e.preventDefault();
     setFilter({ ...filter, text: e.target.value });
   };
 
