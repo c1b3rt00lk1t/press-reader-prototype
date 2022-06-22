@@ -1,6 +1,9 @@
 import React, { useContext } from "react";
 import PressReaderContext from "../contexts/PressReaderContext";
 import { useNavigate } from "react-router-dom";
+import SearchTime from "../components/SearchTime";
+import SearchTags from "../components/SearchTags";
+import SearchText from "../components/SearchText";
 
 const Search = () => {
   const {
@@ -203,186 +206,59 @@ const Search = () => {
   };
 
   return (
-    <>
+    <div className="no-footer vertical justify-items-space-between">
+      <div>
       <h1>Search</h1>
-      <form action="#">
-        <fieldset>
-          <legend>Time</legend>
-          <div className="horizontal justify-items-space-around ">
-            <div className="horizontal justify-items-space-around vw-35">
-              <label htmlFor="session">Session</label>
-              <select
-                onChange={selectSession}
-                name="sessions"
-                id="session"
-                multiple
-                value={filter.session}
-              >
-                <option value="all">all</option>
-                {uniqueSessions.map((session, i) => (
-                  <option key={+session + i} value={session}>
-                    {session}
-                  </option>
-                ))}
-              </select>
-            </div>
+        <form action="#">
+          <SearchTime
+            selectSession={selectSession}
+            selectStartDate={selectStartDate}
+            selectEndDate={selectEndDate}
+            filter={filter}
+            uniqueSessions={uniqueSessions}
+          />
+          <SearchTags
+            title="Zone"
+            filter={filter}
+            uniqueList={uniqueZones}
+            selectOR={selectZonesOR}
+            selectAND={selectZonesAND}
+          />
+          <SearchTags
+            title="Sector"
+            filter={filter}
+            uniqueList={uniqueIndustries}
+            selectOR={selectSectorsOR}
+            selectAND={selectSectorsAND}
+          />
+          <SearchTags
+            title="Tags"
+            filter={filter}
+            uniqueList={uniqueTags}
+            selectOR={selectTagsOR}
+            selectAND={selectTagsAND}
+          />
+          <SearchText handleTextChange={handleTextChange} />
+        </form>
+        </div>
 
-            <div className="vertical">
-              <div className="horizontal justify-items-space-around vw-35">
-                <label htmlFor="start-date">Start</label>
-                <input
-                  onChange={selectStartDate}
-                  name="start-date"
-                  type="date"
-                  value={filter.startDate}
-                />
-              </div>
-              <div className="horizontal justify-items-space-around ">
-                <label htmlFor="end-date">End</label>
-                <input
-                  onChange={selectEndDate}
-                  name="end-date"
-                  type="date"
-                  value={filter.endDate}
-                />
-              </div>
-            </div>
-          </div>
-        </fieldset>
-        <fieldset>
-          <legend>Zone</legend>
-          <div className="horizontal justify-items-space-around ">
-            <div className="vw-35  horizontal justify-items-space-around  ">
-              <label htmlFor="zone">OR</label>
-              <select
-                onChange={selectZonesOR}
-                name="zone"
-                id="zone"
-                multiple
-                value={filter.zonesOR}
-              >
-                <option value="all">all</option>
-                {uniqueZones.map((zone, i) => (
-                  <option key={+i} value={zone}>
-                    {zone}
-                  </option>
-                ))}
-              </select>
-            </div>
-            <div className="vw-35  horizontal justify-items-space-around  ">
-              <label htmlFor="zone">AND</label>
-              <select
-                onChange={selectZonesAND}
-                name="zone"
-                id="zone"
-                multiple
-                value={filter.zonesAND}
-              >
-                <option value="any">any</option>
-                {uniqueZones.map((session, i) => (
-                  <option key={+i} value={session}>
-                    {session}
-                  </option>
-                ))}
-              </select>
-            </div>
-          </div>
-        </fieldset>
-
-        <fieldset>
-          <legend>Sector</legend>
-          <div className="horizontal justify-items-space-around ">
-            <div className="vw-35  horizontal justify-items-space-around  ">
-              <label htmlFor="zone">OR</label>
-              <select
-                onChange={selectSectorsOR}
-                name="zone"
-                id="zone"
-                multiple
-                value={filter.sectorsOR}
-              >
-                <option value="all">all</option>
-                {uniqueIndustries.map((session, i) => (
-                  <option key={+i} value={session}>
-                    {session}
-                  </option>
-                ))}
-              </select>
-            </div>
-            <div className="vw-35  horizontal justify-items-space-around  ">
-              <label htmlFor="zone">AND</label>
-              <select
-                onChange={selectSectorsAND}
-                name="zone"
-                id="zone"
-                multiple
-                value={filter.sectorsAND}
-              >
-                <option value="any">any</option>
-                {uniqueIndustries.map((session, i) => (
-                  <option key={+i} value={session}>
-                    {session}
-                  </option>
-                ))}
-              </select>
-            </div>
-          </div>
-        </fieldset>
-
-        <fieldset>
-          <legend>Tags</legend>
-          <div className="horizontal justify-items-space-around ">
-            <div className="vw-35  horizontal justify-items-space-around  ">
-              <label htmlFor="zone">OR</label>
-              <select
-                onChange={selectTagsOR}
-                name="zone"
-                id="zone"
-                multiple
-                value={filter.tagsOR}
-              >
-                <option value="all">all</option>
-                {uniqueTags.map((session, i) => (
-                  <option key={+i} value={session}>
-                    {session}
-                  </option>
-                ))}
-              </select>
-            </div>
-            <div className="vw-35  horizontal justify-items-space-around  ">
-              <label htmlFor="zone">AND</label>
-              <select
-                onChange={selectTagsAND}
-                name="zone"
-                id="zone"
-                multiple
-                value={filter.tagsAND}
-              >
-                <option value="any">any</option>
-                {uniqueTags.map((session, i) => (
-                  <option key={+i} value={session}>
-                    {session}
-                  </option>
-                ))}
-              </select>
-            </div>
-          </div>
-        </fieldset>
-
-        <fieldset>
-          <legend>Text</legend>
-          <input type="text" onChange={handleTextChange} />
-        </fieldset>
-      </form>
-      <div className="horizontal margin-lines" style={{ position: "relative" }}>
-        <button className="btn-touch btn-left horizontal align-items-center justify-items-center" onClick={handleReset}>
-          Clear
-        </button>
-        <button className="btn-touch btn-right horizontal align-items-center justify-items-center" onClick={handleSubmit}>
-          Submit
-        </button>
-      </div>
-    </>
+        <div
+          className="horizontal margin-lines justify-items-space-around"
+        >
+          <button
+            className="btn-touch"
+            onClick={handleReset}
+          >
+            Clear
+          </button>
+          <button
+            className="btn-touch"
+            onClick={handleSubmit}
+          >
+            Submit
+          </button>
+        </div>
+    </div>
   );
 };
 

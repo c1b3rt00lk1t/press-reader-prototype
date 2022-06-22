@@ -137,22 +137,21 @@ legend{
 
 select, input{
   width: 20vw;
-  color: var(--blue-color);
 
+}
+
+input[type=text]{
+  width: 80vw;
 }
 
 label{
   width: 15vw;
+  color: var(--blue-color);
 }
 
-.buttonSearch{
-  padding:10px;
-  
-
-}
 
 .btn-touch{
-  position: fixed;
+
   background-color: rgb(185, 185, 185, 0.1);
   border-radius: 5px;
   border: 0;
@@ -163,22 +162,11 @@ label{
   z-index: 10;
 }
 
-.btn-right{
-  right:10vw;
-  bottom: 13vh;
-}
-.btn-left{
-  left:10vw;
-  bottom: 13vh;
-}
-
-
-
-
-
-
 
 /* Footer */
+.no-footer {
+  height: 87.5vh;  
+}
 
 footer {
   position: fixed;
