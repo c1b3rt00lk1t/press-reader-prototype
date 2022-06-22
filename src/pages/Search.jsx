@@ -93,7 +93,9 @@ const Search = () => {
 
   const applySessionFilter = ({ data, selection }) => {
     const filtered = data.filter((a) =>
-      !selection.session.includes("all") ? selection.session.includes(a.session) : true
+      !selection.session.includes("all")
+        ? selection.session.includes(a.session)
+        : true
     );
     return { filtered, selection };
   };
@@ -156,8 +158,26 @@ const Search = () => {
   };
 
   const applyTextFilter = ({ filtered: data, selection }) => {
-    // Pending to be developed
-    const filtered = data;
+    const checkText = (item, texts) => {
+      const result = texts.reduce(
+        (acc, b) =>
+          acc && (
+          item.title.toLowerCase().includes(b) ||
+          item.zones.includes(b) ||
+          item.sectors.includes(b) ||
+          item.tags.includes(b) ||
+          item.source.toLowerCase().includes(b) ),
+        true
+      );
+
+      return result;
+    };
+    const filtered = data.filter((item) =>
+      checkText(item, selection.text.toLowerCase().split(" "))
+    );
+    console.log(data);
+    console.log(selection.text.split(" "));
+
     return { filtered, selection };
   };
 
@@ -208,7 +228,7 @@ const Search = () => {
   return (
     <div className="no-footer vertical justify-items-space-between">
       <div>
-      <h1>Search</h1>
+        <h1>Search</h1>
         <form action="#">
           <SearchTime
             selectSession={selectSession}
@@ -238,26 +258,18 @@ const Search = () => {
             selectOR={selectTagsOR}
             selectAND={selectTagsAND}
           />
-          <SearchText handleTextChange={handleTextChange} />
+          <SearchText handleTextChange={handleTextChange} filter={filter}/>
         </form>
-        </div>
+      </div>
 
-        <div
-          className="horizontal margin-lines justify-items-space-around"
-        >
-          <button
-            className="btn-touch"
-            onClick={handleReset}
-          >
-            Clear
-          </button>
-          <button
-            className="btn-touch"
-            onClick={handleSubmit}
-          >
-            Submit
-          </button>
-        </div>
+      <div className="horizontal margin-lines justify-items-space-around">
+        <button className="btn-touch" onClick={handleReset}>
+          Clear
+        </button>
+        <button className="btn-touch" onClick={handleSubmit}>
+          Submit
+        </button>
+      </div>
     </div>
   );
 };
