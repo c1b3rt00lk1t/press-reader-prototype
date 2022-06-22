@@ -135,8 +135,13 @@ legend{
   font-weight: bold;
 }
 
-select, input{
+select{
   width: 20vw;
+
+}
+
+input{
+  width: 22.5vw;
 
 }
 

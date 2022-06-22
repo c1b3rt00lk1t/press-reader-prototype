@@ -3,27 +3,8 @@ import React from 'react'
 const SearchTime = ({selectSession,selectStartDate,selectEndDate,filter,uniqueSessions}) => {
   return (
     <fieldset>
-    <legend>Time</legend>
-    <div className="horizontal justify-items-space-around ">
-      <div className="horizontal justify-items-space-around vw-35">
-        <label htmlFor="session">Session</label>
-        <select
-          onChange={selectSession}
-          name="sessions"
-          id="session"
-          multiple
-          value={filter.session}
-        >
-          <option value="all">all</option>
-          {uniqueSessions.map((session, i) => (
-            <option key={+session + i} value={session}>
-              {session}
-            </option>
-          ))}
-        </select>
-      </div>
-
-      <div className="vertical">
+    <legend>Range</legend>
+      <div className="horizontal justify-items-space-around ">
         <div className="horizontal justify-items-space-around vw-35">
           <label htmlFor="start-date">Start</label>
           <input
@@ -33,7 +14,7 @@ const SearchTime = ({selectSession,selectStartDate,selectEndDate,filter,uniqueSe
             value={filter.startDate}
           />
         </div>
-        <div className="horizontal justify-items-space-around ">
+        <div className="horizontal justify-items-space-around w-35">
           <label htmlFor="end-date">End</label>
           <input
             onChange={selectEndDate}
@@ -43,7 +24,7 @@ const SearchTime = ({selectSession,selectStartDate,selectEndDate,filter,uniqueSe
           />
         </div>
       </div>
-    </div>
+
   </fieldset>
 
   )

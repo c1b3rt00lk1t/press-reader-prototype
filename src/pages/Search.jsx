@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import SearchTime from "../components/SearchTime";
 import SearchTags from "../components/SearchTags";
 import SearchText from "../components/SearchText";
+import SearchSession from "../components/SearchSession";
 
 const Search = () => {
   const {
@@ -227,6 +228,11 @@ const Search = () => {
       <div>
         <h1>Search</h1>
         <form action="#">
+          <SearchSession  
+            selectSession={selectSession}
+            filter={filter}
+            uniqueSessions={uniqueSessions}
+          />
           <SearchTime
             selectSession={selectSession}
             selectStartDate={selectStartDate}
