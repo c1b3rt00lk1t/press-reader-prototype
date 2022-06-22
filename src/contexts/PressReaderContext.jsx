@@ -39,6 +39,8 @@ export const PressReaderContextProvider = ({ children }) => {
     text: "",
   });
 
+  const [orderType, setOrderType] = useState('sessionOrder');
+
   const [dataFiltered, setDataFiltered] = useState(data);
   // const [criteriaToOrder, setCriteriaToOrder] = useState({});
   // const [dataOrdered, setDataOrdered] = useState(data);
@@ -85,6 +87,8 @@ export const PressReaderContextProvider = ({ children }) => {
         handleShare,
         setDataToShare,
         handleList,
+        orderType, 
+        setOrderType
       }}
     >
       {children}

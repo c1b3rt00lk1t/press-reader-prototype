@@ -145,6 +145,10 @@ input{
 
 }
 
+input[type=radio]{
+  width: 10vw;
+}
+
 input[type=text]{
   width: 80vw;
 }

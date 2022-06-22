@@ -2,6 +2,7 @@ export const data = [
   {
     id: 1,
     session: "20210906",
+    order: '001',
     title: "Lluvia global de dividendos en el mundo 1,44 billones",
     source: "Expansión",
     date: "2021-09-06",
@@ -14,6 +15,7 @@ export const data = [
   {
     id: 2,
     session: "20210906",
+    order: '002',
     title: "Ola de subidas de tipos de interés en los bancos centrales del mundo",
     source: "Expansión",
     date: "2021-09-06",
@@ -26,6 +28,7 @@ export const data = [
   {
     id: 3,
     session: "20210906",
+    order: '003',
     title: "Los inversores pulverizan 7.000 millones en tether en la tormenta",
     source: "Expansión",
     date: "2021-09-06",
@@ -38,6 +41,7 @@ export const data = [
   {
     id: 4,
     session: "20211006",
+    order: '004',
     title: "El rublo destaca en un mercado de divisas agitado por la guerra y los tipos",
     source: "Expansión",
     date: "2021-09-06",
@@ -50,6 +54,7 @@ export const data = [
   {
     id: '411eb088-da84-43ea-8f0e-b374c6288d40',
     session: "20211106",
+    order: '005',
     title: "El G7 pide a la OPEP que eleve el suministro de crudo",
     source: "Expansión",
     date: "2021-09-06",
@@ -63,6 +68,7 @@ export const data = [
     id: 7,
     session: "20211106",
     title: "Los talibanes prohíben el cultivo de la adormidera",
+    order: '007',
     source: "La Vanguardia",
     date: "2022-05-05",
     zones: ["asia", "afganistán"],
@@ -74,6 +80,7 @@ export const data = [
   {
     id: 8,
     session: "20211106",
+    order: '008',
     title: "Nuevas infraestructuras en Asia, África y América Latina",
     source: "El País",
     date: "2022-04-28",
@@ -87,6 +94,7 @@ export const data = [
     id: 9,
     title: "Various pages",
     session: "20210906",
+    order: '009',
     source: "Expansión",
     date: "2021-09-06",
     zones: ["ue", "germany"],
@@ -98,6 +106,7 @@ export const data = [
   {
     id: 10,
     session: "20211006",
+    order: '010',
     title: "Title of the news item",
     source: "Expansión",
     date: "2021-09-06",
@@ -109,6 +118,7 @@ export const data = [
   {
     id: 11,
     session: "20211006",
+    order: '011',
     title: "Title of the news item",
     source: "Expansión",
     date: "2021-09-06",
@@ -120,6 +130,7 @@ export const data = [
   {
     id: 12,
     session: "20211006",
+    order: '012',
     title: "Title of the news item",
     source: "Expansión",
     date: "2021-09-06",
@@ -131,6 +142,7 @@ export const data = [
   {
     id: 13,
     session: "20211006",
+    order: '013',
     title: "Title of the news item",
     source: "Expansión",
     date: "2021-09-06",
@@ -142,6 +154,7 @@ export const data = [
   {
     id: 14,
     session: "20211006",
+    order: '014',
     title: "Title of the news item",
     source: "Expansión",
     date: "2021-09-06",
@@ -153,6 +166,7 @@ export const data = [
   {
     id: 15,
     session: "20211006",
+    order: '015',
     title: "Title of the news item",
     source: "Expansión",
     date: "2021-09-06",
@@ -164,6 +178,7 @@ export const data = [
   {
     id: 16,
     session: "20211006",
+    order: '016',
     title: "Title of the news item",
     source: "Expansión",
     date: "2021-09-06",
@@ -175,6 +190,7 @@ export const data = [
   {
     id: 17,
     session: "20211006",
+    order: '017',
     title: "Title of the news item",
     source: "Expansión",
     date: "2021-09-06",
@@ -186,6 +202,7 @@ export const data = [
   {
     id: 'abc',
     session: "20211006",
+    order: '018',
     title: "Title of the news item LAST",
     source: "Expansión",
     date: "2021-09-06",

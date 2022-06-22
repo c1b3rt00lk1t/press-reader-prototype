@@ -5,6 +5,7 @@ import SearchTime from "../components/SearchTime";
 import SearchTags from "../components/SearchTags";
 import SearchText from "../components/SearchText";
 import SearchSession from "../components/SearchSession";
+import SearchOrder from "../components/SearchOrder";
 
 const Search = () => {
   const {
@@ -17,6 +18,7 @@ const Search = () => {
     setFilter,
     setDataFiltered,
     setDataOrdered,
+    orderType
   } = useContext(PressReaderContext);
 
   // Functions to handle the onChange events in the Form
@@ -180,8 +182,26 @@ const Search = () => {
     return { filtered, selection };
   };
 
+  const applyOrder = ({ filtered: data, selection }) => {
+
+    if (orderType === "sessionOrder"){
+      const filtered = data.sort((a,b) => parseInt(a.session + a.order) - parseInt(b.session + b.order) )
+      return { filtered, selection };
+    } else if (orderType === "dateOrderAsc"){
+      const filtered = data.sort((a,b) => parseInt(a.date) - parseInt(b.date) )
+      return { filtered, selection };
+    } else if (orderType === "dateOrderDesc"){
+      const filtered = data.sort((a,b) => parseInt(b.date) - parseInt(a.date) )
+      return { filtered, selection };
+    }
+
+
+    
+  };
+
   const applyFilters = (data, selection) => {
     const { filtered } = compose(
+      applyOrder,
       applyTextFilter,
       applyTagsFilter,
       applySectorFilter,
@@ -266,6 +286,7 @@ const Search = () => {
             selectAND={selectTagsAND}
           />
           <SearchText handleTextChange={handleTextChange} filter={filter}/>
+          <SearchOrder />
         </form>
       </div>
 
