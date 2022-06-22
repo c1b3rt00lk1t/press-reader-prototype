@@ -27,7 +27,7 @@ export const PressReaderContextProvider = ({ children }) => {
     .filter((a, i, arr) => a !== arr[i - 1]);
 
   const [filter, setFilter] = useState({
-    session: "all",
+    session: ["all"],
     startDate: "",
     endDate: "",
     zonesOR: ["all"],

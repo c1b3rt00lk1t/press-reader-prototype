@@ -17,7 +17,10 @@ const Search = () => {
 
   // Functions to handle the onChange events in the Form
   const selectSession = (e) => {
-    setFilter({ ...filter, session: e.target.value });
+    setFilter({
+      ...filter,
+      session: [...e.target.selectedOptions].map((a) => a.value),
+    });
   };
 
   const selectStartDate = (e) => {
@@ -87,7 +90,7 @@ const Search = () => {
 
   const applySessionFilter = ({ data, selection }) => {
     const filtered = data.filter((a) =>
-      selection.session !== "all" ? a.session === selection.session : true
+      selection.session !== "all" ? selection.session.includes(a.session) : true
     );
     return { filtered, selection };
   };
@@ -203,44 +206,46 @@ const Search = () => {
     <>
       <h1>Search</h1>
       <form action="#">
-        <fieldset className="horizontal justify-items-space-around">
+        <fieldset>
           <legend>Time</legend>
-          <div>
-            <div className="horizontal justify-items-space-between vw-35">
+          <div className="horizontal justify-items-space-around ">
+            <div className="horizontal justify-items-space-around vw-35">
               <label htmlFor="session">Session</label>
               <select
                 onChange={selectSession}
                 name="sessions"
                 id="session"
+                multiple
                 value={filter.session}
               >
                 <option value="all">all</option>
-                {uniqueSessions.map((session) => (
-                  <option key={+session} value={session}>
+                {uniqueSessions.map((session, i) => (
+                  <option key={+session + i} value={session}>
                     {session}
                   </option>
                 ))}
               </select>
             </div>
-          </div>
-          <div className="vertical">
-            <div className="horizontal justify-items-space-around vw-50">
-              <label htmlFor="start-date">Start date</label>
-              <input
-                onChange={selectStartDate}
-                name="start-date"
-                type="date"
-                value={filter.startDate}
-              />
-            </div>
-            <div className="horizontal justify-items-space-around ">
-              <label htmlFor="end-date">End date</label>
-              <input
-                onChange={selectEndDate}
-                name="end-date"
-                type="date"
-                value={filter.endDate}
-              />
+
+            <div className="vertical">
+              <div className="horizontal justify-items-space-around vw-35">
+                <label htmlFor="start-date">Start</label>
+                <input
+                  onChange={selectStartDate}
+                  name="start-date"
+                  type="date"
+                  value={filter.startDate}
+                />
+              </div>
+              <div className="horizontal justify-items-space-around ">
+                <label htmlFor="end-date">End</label>
+                <input
+                  onChange={selectEndDate}
+                  name="end-date"
+                  type="date"
+                  value={filter.endDate}
+                />
+              </div>
             </div>
           </div>
         </fieldset>
@@ -257,9 +262,9 @@ const Search = () => {
                 value={filter.zonesOR}
               >
                 <option value="all">all</option>
-                {uniqueZones.map((session, i) => (
-                  <option key={+i} value={session}>
-                    {session}
+                {uniqueZones.map((zone, i) => (
+                  <option key={+i} value={zone}>
+                    {zone}
                   </option>
                 ))}
               </select>
@@ -289,8 +294,13 @@ const Search = () => {
           <div className="horizontal justify-items-space-around ">
             <div className="vw-35  horizontal justify-items-space-around  ">
               <label htmlFor="zone">OR</label>
-              <select onChange={selectSectorsOR} name="zone" id="zone" multiple
-              value={filter.sectorsOR}>
+              <select
+                onChange={selectSectorsOR}
+                name="zone"
+                id="zone"
+                multiple
+                value={filter.sectorsOR}
+              >
                 <option value="all">all</option>
                 {uniqueIndustries.map((session, i) => (
                   <option key={+i} value={session}>
@@ -324,8 +334,13 @@ const Search = () => {
           <div className="horizontal justify-items-space-around ">
             <div className="vw-35  horizontal justify-items-space-around  ">
               <label htmlFor="zone">OR</label>
-              <select onChange={selectTagsOR} name="zone" id="zone" multiple
-              value={filter.tagsOR}>
+              <select
+                onChange={selectTagsOR}
+                name="zone"
+                id="zone"
+                multiple
+                value={filter.tagsOR}
+              >
                 <option value="all">all</option>
                 {uniqueTags.map((session, i) => (
                   <option key={+i} value={session}>
@@ -336,8 +351,13 @@ const Search = () => {
             </div>
             <div className="vw-35  horizontal justify-items-space-around  ">
               <label htmlFor="zone">AND</label>
-              <select onChange={selectTagsAND} name="zone" id="zone" multiple
-              value={filter.tagsAND}>
+              <select
+                onChange={selectTagsAND}
+                name="zone"
+                id="zone"
+                multiple
+                value={filter.tagsAND}
+              >
                 <option value="any">any</option>
                 {uniqueTags.map((session, i) => (
                   <option key={+i} value={session}>
@@ -354,9 +374,14 @@ const Search = () => {
           <input type="text" onChange={handleTextChange} />
         </fieldset>
       </form>
-
-      <button onClick={handleReset}>Clear</button>
-      <button onClick={handleSubmit}>Submit</button>
+      <div className="horizontal margin-lines" style={{ position: "relative" }}>
+        <button className="btn-touch btn-left horizontal align-items-center justify-items-center" onClick={handleReset}>
+          Clear
+        </button>
+        <button className="btn-touch btn-right horizontal align-items-center justify-items-center" onClick={handleSubmit}>
+          Submit
+        </button>
+      </div>
     </>
   );
 };

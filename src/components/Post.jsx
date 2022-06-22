@@ -14,7 +14,6 @@ const Post = () => {
   const item = data.filter((a) => `${a.id}` === params.id)[0];
   const indexItem = data.indexOf(item);
 
-  console.log(item);
   const navigate = useNavigate();
 
   const handleTouch = (ev) => {

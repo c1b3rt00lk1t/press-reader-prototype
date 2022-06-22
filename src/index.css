@@ -1,7 +1,10 @@
 :root{
   --small-screen-em-small: 0.7em;
   --small-screen-em-normal: 1.1em;
+  --blue-color: rgb(0, 0, 100);
 }
+
+* {box-sizing:border-box;}
 
 body {
   margin: 0;
@@ -98,7 +101,7 @@ ul {
 }
 
 .vw-35{
-  width: 35vw;
+  width: 37.5vw;
 }
 .vw-50{
   width: 50vw;
@@ -124,13 +127,54 @@ ul {
 
 .tags{
   font-size: var(--small-screen-em-small);
-  color: rgb(0, 0, 100);
+  color: var(--blue-color);
 }
 
 /*Form*/
 legend{
   font-weight: bold;
 }
+
+select, input{
+  width: 20vw;
+  color: var(--blue-color);
+
+}
+
+label{
+  width: 15vw;
+}
+
+.buttonSearch{
+  padding:10px;
+  
+
+}
+
+.btn-touch{
+  position: fixed;
+  background-color: rgb(185, 185, 185, 0.1);
+  border-radius: 5px;
+  border: 0;
+  width: 17.5vw;
+  height: 10vw;
+  color: var(--blue-color);
+  font-weight: bold;
+  z-index: 10;
+}
+
+.btn-right{
+  right:10vw;
+  bottom: 13vh;
+}
+.btn-left{
+  left:10vw;
+  bottom: 13vh;
+}
+
+
+
+
 
 
 
@@ -155,7 +199,7 @@ footer {
 .footer-icon {
   font-size: 1.5em;
   margin-bottom: 2vh;
-  color:rgb(0, 0, 100);
+  color:var(--blue-color);
 }
 
 embed{
@@ -223,6 +267,6 @@ embed{
 
 .share{
   font-size: var(--small-screen-em-normal);
-  color: rgb(0, 0, 100);
+  color: var(--blue-color);
   cursor:pointer;
 }
