@@ -188,10 +188,12 @@ const Search = () => {
       const filtered = data.sort((a,b) => parseInt(a.session + a.order) - parseInt(b.session + b.order) )
       return { filtered, selection };
     } else if (orderType === "dateOrderAsc"){
-      const filtered = data.sort((a,b) => parseInt(a.date) - parseInt(b.date) )
+
+      const filtered = data.sort((a,b) => parseInt(a.date.replace(/-/g,'')) - parseInt(b.date.replace(/-/g,'')) )
       return { filtered, selection };
     } else if (orderType === "dateOrderDesc"){
-      const filtered = data.sort((a,b) => parseInt(b.date) - parseInt(a.date) )
+
+      const filtered = data.sort((a,b) => parseInt(b.date.replace(/-/g,'')) - parseInt(a.date.replace(/-/g,'')) )
       return { filtered, selection };
     }
 
