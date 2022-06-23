@@ -177,7 +177,15 @@ label{
 /* Footer */
 .no-footer {
   height: 87.5vh;  
+  overflow: scroll;
+  scrollbar-width: none;  /* Firefox */
 }
+
+.no-footer::-webkit-scrollbar {
+  display: none;
+}
+
+
 
 footer {
   position: fixed;
@@ -268,4 +276,10 @@ embed{
   font-size: var(--small-screen-em-normal);
   color: var(--blue-color);
   cursor:pointer;
+}
+
+
+/* Desktop view*/
+
+@media (min-width: 2400px){
 }
