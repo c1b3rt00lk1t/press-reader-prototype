@@ -113,6 +113,10 @@ ul {
 
 /* Tags*/
 
+.height-max-tag{
+  height: 5vh;
+}
+
 .vw-40{
   min-width: 40vw;
   max-width: 90vw;
