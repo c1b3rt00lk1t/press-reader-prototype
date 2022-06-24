@@ -389,7 +389,6 @@ embed{
     margin-top: 2.5vh;
   }
 
-}
 
 /* navigation*/
 .on-touch{
@@ -409,5 +408,8 @@ embed{
 .to-next{
   right: 3vw;
   bottom: 35vh;
+}
+
+
 }
 
