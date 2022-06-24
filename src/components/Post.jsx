@@ -4,7 +4,7 @@ import { FaTag, FaIndustry, FaLocationArrow } from "react-icons/fa";
 import Tags from "./Tags";
 import PressReaderContext from "../contexts/PressReaderContext";
 
-import { MdNavigateBefore, MdNavigateNext } from "react-icons/md";
+import { MdNavigateBefore, MdNavigateNext, MdOutlineLink } from "react-icons/md";
 import PDFDocument from "./PDFDocument";
 
 const Post = () => {
@@ -34,7 +34,7 @@ const Post = () => {
   return (
     <>
       <div
-        className="horizontal align-items-center margin-lines"
+        className="horizontal align-items-center margin-lines margin-left"
         style={{ justifyContent: "space-between", marginTop: "2.5vh", marginBottom: "2.5vh" }}
       >
         <div className="horizontal align-items-center">
@@ -49,6 +49,11 @@ const Post = () => {
           <FaIndustry className="news-item-tag" />
           <Tags tags={item.sectors} />
         </div>
+        <a href={item.url} download target="_blank" rel="noopener noreferrer"
+        className="horizontal align-items-center margin-lines margin-left"
+        style={{ justifyContent: "space-between", marginTop: "2.5vh", marginBottom: "2.5vh" }}
+      >      <MdOutlineLink  > 
+      </MdOutlineLink></a>
       </div>
 
       <div style={{ position: "relative" }}>

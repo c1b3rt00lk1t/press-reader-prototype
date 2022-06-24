@@ -1,12 +1,12 @@
 import React from "react";
 import Footer from "./components/Footer.jsx";
-import NewsList from "./components/NewsList.jsx";
 import { data } from "./data/data.js";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Post from "./components/Post";
 import { PressReaderContextProvider } from "./contexts/PressReaderContext";
 import Search from "./pages/Search.jsx";
 import Settings from "./pages/Settings.jsx";
+import Main from "./pages/Main.jsx";
 
 
 function App() {
@@ -20,8 +20,7 @@ function App() {
               path="/"
               element={
                 <>
-                  <h1>Reader</h1>
-                  <NewsList />
+                <Main />
                 </>
               }
             />

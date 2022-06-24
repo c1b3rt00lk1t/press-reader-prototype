@@ -27,7 +27,7 @@ const NewsItem = ({ item }) => {
             <FaTag className="news-item-tag " />
             <Tags tags={item.tags} />
           </div>
-        <div className="news-item-title line-clamp-2 margin-lines">{item.title}
+        <div className="news-item-title line-clamp-2 margin-lines padding-lines">{item.title}
         </div>
         <div className="news-item-source margin-lines">
           {item.date} - {item.source}

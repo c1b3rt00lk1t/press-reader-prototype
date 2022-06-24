@@ -14,7 +14,7 @@ const SearchTime = ({selectSession,selectStartDate,selectEndDate,filter,uniqueSe
             value={filter.startDate}
           />
         </div>
-        <div className="horizontal justify-items-space-around w-35">
+        <div className="horizontal justify-items-space-around vw-35">
           <label htmlFor="end-date">End</label>
           <input
             onChange={selectEndDate}

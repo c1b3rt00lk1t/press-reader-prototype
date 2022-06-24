@@ -249,7 +249,7 @@ const Search = () => {
   return (
     <div className="no-footer vertical justify-items-space-between">
       <div>
-        <h1>Search</h1>
+        <h1 >Search </h1>
         <form action="#">
           <SearchSession  
             selectSession={selectSession}
@@ -292,7 +292,7 @@ const Search = () => {
         </form>
       </div>
 
-      <div className="horizontal margin-lines justify-items-space-around">
+      <div className="horizontal margin-lines justify-items-space-around btn-container">
         <button className="btn-touch" onClick={handleReset}>
           Clear
         </button>

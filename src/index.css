@@ -6,6 +6,7 @@
 
 * {box-sizing:border-box;}
 
+
 body {
   margin: 0;
   padding: 0 2.5vw;
@@ -43,6 +44,9 @@ ul {
 
 .margin-lines{
   margin: 0.75vh 0;
+}
+.padding-lines{
+  padding: 0 0 0.35vh 0;
 }
 
 .news-item-title{
@@ -158,9 +162,11 @@ label{
   color: var(--blue-color);
 }
 
+.btn-container{  
+  padding-bottom: 20vh;
+}
 
 .btn-touch{
-
   background-color: rgb(185, 185, 185, 0.1);
   border-radius: 5px;
   border: 0;
@@ -171,6 +177,7 @@ label{
   z-index: 10;
   font-size: 1em;
   margin-bottom: 2vh;
+
 }
 
 
@@ -279,7 +286,128 @@ embed{
 }
 
 
-/* Desktop view*/
+/* DESKTOP VIEW*/
 
-@media (min-width: 2400px){
+@media (min-width: 1250px){
+
+
+  /*Form*/
+
+  .vw-35{
+    width: 25vw;
+  }
+  fieldset{
+    width: 75vw
+  }
+  
+  legend{
+    font-weight: bold;
+  }
+
+  select{
+    width: 15vw;
+
+  }
+
+  input{
+    width: 15vw;
+
+  }
+
+  input[type=radio]{
+    width: 10vw;
+  }
+
+  input[type=text]{
+    width: 60vw;
+  }
+
+  label{
+    width: 5vw;
+    color: var(--blue-color);
+  }
+
+  .btn-container{  
+    /* position: fixed;
+    top: 3.5vh;
+    left: 15vw; */
+    width: 75vw;
+    margin-top: 2.5vh;
+  }
+
+  .btn-touch{
+    background-color: rgb(185, 185, 185, 0.1);
+    border-radius: 5px;
+    border: 0;
+    width: 15vw;
+    height: 5vh;
+    color: var(--blue-color);
+    font-weight: bold;
+    z-index: 10;
+    font-size: 1em;
+    margin-bottom: 2vh;
+  
+  }
+
+  .no-footer{
+    margin-left: 10vw;
+    height: 100vh;
+    margin-bottom: 2.5vh;
+  }
+
+  .margin-left{
+    margin-left: 10vw;
+  }
+
+  /* Footer */
+  footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 7.5vw;
+    height: 100vh;
+    background-color: white;
+    border-right: dotted 0.5px grey;
+    border-top: none;
+    color: rgb(0, 0, 30);
+    text-align: center;
+  
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+  }
+  
+  /* PDFs*/
+  .react-pdf__Page__canvas {
+    margin: 0 0 0 10vw;
+    width: 80vw !important;
+    height: auto !important;
+  }
+  .react-pdf__Document{
+    margin-bottom: 12.5vh;
+    margin-top: 2.5vh;
+  }
+
 }
+
+/* navigation*/
+.on-touch{
+  position: fixed;
+  background-color: rgb(185, 185, 185, 0.1);
+  border-radius: 50%;
+  width: 4vw;
+  height: 4vw;
+ 
+  z-index: 10;
+}
+
+.to-previous{
+  left:8vw;
+  bottom: 35vh;
+}
+.to-next{
+  right: 3vw;
+  bottom: 35vh;
+}
+
