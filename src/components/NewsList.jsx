@@ -8,11 +8,11 @@ const NewsList = () => {
 
   return (
     <>
-      <ul>
+      {!!dataOrdered.length && <ul>
         {dataOrdered.map((item) => (
           <NewsItem key={item.id} item={item} />
         ))}
-      </ul>
+      </ul>}
     </>
   );
 };

@@ -23,12 +23,14 @@ export const app = initializeApp(firebaseConfig);
 // Initialize Real-time database
 const database = getDatabase(app);
 
-export const getDataFromDB = (setNames) => {
-
-const refDB = ref(database, "/");
-onValue(refDB, (snapshot) => {
-  const data = snapshot.val();
-  console.log(data);
-  setNames(data.map(item => item.name))
-})
+export const getDataFromDB = (handleDataFromDB) => {
+ 
+  const refDB = ref(database, "/");
+   onValue(refDB,  (snapshot) => {
+    const data =  snapshot.val();   
+    handleDataFromDB(data);
+  });
+  
+  
+  
 };
