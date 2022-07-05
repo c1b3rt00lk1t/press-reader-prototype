@@ -123,7 +123,7 @@ const Search = () => {
       for (let a of selection[prop]) {
         if (a === "any") {
           return true;
-        } else if (!!item[target] && item[target].indexOf(a) < 0) {
+        } else if (!item[target] || item[target].indexOf(a) < 0) {
           return false;
         }
       }
