@@ -51,7 +51,7 @@ const Post = () => {
         </div>
         <a href={item.url} download target="_blank" rel="noopener noreferrer"
         className="horizontal align-items-center margin-lines margin-left"
-        style={{ justifyContent: "space-between", marginTop: "2.5vh", marginBottom: "2.5vh" }}
+        style={{ justifyContent: "space-between"}}
       >      <MdOutlineLink  > 
       </MdOutlineLink></a>
       </div>
