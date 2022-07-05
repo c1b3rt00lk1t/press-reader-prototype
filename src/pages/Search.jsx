@@ -119,11 +119,6 @@ const Search = () => {
   const logicFilter = (item, selection, target, type) => {
     const prop = target + type;
 
-    console.log(item) 
-    console.log(selection) 
-    console.log(target) 
-    console.log(type)
-
     if (type === "AND") {
       for (let a of selection[prop]) {
         if (a === "any") {
