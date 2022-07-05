@@ -105,10 +105,11 @@ const Search = () => {
   };
 
   const applyTimeRangeFilter = ({ filtered: data, selection }) => {
+
     const startDate = !!selection.startDate
-      ? selection.startDate
-      : "0000-00-00";
-    const endDate = !!selection.endDate ? selection.endDate : "9999-12-31";
+      ? selection.startDate.replace(/-/g,'')
+      : "00000000";
+    const endDate = !!selection.endDate ? selection.endDate.replace(/-/g,'') : "99991231";
 
     const filtered = data.filter(
       (a) => a.date >= startDate && a.date <= endDate
