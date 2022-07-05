@@ -4,11 +4,20 @@ import { FaTag, FaIndustry, FaLocationArrow } from "react-icons/fa";
 import Tags from "./Tags";
 import PressReaderContext from "../contexts/PressReaderContext";
 
-import { MdNavigateBefore, MdNavigateNext, MdOutlineLink } from "react-icons/md";
+import {
+  MdNavigateBefore,
+  MdNavigateNext,
+  MdOutlineLink,
+} from "react-icons/md";
 import PDFDocument from "./PDFDocument";
+import { ErrorBoundary } from "./ErrorBoundary";
 
 const Post = () => {
-  const { setPostSelected, dataOrdered: data , setDataToShare} = useContext(PressReaderContext);
+  const {
+    setPostSelected,
+    dataOrdered: data,
+    setDataToShare,
+  } = useContext(PressReaderContext);
 
   const params = useParams();
   const item = data.filter((a) => `${a.id}` === params.id)[0];
@@ -25,7 +34,9 @@ const Post = () => {
     setPostSelected(data[indexItem + 1 * sign].id);
     setDataToShare({
       title: "PressReader",
-      text: `${data[indexItem + 1 * sign].date} - ${data[indexItem + 1 * sign].source} - ${data[indexItem + 1 * sign].title}`,
+      text: `${data[indexItem + 1 * sign].date} - ${
+        data[indexItem + 1 * sign].source
+      } - ${data[indexItem + 1 * sign].title}`,
       url: data[indexItem + 1 * sign].url,
     });
     navigate(`/post/${data[indexItem + 1 * sign].id}`);
@@ -35,7 +46,7 @@ const Post = () => {
     <>
       <div
         className="horizontal align-items-center margin-lines margin-left height-max-tag"
-        style={{ justifyContent: "space-between",  marginBottom: "2.5vh" }}
+        style={{ justifyContent: "space-between", marginBottom: "2.5vh" }}
       >
         <div className="horizontal align-items-center">
           <FaTag className="news-item-tag " />
@@ -49,11 +60,17 @@ const Post = () => {
           <FaIndustry className="news-item-tag" />
           <Tags tags={item.sectors} />
         </div>
-        <a href={item.url} download target="_blank" rel="noopener noreferrer"
-        className="horizontal align-items-center margin-lines margin-left"
-        style={{ justifyContent: "space-between"}}
-      >      <MdOutlineLink  > 
-      </MdOutlineLink></a>
+        <a
+          href={item.url}
+          download
+          target="_blank"
+          rel="noopener noreferrer"
+          className="horizontal align-items-center margin-lines margin-left"
+          style={{ justifyContent: "space-between" }}
+        >
+          {" "}
+          <MdOutlineLink></MdOutlineLink>
+        </a>
       </div>
 
       <div style={{ position: "relative" }}>
@@ -69,7 +86,11 @@ const Post = () => {
         >
           <MdNavigateNext className="previous-next" />
         </div>
-        {!!item.url && <PDFDocument url={item.url} />}
+        {!!item.url && (
+          <ErrorBoundary>
+            <PDFDocument url={item.url} />
+          </ErrorBoundary>
+        )}
       </div>
     </>
   );
