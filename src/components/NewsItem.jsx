@@ -11,10 +11,11 @@ const NewsItem = ({ item }) => {
   const navigate = useNavigate();
 
   const handleClickOnItem = () => {
+    const text = `${item.date} - ${item.source} - ${item.title}` 
     setPostSelected(item.id);
     setDataToShare({
       title: "PressReader",
-      text: item.title,
+      text: text,
       url: item.url,
     });
     navigate(`/post/${item.id}`)
