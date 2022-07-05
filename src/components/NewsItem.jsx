@@ -19,7 +19,7 @@ const NewsItem = ({ item }) => {
     });
     navigate(`/post/${item.id}`)
   }
-  console.log(item)
+
 
   return (
     <li onClick={handleClickOnItem} className="news-item">
