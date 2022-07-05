@@ -25,7 +25,7 @@ const database = getDatabase(app);
 
 export const getDataFromDB = (handleDataFromDB) => {
  
-  const refDB = ref(database, "/");
+  const refDB = ref(database, "/sessions/");
    onValue(refDB,  (snapshot) => {
     const data =  snapshot.val();   
     handleDataFromDB(data);
