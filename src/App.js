@@ -1,6 +1,5 @@
 import React from "react";
 import Footer from "./components/Footer.jsx";
-import { data } from "./data/data.js";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Post from "./components/Post";
 import { PressReaderContextProvider } from "./contexts/PressReaderContext";
@@ -26,7 +25,7 @@ function App() {
             />
             <Route path="/search" element={<Search />} />
             <Route path="/settings" element={<Settings />} />
-            <Route path="/post/:id" element={<Post data={data} />} />
+            <Route path="/post/:id" element={<Post  />} />
             <Route path="*" element={<h1>404 Not found</h1>} />
           </Routes>
           <Footer />
