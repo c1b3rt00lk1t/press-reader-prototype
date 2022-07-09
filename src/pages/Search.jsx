@@ -90,10 +90,10 @@ const Search = () => {
     (x) =>
       fns.reduceRight((g, f) => f(g), x);
 
-  const trace = (value) => {
-    console.log(value);
-    return value;
-  };
+  // const trace = (value) => {
+  //   console.log(value);
+  //   return value;
+  // };
 
   const applySessionFilter = ({ data, selection }) => {
     const filtered = data.filter((a) =>
@@ -164,7 +164,7 @@ const Search = () => {
   };
 
   const applyTextFilter = ({ filtered: data, selection }) => {
-    console.log(selection.text.toLowerCase().split(" "));
+
     const checkText = (item, texts) => {
       const result = texts.reduce(
         (acc, b) =>
@@ -212,7 +212,7 @@ const Search = () => {
     const { filtered } = compose(
       applyOrder,
       applyTextFilter,
-      trace,
+      // trace,
       applyTagsFilter,
       applySectorFilter,
       applyZoneFilter,
