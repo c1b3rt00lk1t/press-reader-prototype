@@ -18,7 +18,7 @@ const Search = () => {
     setFilter,
     setDataFiltered,
     setDataOrdered,
-    orderType
+    orderType,
   } = useContext(PressReaderContext);
 
   // Functions to handle the onChange events in the Form
@@ -90,10 +90,10 @@ const Search = () => {
     (x) =>
       fns.reduceRight((g, f) => f(g), x);
 
-  // const trace = (value) => {
-  //   console.log(value);
-  //   return value;
-  // };
+  const trace = (value) => {
+    console.log(value);
+    return value;
+  };
 
   const applySessionFilter = ({ data, selection }) => {
     const filtered = data.filter((a) =>
@@ -105,11 +105,12 @@ const Search = () => {
   };
 
   const applyTimeRangeFilter = ({ filtered: data, selection }) => {
-
     const startDate = !!selection.startDate
-      ? selection.startDate.replace(/-/g,'')
+      ? selection.startDate.replace(/-/g, "")
       : "00000000";
-    const endDate = !!selection.endDate ? selection.endDate.replace(/-/g,'') : "99991231";
+    const endDate = !!selection.endDate
+      ? selection.endDate.replace(/-/g, "")
+      : "99991231";
 
     const filtered = data.filter(
       (a) => a.date >= startDate && a.date <= endDate
@@ -163,15 +164,16 @@ const Search = () => {
   };
 
   const applyTextFilter = ({ filtered: data, selection }) => {
+    console.log(selection.text.toLowerCase().split(" "));
     const checkText = (item, texts) => {
       const result = texts.reduce(
         (acc, b) =>
-          acc && (
-          item.title.toLowerCase().includes(b) ||
-          item.zones.includes(b) ||
-          item.sectors.includes(b) ||
-          item.tags.includes(b) ||
-          item.source.toLowerCase().includes(b) ),
+          acc &&
+          (item.title.toLowerCase().includes(b) ||
+            (!!item.zones && item.zones.includes(b)) ||
+            (!!item.sectors && item.sectors.includes(b)) ||
+            (!!item.tags && item.tags.includes(b)) ||
+            (!!item.source && item.source.toLowerCase().includes(b))),
         true
       );
 
@@ -184,31 +186,35 @@ const Search = () => {
   };
 
   const applyOrder = ({ filtered: data, selection }) => {
-
-    if (orderType === "sessionOrder"){
-      const filtered = data.sort((a,b) => parseInt(a.session + a.order) - parseInt(b.session + b.order) )
+    if (orderType === "sessionOrder") {
+      const filtered = data.sort(
+        (a, b) => parseInt(a.session + a.order) - parseInt(b.session + b.order)
+      );
       return { filtered, selection };
-    } else if (orderType === "dateOrderAsc"){
-
-      const filtered = data.sort((a,b) => parseInt(a.date.replace(/-/g,'')) - parseInt(b.date.replace(/-/g,'')) )
+    } else if (orderType === "dateOrderAsc") {
+      const filtered = data.sort(
+        (a, b) =>
+          parseInt(a.date.replace(/-/g, "")) -
+          parseInt(b.date.replace(/-/g, ""))
+      );
       return { filtered, selection };
-    } else if (orderType === "dateOrderDesc"){
-
-      const filtered = data.sort((a,b) => parseInt(b.date.replace(/-/g,'')) - parseInt(a.date.replace(/-/g,'')) )
+    } else if (orderType === "dateOrderDesc") {
+      const filtered = data.sort(
+        (a, b) =>
+          parseInt(b.date.replace(/-/g, "")) -
+          parseInt(a.date.replace(/-/g, ""))
+      );
       return { filtered, selection };
     }
-
-
-    
   };
 
   const applyFilters = (data, selection) => {
     const { filtered } = compose(
       applyOrder,
       applyTextFilter,
+      trace,
       applyTagsFilter,
       applySectorFilter,
-      // trace,
       applyZoneFilter,
       applyTimeRangeFilter,
       applySessionFilter
@@ -250,9 +256,9 @@ const Search = () => {
   return (
     <div className="no-footer vertical justify-items-space-between">
       <div>
-        <h1 >Search </h1>
+        <h1>Search </h1>
         <form action="#">
-          <SearchSession  
+          <SearchSession
             selectSession={selectSession}
             filter={filter}
             uniqueSessions={uniqueSessions}
@@ -288,7 +294,7 @@ const Search = () => {
             selectOR={selectTagsOR}
             selectAND={selectTagsAND}
           />
-          <SearchText handleTextChange={handleTextChange} filter={filter}/>
+          <SearchText handleTextChange={handleTextChange} filter={filter} />
           <SearchOrder />
         </form>
       </div>
