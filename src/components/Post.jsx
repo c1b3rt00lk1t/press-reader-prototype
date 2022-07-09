@@ -45,20 +45,12 @@ const Post = () => {
   return (
     <>
       <div
-        className="horizontal align-items-center margin-lines margin-left height-max-tag"
+        className="horizontal align-items-center margin-lines margin-left"
         style={{ justifyContent: "space-between", marginBottom: "2.5vh" }}
       >
-        <div className="horizontal align-items-center">
-          <FaTag className="news-item-tag " />
-          <Tags tags={item.tags} />
-        </div>
-        <div className="horizontal align-items-center">
-          <FaLocationArrow className="news-item-tag" />
-          <Tags tags={item.zones} />
-        </div>
-        <div className="horizontal align-items-center">
-          <FaIndustry className="news-item-tag" />
-          <Tags tags={item.sectors} />
+        <div className="horizontal align-items-center min-height-1em">
+          {!!item.tags && <FaTag className="news-item-tag " />}
+          <Tags tags={item.tags} type="1"/>
         </div>
         <a
           href={item.url}
@@ -66,11 +58,20 @@ const Post = () => {
           target="_blank"
           rel="noopener noreferrer"
           className="horizontal align-items-center margin-lines margin-left"
-          style={{ justifyContent: "space-between" }}
+          style={{marginTop:"-0.5vh" }}
         >
           {" "}
           <MdOutlineLink></MdOutlineLink>
         </a>
+        <div className="horizontal align-items-center">
+          {!!item.zones && <FaLocationArrow className="news-item-tag" />}
+          <Tags tags={item.zones}  type="2" marginRight={true}/>
+        </div>
+        <div className="horizontal align-items-center">
+          {!!item.sectors && <FaIndustry className="news-item-tag" />}
+          <Tags tags={item.sectors}  type="2"/>
+        </div>
+        
       </div>
 
       <div style={{ position: "relative" }}>
