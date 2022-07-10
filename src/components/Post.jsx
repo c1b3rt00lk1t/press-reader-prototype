@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { FaTag, FaIndustry, FaLocationArrow } from "react-icons/fa";
 import Tags from "./Tags";
@@ -18,6 +18,8 @@ const Post = () => {
     dataOrdered: data,
     setDataToShare,
   } = useContext(PressReaderContext);
+
+  const [pdfContent, setPdfContent] = useState();
 
   const params = useParams();
   const item = data.filter((a) => `${a.id}` === params.id)[0];
@@ -42,6 +44,18 @@ const Post = () => {
     navigate(`/post/${data[indexItem + 1 * sign].id}`);
   };
 
+  useEffect(() => {
+    const fetchData = () => {
+      fetch(item.url)
+        .then((res) => res.blob())
+        .then((data) => {
+          setPdfContent(data);
+        });
+    };
+
+    fetchData();
+  }, [item.url]);
+
   return (
     <>
       <div
@@ -50,7 +64,7 @@ const Post = () => {
       >
         <div className="horizontal align-items-center min-height-1em">
           {!!item.tags && <FaTag className="news-item-tag " />}
-          <Tags tags={item.tags} type="1"/>
+          <Tags tags={item.tags} type="1" />
         </div>
         <a
           href={item.url}
@@ -58,20 +72,19 @@ const Post = () => {
           target="_blank"
           rel="noopener noreferrer"
           className="horizontal align-items-center margin-lines margin-left"
-          style={{marginTop:"-0.5vh" }}
+          style={{ marginTop: "-0.5vh" }}
         >
           {" "}
           <MdOutlineLink></MdOutlineLink>
         </a>
         <div className="horizontal align-items-center">
           {!!item.zones && <FaLocationArrow className="news-item-tag" />}
-          <Tags tags={item.zones}  type="2" marginRight={true}/>
+          <Tags tags={item.zones} type="2" marginRight={true} />
         </div>
         <div className="horizontal align-items-center">
           {!!item.sectors && <FaIndustry className="news-item-tag" />}
-          <Tags tags={item.sectors}  type="2"/>
+          <Tags tags={item.sectors} type="2" />
         </div>
-        
       </div>
 
       <div style={{ position: "relative" }}>
@@ -89,7 +102,7 @@ const Post = () => {
         </div>
         {!!item.url && (
           <ErrorBoundary>
-            <PDFDocument url={item.url} />
+            <PDFDocument url={pdfContent} />
           </ErrorBoundary>
         )}
       </div>
