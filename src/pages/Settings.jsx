@@ -9,7 +9,7 @@ const Settings = () => {
   return (
     <>
       <h1>Settings</h1>
-      <p style={{fontSize: '0.8em'}}>Prototype: 202206231251</p>
+      <p style={{fontSize: '0.8em'}}>Prototype: v1.0.0</p>
      
     </>
   );
