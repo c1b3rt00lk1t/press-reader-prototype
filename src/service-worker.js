@@ -48,7 +48,7 @@ registerRoute(
 
 // Runtime caching route 
 registerRoute(
-  ({ url }) => url.origin === url.pathname.endsWith('.pdf'), 
+  ({ url }) => url.origin === url.pathname.startsWith('https://firebasestorage.googleapis.com'), 
   // Customize this strategy as needed
   new CacheFirst({
     cacheName: 'pdfs',
