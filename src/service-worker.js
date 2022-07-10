@@ -10,8 +10,9 @@
 import { clientsClaim } from 'workbox-core';
 import { ExpirationPlugin } from 'workbox-expiration';
 import { precacheAndRoute, createHandlerBoundToURL } from 'workbox-precaching';
-import { registerRoute } from 'workbox-routing';
+import { registerRoute, Route } from 'workbox-routing';
 import { CacheFirst } from 'workbox-strategies';
+
 
 clientsClaim();
 
@@ -47,18 +48,18 @@ registerRoute(
 );
 
 // Runtime caching route 
-registerRoute(
-  ({ url }) => url.origin === url.pathname.startsWith('https://firebasestorage.googleapis.com'), 
-  // Customize this strategy as needed
-  new CacheFirst({
-    cacheName: 'pdfs',
-    plugins: [
-      // Ensure that once this runtime cache reaches a maximum size the
-      // least-recently used images are removed.
-      new ExpirationPlugin({ maxEntries: 150 }),
-    ],
-  })
-);
+const pdfsRoute = new Route ( ({url}) => url.origin.endsWith('googleapis.com'), 
+// Customize this strategy as needed
+new CacheFirst({
+  cacheName: 'pdfs',
+  plugins: [
+    // Ensure that once this runtime cache reaches a maximum size the
+    // least-recently used images are removed.
+    new ExpirationPlugin({ maxEntries: 150 })
+  ],
+}));
+
+registerRoute(pdfsRoute);
 
 // This allows the web app to trigger skipWaiting via
 // registration.waiting.postMessage({type: 'SKIP_WAITING'})

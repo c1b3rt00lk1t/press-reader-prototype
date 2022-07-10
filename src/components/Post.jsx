@@ -46,7 +46,10 @@ const Post = () => {
 
   useEffect(() => {
     const fetchData = () => {
-      fetch(item.url)
+      fetch(item.url, {
+        method: 'GET', 
+        mode: 'cors', 
+      })
         .then((res) => res.blob())
         .then((data) => {
           setPdfContent(data);
@@ -55,6 +58,9 @@ const Post = () => {
 
     fetchData();
   }, [item.url]);
+
+
+  
 
   return (
     <>
