@@ -76,19 +76,18 @@ ul {
 /* Connected */
 
 .connected{
-  position: absolute;
-  top: 4vh;
+  position: relative;
+  top: 4.5vh;
   left: 44vw;
   margin: 0 auto;
   width: 15vw;
-  height: 2.5vh;
+  height: 2vh;
   background-color: rgb(197, 197, 197, 0.3);
   border-style: solid;
   border-radius: 10px;
   border-width: 0;
   text-align: center;
   font-size: var(--small-screen-em-small);
-  padding: 0.25vh;
   color:grey;
 }
 
