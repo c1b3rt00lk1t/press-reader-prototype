@@ -73,6 +73,22 @@ ul {
   color: rgb(170, 170, 170);
 }
 
+/* Connected */
+
+.connected{
+  position: sticky;
+  top: 2vh;
+  margin: 0 auto;
+  width: 5vw;
+  background-color: rgb(197, 197, 197, 0.3);
+  border-style: solid;
+  border-radius: 10px;
+  border-width: 0;
+  text-align: center;
+  font-size: var(--small-screen-em-small);
+  padding: 0.5vh;
+  color:grey;
+}
 
 /* Flexbox*/
 .horizontal{

@@ -23,14 +23,21 @@ export const app = initializeApp(firebaseConfig);
 // Initialize Real-time database
 const database = getDatabase(app);
 
-export const getDataFromDB = (handleDataFromDB) => {
- 
-  const refDB = ref(database, "/sessions/");
-   onValue(refDB,  (snapshot) => {
-    const data =  snapshot.val();   
-    handleDataFromDB(data);
+export const getDataFromDB = (handleDataFromDB,setConnected) => {
+  const connectedRef = ref(database, ".info/connected");
+  onValue(connectedRef, (snap) => {
+    if (snap.val() === true) {
+      setConnected(true);
+      console.log("connected");
+      const refDB = ref(database, "/sessions/");
+      onValue(refDB, (snapshot) => {
+        const data = snapshot.val();
+        console.log(data);
+        handleDataFromDB(data);
+      });
+    } else {
+      setConnected(false);
+      console.log("not connected");
+    }
   });
-  
-  
-  
 };

@@ -5,6 +5,7 @@ import { getDataFromDB } from "../firebase";
 const PressReaderContext = createContext();
 
 export const PressReaderContextProvider = ({ children }) => {
+  const [connected,setConnected] = useState(false);
   const [dataAll, setDataAll] = useState();
 
   const [uniqueSessions, setUniqueSessions] = useState([]);
@@ -295,7 +296,7 @@ export const PressReaderContextProvider = ({ children }) => {
       // setDataFiltered(dataFlat);
       // setDataOrdered(dataFlat);
     };
-    getDataFromDB(handleDataFromDB);
+    getDataFromDB(handleDataFromDB,setConnected);
   }, [applyFilters, filter]);
 
   const [postSelected, setPostSelected] = useState(null);
@@ -355,6 +356,7 @@ export const PressReaderContextProvider = ({ children }) => {
         handleTextChange,
         applyFilters,
         handleReset,
+        connected
       }}
     >
       {children}
