@@ -6,6 +6,7 @@ import SearchTags from "../components/SearchTags";
 import SearchText from "../components/SearchText";
 import SearchSession from "../components/SearchSession";
 import SearchOrder from "../components/SearchOrder";
+import Offline from "../components/Offline";
 
 const Search = () => {
   const {
@@ -42,6 +43,7 @@ const Search = () => {
   return (
     <div className="no-footer vertical justify-items-space-between">
       <div>
+      <Offline />
         <h1>Search </h1>
         <form action="#">
           <SearchSession

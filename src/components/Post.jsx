@@ -11,6 +11,7 @@ import {
 } from "react-icons/md";
 import PDFDocument from "./PDFDocument";
 import { ErrorBoundary } from "./ErrorBoundary";
+import Offline from "./Offline";
 
 const Post = () => {
   const {
@@ -92,7 +93,7 @@ const Post = () => {
           <Tags tags={item.sectors} type="2" />
         </div>
       </div>
-
+      <Offline />
       <div style={{ position: "relative" }}>
         <div
           className="on-touch to-previous horizontal align-items-center justify-items-center"
@@ -106,7 +107,9 @@ const Post = () => {
         >
           <MdNavigateNext className="previous-next" />
         </div>
+        
         {!!item.url && (
+         
           <ErrorBoundary>
             <PDFDocument url={pdfContent} />
           </ErrorBoundary>
