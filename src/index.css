@@ -76,7 +76,7 @@ ul {
 /* Connected */
 
 .connected{
-  position: relative;
+  position: absolute;
   top: 4.5vh;
   left: 44vw;
   margin: 0 auto;
