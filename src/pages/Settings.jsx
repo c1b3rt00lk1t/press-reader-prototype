@@ -11,7 +11,7 @@ const Settings = () => {
     <>
     <Offline />
       <h1>Settings</h1>
-      <p style={{fontSize: '0.8em'}}>Prototype: v1.0.0</p>
+      <p style={{fontSize: '0.8em'}}>Prototype: v1.1.0</p>
      
     </>
   );
