@@ -199,7 +199,7 @@ export const PressReaderContextProvider = ({ children }) => {
       if (orderType === "sessionOrder") {
         const filtered = data.sort(
           (a, b) =>
-            parseInt(a.session + a.order) - parseInt(b.session + b.order)
+            parseInt(a.session + String(a.order).padStart(4, '0')) - parseInt(b.session + String(b.order).padStart(4, '0'))
         );
         return { filtered, selection };
       } else if (orderType === "dateOrderAsc") {
