@@ -23,7 +23,7 @@ export const app = initializeApp(firebaseConfig);
 // Initialize Real-time database
 const database = getDatabase(app);
 
-export const getDataFromDB = (handleDataFromDB,setConnected) => {
+export const getDataFromDB = (handleDataFromDB,setConnected,  setDataLS,dataLS) => {
   const connectedRef = ref(database, ".info/connected");
   onValue(connectedRef, (snap) => {
     if (snap.val() === true) {
@@ -33,10 +33,12 @@ export const getDataFromDB = (handleDataFromDB,setConnected) => {
       onValue(refDB, (snapshot) => {
         const data = snapshot.val();
         console.log(data);
+        setDataLS(data);
         handleDataFromDB(data);
       });
     } else {
       setConnected(false);
+      handleDataFromDB(dataLS);
       console.log("not connected");
     }
   });

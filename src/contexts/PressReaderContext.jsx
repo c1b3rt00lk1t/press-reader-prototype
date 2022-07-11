@@ -1,5 +1,6 @@
 import { createContext, useState, useEffect, useCallback } from "react";
 import { getDataFromDB } from "../firebase";
+import useLocalStorageState from 'use-local-storage-state'
 // import { data } from "../data/data.js";
 
 const PressReaderContext = createContext();
@@ -7,6 +8,7 @@ const PressReaderContext = createContext();
 export const PressReaderContextProvider = ({ children }) => {
   const [connected,setConnected] = useState(true);
   const [dataAll, setDataAll] = useState();
+  const [dataLS, setDataLS] = useLocalStorageState('dataLS',[]);
 
   const [uniqueSessions, setUniqueSessions] = useState([]);
   const [uniqueZones, setUniqueZones] = useState([]);
@@ -267,6 +269,7 @@ export const PressReaderContextProvider = ({ children }) => {
 
       // The states derived from the data are set
       setDataAll(dataFlat);
+
       setUniqueSessions(
         dataFlat
           .map((a) => a.session)
@@ -296,8 +299,8 @@ export const PressReaderContextProvider = ({ children }) => {
       // setDataFiltered(dataFlat);
       // setDataOrdered(dataFlat);
     };
-    getDataFromDB(handleDataFromDB,setConnected);
-  }, [applyFilters, filter]);
+    getDataFromDB(handleDataFromDB,setConnected, setDataLS,dataLS);
+  }, [applyFilters, dataLS, filter, setDataLS]);
 
   const [postSelected, setPostSelected] = useState(null);
   const [dataToShare, setDataToShare] = useState({
