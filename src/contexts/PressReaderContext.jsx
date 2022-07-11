@@ -1,14 +1,14 @@
 import { createContext, useState, useEffect, useCallback } from "react";
-import { getDataFromDB } from "../firebase";
-import useLocalStorageState from 'use-local-storage-state'
+import { getDataFromDB, checkConnectionFromDB } from "../firebase";
+
 // import { data } from "../data/data.js";
 
 const PressReaderContext = createContext();
 
 export const PressReaderContextProvider = ({ children }) => {
-  const [connected,setConnected] = useState(true);
+  const [connected, setConnected] = useState(true);
   const [dataAll, setDataAll] = useState();
-  const [dataLS, setDataLS] = useLocalStorageState('dataLS',[]);
+
 
   const [uniqueSessions, setUniqueSessions] = useState([]);
   const [uniqueZones, setUniqueZones] = useState([]);
@@ -108,133 +108,137 @@ export const PressReaderContextProvider = ({ children }) => {
   //   console.log(value);
   //   return value;
   // };
-  const applyFilters = useCallback((data, selection) => {
-    const applySessionFilter = ({ data, selection }) => {
-      const filtered = data.filter((a) =>
-        !selection.session.includes("all")
-          ? selection.session.includes(a.session)
-          : true
-      );
-      return { filtered, selection };
-    };
-
-    const applyTimeRangeFilter = ({ filtered: data, selection }) => {
-      const startDate = !!selection.startDate
-        ? selection.startDate.replace(/-/g, "")
-        : "00000000";
-      const endDate = !!selection.endDate
-        ? selection.endDate.replace(/-/g, "")
-        : "99991231";
-
-      const filtered = data.filter(
-        (a) => a.date >= startDate && a.date <= endDate
-      );
-      return { filtered, selection };
-    };
-
-    const logicFilter = (item, selection, target, type) => {
-      const prop = target + type;
-
-      if (type === "AND") {
-        for (let a of selection[prop]) {
-          if (a === "any") {
-            return true;
-          } else if (!item[target] || item[target].indexOf(a) < 0) {
-            return false;
-          }
-        }
-        return true;
-      } else if (type === "OR") {
-        for (let a of selection[prop]) {
-          if (a === "all") {
-            return true;
-          } else if (!!item[target] && item[target].indexOf(a) >= 0) {
-            return true;
-          }
-        }
-        return false;
-      }
-    };
-
-    const applyZoneFilter = ({ filtered: data, selection }) => {
-      const filtered = data
-        .filter((item) => logicFilter(item, selection, "zones", "OR"))
-        .filter((item) => logicFilter(item, selection, "zones", "AND"));
-      return { filtered, selection };
-    };
-
-    const applySectorFilter = ({ filtered: data, selection }) => {
-      const filtered = data
-        .filter((item) => logicFilter(item, selection, "sectors", "OR"))
-        .filter((item) => logicFilter(item, selection, "sectors", "AND"));
-      return { filtered, selection };
-    };
-
-    const applyTagsFilter = ({ filtered: data, selection }) => {
-      const filtered = data
-        .filter((item) => logicFilter(item, selection, "tags", "OR"))
-        .filter((item) => logicFilter(item, selection, "tags", "AND"));
-      return { filtered, selection };
-    };
-
-    const applyTextFilter = ({ filtered: data, selection }) => {
-      const checkText = (item, texts) => {
-        const result = texts.reduce(
-          (acc, b) =>
-            acc &&
-            (item.title.toLowerCase().includes(b) ||
-              (!!item.zones && item.zones.includes(b)) ||
-              (!!item.sectors && item.sectors.includes(b)) ||
-              (!!item.tags && item.tags.includes(b)) ||
-              (!!item.source && item.source.toLowerCase().includes(b))),
-          true
+  const applyFilters = useCallback(
+    (data, selection) => {
+      const applySessionFilter = ({ data, selection }) => {
+        const filtered = data.filter((a) =>
+          !selection.session.includes("all")
+            ? selection.session.includes(a.session)
+            : true
         );
-
-        return result;
+        return { filtered, selection };
       };
-      const filtered = data.filter((item) =>
-        checkText(item, selection.text.toLowerCase().split(" "))
-      );
-      return { filtered, selection };
-    };
 
-    const applyOrder = ({ filtered: data, selection }) => {
-      if (orderType === "sessionOrder") {
-        const filtered = data.sort(
-          (a, b) =>
-            parseInt(a.session + String(a.order).padStart(4, '0')) - parseInt(b.session + String(b.order).padStart(4, '0'))
-        );
-        return { filtered, selection };
-      } else if (orderType === "dateOrderAsc") {
-        const filtered = data.sort(
-          (a, b) =>
-            parseInt(a.date.replace(/-/g, "")) -
-            parseInt(b.date.replace(/-/g, ""))
-        );
-        return { filtered, selection };
-      } else if (orderType === "dateOrderDesc") {
-        const filtered = data.sort(
-          (a, b) =>
-            parseInt(b.date.replace(/-/g, "")) -
-            parseInt(a.date.replace(/-/g, ""))
-        );
-        return { filtered, selection };
-      }
-    };
+      const applyTimeRangeFilter = ({ filtered: data, selection }) => {
+        const startDate = !!selection.startDate
+          ? selection.startDate.replace(/-/g, "")
+          : "00000000";
+        const endDate = !!selection.endDate
+          ? selection.endDate.replace(/-/g, "")
+          : "99991231";
 
-    const { filtered } = compose(
-      applyOrder,
-      applyTextFilter,
-      // trace,
-      applyTagsFilter,
-      applySectorFilter,
-      applyZoneFilter,
-      applyTimeRangeFilter,
-      applySessionFilter
-    )({ data, selection });
-    setDataFiltered(filtered);
-    setDataOrdered(filtered);
-  }, [orderType]);
+        const filtered = data.filter(
+          (a) => a.date >= startDate && a.date <= endDate
+        );
+        return { filtered, selection };
+      };
+
+      const logicFilter = (item, selection, target, type) => {
+        const prop = target + type;
+
+        if (type === "AND") {
+          for (let a of selection[prop]) {
+            if (a === "any") {
+              return true;
+            } else if (!item[target] || item[target].indexOf(a) < 0) {
+              return false;
+            }
+          }
+          return true;
+        } else if (type === "OR") {
+          for (let a of selection[prop]) {
+            if (a === "all") {
+              return true;
+            } else if (!!item[target] && item[target].indexOf(a) >= 0) {
+              return true;
+            }
+          }
+          return false;
+        }
+      };
+
+      const applyZoneFilter = ({ filtered: data, selection }) => {
+        const filtered = data
+          .filter((item) => logicFilter(item, selection, "zones", "OR"))
+          .filter((item) => logicFilter(item, selection, "zones", "AND"));
+        return { filtered, selection };
+      };
+
+      const applySectorFilter = ({ filtered: data, selection }) => {
+        const filtered = data
+          .filter((item) => logicFilter(item, selection, "sectors", "OR"))
+          .filter((item) => logicFilter(item, selection, "sectors", "AND"));
+        return { filtered, selection };
+      };
+
+      const applyTagsFilter = ({ filtered: data, selection }) => {
+        const filtered = data
+          .filter((item) => logicFilter(item, selection, "tags", "OR"))
+          .filter((item) => logicFilter(item, selection, "tags", "AND"));
+        return { filtered, selection };
+      };
+
+      const applyTextFilter = ({ filtered: data, selection }) => {
+        const checkText = (item, texts) => {
+          const result = texts.reduce(
+            (acc, b) =>
+              acc &&
+              (item.title.toLowerCase().includes(b) ||
+                (!!item.zones && item.zones.includes(b)) ||
+                (!!item.sectors && item.sectors.includes(b)) ||
+                (!!item.tags && item.tags.includes(b)) ||
+                (!!item.source && item.source.toLowerCase().includes(b))),
+            true
+          );
+
+          return result;
+        };
+        const filtered = data.filter((item) =>
+          checkText(item, selection.text.toLowerCase().split(" "))
+        );
+        return { filtered, selection };
+      };
+
+      const applyOrder = ({ filtered: data, selection }) => {
+        if (orderType === "sessionOrder") {
+          const filtered = data.sort(
+            (a, b) =>
+              parseInt(a.session + String(a.order).padStart(4, "0")) -
+              parseInt(b.session + String(b.order).padStart(4, "0"))
+          );
+          return { filtered, selection };
+        } else if (orderType === "dateOrderAsc") {
+          const filtered = data.sort(
+            (a, b) =>
+              parseInt(a.date.replace(/-/g, "")) -
+              parseInt(b.date.replace(/-/g, ""))
+          );
+          return { filtered, selection };
+        } else if (orderType === "dateOrderDesc") {
+          const filtered = data.sort(
+            (a, b) =>
+              parseInt(b.date.replace(/-/g, "")) -
+              parseInt(a.date.replace(/-/g, ""))
+          );
+          return { filtered, selection };
+        }
+      };
+
+      const { filtered } = compose(
+        applyOrder,
+        applyTextFilter,
+        // trace,
+        applyTagsFilter,
+        applySectorFilter,
+        applyZoneFilter,
+        applyTimeRangeFilter,
+        applySessionFilter
+      )({ data, selection });
+      setDataFiltered(filtered);
+      setDataOrdered(filtered);
+    },
+    [orderType]
+  );
 
   // Functions for the buttons
   const handleReset = (e) => {
@@ -259,9 +263,8 @@ export const PressReaderContextProvider = ({ children }) => {
   };
 
   /** CONTEXT FOR MAIN */
-
-  useEffect(() => {
-    const handleDataFromDB = (data) => {
+  const handleDataFromDB = useCallback(
+    (data) => {
       // The object is transformed into an Array and flattened, so that the first level of properties disappears
       const dataFlat = Object.keys(data).flatMap(function (key) {
         return data[key];
@@ -296,11 +299,23 @@ export const PressReaderContextProvider = ({ children }) => {
       );
 
       applyFilters(dataFlat, filter);
-      // setDataFiltered(dataFlat);
-      // setDataOrdered(dataFlat);
-    };
-    getDataFromDB(handleDataFromDB,setConnected, setDataLS,dataLS);
-  }, [applyFilters, dataLS, filter, setDataLS]);
+    },
+    [applyFilters, filter]
+  );
+
+  useEffect(() => {
+    checkConnectionFromDB(setConnected);
+  }, []);
+
+  useEffect(() => {
+    if (!connected && window.localStorage.getItem('dataJK')) {
+      handleDataFromDB(JSON.parse(window.localStorage.getItem('dataJK')))
+    }
+  }, [connected, handleDataFromDB]);
+
+  useEffect(() => {
+    getDataFromDB(handleDataFromDB, setConnected);
+  }, [handleDataFromDB]);
 
   const [postSelected, setPostSelected] = useState(null);
   const [dataToShare, setDataToShare] = useState({
@@ -359,7 +374,7 @@ export const PressReaderContextProvider = ({ children }) => {
         handleTextChange,
         applyFilters,
         handleReset,
-        connected
+        connected,
       }}
     >
       {children}
