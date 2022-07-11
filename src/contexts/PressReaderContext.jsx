@@ -5,7 +5,7 @@ import { getDataFromDB } from "../firebase";
 const PressReaderContext = createContext();
 
 export const PressReaderContextProvider = ({ children }) => {
-  const [connected,setConnected] = useState(false);
+  const [connected,setConnected] = useState(true);
   const [dataAll, setDataAll] = useState();
 
   const [uniqueSessions, setUniqueSessions] = useState([]);
