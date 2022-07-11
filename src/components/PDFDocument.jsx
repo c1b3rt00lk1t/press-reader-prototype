@@ -1,8 +1,15 @@
 import React, { useState } from 'react';
-// import { Document, Page } from 'react-pdf';
 import { Document, Page, pdfjs } from "react-pdf";
 
-pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
+// Previously using a CDN
+// pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
+// Good advise found here: https://stackoverflow.com/questions/65740268/create-react-app-how-to-copy-pdf-worker-js-file-from-pdfjs-dist-build-to-your
+
+
+import pdfjsWorker from "pdfjs-dist/build/pdf.worker.entry";
+
+pdfjs.GlobalWorkerOptions.workerSrc = pdfjsWorker;
+
 
 /**
  * More info and options found in:
@@ -18,10 +25,12 @@ const PDFDocument = ({url}) => {
   const onDocumentLoadSuccess = ({ numPages }) => {
     setNumPages(numPages);
   }
+
+
   return (
     <div>
       
-
+      
       <Document
       file={url}
       options={{ workerSrc: "/pdf.worker.js" }}
