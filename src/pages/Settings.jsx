@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import Offline from "../components/Offline";
 import PressReaderContext from "../contexts/PressReaderContext";
 import SettingToogle from "../components/SettingToogle";
@@ -16,11 +16,11 @@ const Settings = () => {
     setLastSessionFetched,
     fetchLastSessionOnce,
     setFetchLastSessionOnce,
+    downloadProgress,
+    setDownLoadProgress,
     // fetchOnlyUpTo,
     // setFetchOnlyUpTo,
   } = useContext(PressReaderContext);
-
-  const [downloadProgress, setDownLoadProgress] = useState("pending");
 
   // Check that to not exceed th MAX cache expiration plugin
   const fetchData = async () => {
@@ -30,7 +30,7 @@ const Settings = () => {
       await Promise.all(
         dataOrdered
           .filter((file) => file.session === lastSession)
-          .slice(0,251)
+          .slice(0, 251)
           .map((file) =>
             fetch(file.url, {
               method: "GET",
@@ -51,12 +51,12 @@ const Settings = () => {
     <div className="no-footer">
       <Offline />
       <h1>Settings</h1>
-      <p style={{ fontSize: "0.8em" }}>Prototype: v1.3.1</p>
+      <p style={{ fontSize: "0.8em" }}>Prototype: v1.3.2</p>
       <div
         className="vertical justify-items-space-between"
         style={{ height: "65vh" }}
       >
-        <div style={{ marginLeft:"2vw" }}>
+        <div style={{ marginLeft: "2vw" }}>
           <SettingToogle
             setter={setFetchLastSessionOnce}
             state={fetchLastSessionOnce}
@@ -72,7 +72,6 @@ const Settings = () => {
             text="Always prefetch last session"
             setExclude={setFetchLastSessionOnce}
             localExclude="fetchLastSessionOnce"
-
           />
           <SettingToogle
             setter={setFetchOnSubmit}

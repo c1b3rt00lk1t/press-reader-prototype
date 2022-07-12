@@ -52,6 +52,7 @@ export const PressReaderContextProvider = ({ children }) => {
   //     ? true
   //     : window.localStorage.getItem("PrRe_fetchOnlyUpTo") === "true"
   // );
+  const [downloadProgress, setDownLoadProgress] = useState("pending");
   const [lastSessionFetched, setLastSessionFetched] = useState(
     window.localStorage.getItem("PrRe_lastSessionFetched") || "00000000"
   );
@@ -345,6 +346,9 @@ export const PressReaderContextProvider = ({ children }) => {
   // Prefetch according to user's preferences
   useEffect(() => {
     const fetchData = async (lastSession) => {
+      if(lastSession){
+        setDownLoadProgress("downloading");
+      }
       try {
         await Promise.all(
           dataOrdered
@@ -360,8 +364,10 @@ export const PressReaderContextProvider = ({ children }) => {
         if (lastSession) {
           setLastSessionFetched(lastSession);
           window.localStorage.setItem("PrRe_lastSessionFetched", lastSession);
+          setDownLoadProgress("completed");
         }
       } catch (error) {
+        setDownLoadProgress("error");
         console.log("Connection error");
       }
     };
@@ -454,6 +460,8 @@ export const PressReaderContextProvider = ({ children }) => {
         setFetchOnSubmit,
         fetchLastSessionOnce,
         setFetchLastSessionOnce,
+        downloadProgress,
+        setDownLoadProgress,
         // fetchOnlyUpTo,
         // setFetchOnlyUpTo,
       }}
