@@ -7,6 +7,7 @@ const DownloadSession = ({
   fetchData,
   lastSessionFetched,
   downloadProgress,
+  
 }) => {
 
     // downloadProgress = "error";
