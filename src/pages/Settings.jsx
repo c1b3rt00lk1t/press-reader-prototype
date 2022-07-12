@@ -22,7 +22,7 @@ const Settings = () => {
 
   const [downloadProgress, setDownLoadProgress] = useState("pending");
 
-  // Check that to not exceed th MAX chache
+  // Check that to not exceed th MAX cache expiration plugin
   const fetchData = async () => {
     setDownLoadProgress("downloading");
     const lastSession = uniqueSessions[0];
@@ -30,6 +30,7 @@ const Settings = () => {
       const result = await Promise.all(
         dataOrdered
           .filter((file) => file.session === lastSession)
+          .slice(0,251)
           .map((file) =>
             fetch(file.url, {
               method: "GET",
