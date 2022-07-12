@@ -82,6 +82,7 @@ ul {
   margin: 0 auto;
   width: 15vw;
   height: 2vh;
+  line-height: 2vh;
   background-color: rgb(197, 197, 197, 0.3);
   border-style: solid;
   border-radius: 10px;
