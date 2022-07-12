@@ -38,7 +38,7 @@ export const PressReaderContextProvider = ({ children }) => {
   const [fetchLastSessionOnce, setFetchLastSessionOnce] = useState(
     !window.localStorage.getItem("PrRe_fetchLastSessionOnce")
       ? true
-      : window.localStorage.getItem("PrRe_fetchLastSessionOnce")
+      : window.localStorage.getItem("PrRe_fetchLastSessionOnce") === "true"
   );
   const [fetchOnSubmit, setFetchOnSubmit] = useState(
     !window.localStorage.getItem("PrRe_fetchOnSubmit")
