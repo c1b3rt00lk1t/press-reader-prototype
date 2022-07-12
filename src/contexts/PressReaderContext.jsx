@@ -329,6 +329,8 @@ export const PressReaderContextProvider = ({ children }) => {
     [applyFilters, filter]
   );
 
+
+  /** USE EFFECTS */
   useEffect(() => {
     checkConnectionFromDB(setConnected);
   }, []);
@@ -340,7 +342,7 @@ export const PressReaderContextProvider = ({ children }) => {
   }, [connected, handleDataFromDB]);
 
   useEffect(() => {
-    getDataFromDB(handleDataFromDB, setConnected);
+    getDataFromDB(handleDataFromDB);
   }, [handleDataFromDB]);
 
   // Prefetch according to user's preferences
