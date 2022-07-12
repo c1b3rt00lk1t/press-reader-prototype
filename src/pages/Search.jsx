@@ -28,12 +28,14 @@ const Search = () => {
     handleTextChange,
     applyFilters,
     handleReset,
+    setSubmit
   } = useContext(PressReaderContext);
 
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setSubmit(true);
     document.getElementsByTagName("meta").viewport.content =
               "width=device-width, initial-scale=1";
     applyFilters(dataAll, filter);

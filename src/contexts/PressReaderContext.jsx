@@ -32,10 +32,26 @@ export const PressReaderContextProvider = ({ children }) => {
 
   /** CONTEXT FOR PREFETCH */
 
-  const [fetchLastSession, setFetchLastSession] = useState(window.localStorage.getItem("PrRe_fetchLastSession") === "true" || false);
-  const [fetchLastSessionOnce, setFetchLastSessionOnce] = useState(window.localStorage.getItem("PrRe_fetchLastSessionOnce") === "true" || false);
-  const [fetchOnSubmit, setFetchOnSubmit] = useState(window.localStorage.getItem("PrRe_fetchOnSubmit") === "true" || false);
-  const [fetchOnlyUpTo, setFetchOnlyUpTo] = useState(!window.localStorage.getItem("PrRe_fetchOnlyUpTo") ? true : window.localStorage.getItem("PrRe_fetchOnlyUpTo") === "true");
+  const [fetchLastSession, setFetchLastSession] = useState(
+    window.localStorage.getItem("PrRe_fetchLastSession") === "true" || false
+  );
+  const [fetchLastSessionOnce, setFetchLastSessionOnce] = useState(
+    !window.localStorage.getItem("PrRe_fetchLastSessionOnce")
+      ? true
+      : window.localStorage.getItem("PrRe_fetchLastSessionOnce")
+  );
+  const [fetchOnSubmit, setFetchOnSubmit] = useState(
+    !window.localStorage.getItem("PrRe_fetchOnSubmit")
+      ? true
+      : window.localStorage.getItem("PrRe_fetchOnSubmit") === "true"
+  );
+  const [submit, setSubmit] = useState(false);
+  /* If this feature is finally needed, the uploader has to provide the property to check*/
+  // const [fetchOnlyUpTo, setFetchOnlyUpTo] = useState(
+  //   !window.localStorage.getItem("PrRe_fetchOnlyUpTo")
+  //     ? true
+  //     : window.localStorage.getItem("PrRe_fetchOnlyUpTo") === "true"
+  // );
   const [lastSessionFetched, setLastSessionFetched] = useState(
     window.localStorage.getItem("PrRe_lastSessionFetched") || "00000000"
   );
@@ -326,6 +342,51 @@ export const PressReaderContextProvider = ({ children }) => {
     getDataFromDB(handleDataFromDB, setConnected);
   }, [handleDataFromDB]);
 
+  // Prefetch according to user's preferences
+  useEffect(() => {
+    const fetchData = async (lastSession) => {
+      try {
+        await Promise.all(
+          dataOrdered
+            .filter((file) => !lastSession || file.session === lastSession)
+            .slice(0, 251)
+            .map((file) =>
+              fetch(file.url, {
+                method: "GET",
+                mode: "cors",
+              })
+            )
+        );
+        if (lastSession) {
+          setLastSessionFetched(lastSession);
+          window.localStorage.setItem("PrRe_lastSessionFetched", lastSession);
+        }
+      } catch (error) {
+        console.log("Connection error");
+      }
+    };
+
+    if (fetchLastSession) {
+      fetchData(uniqueSessions[0]);
+      console.log("Fetch last session always.");
+    } else if (fetchLastSessionOnce && lastSessionFetched < uniqueSessions[0]) {
+      fetchData(uniqueSessions[0]);
+      console.log("Fetch last session once.");
+    } else if (fetchOnSubmit && submit) {
+      fetchData();
+      console.log("Fetch on submit.");
+      setSubmit(false);
+    }
+  }, [
+    dataOrdered,
+    fetchLastSession,
+    fetchLastSessionOnce,
+    lastSessionFetched,
+    uniqueSessions,
+    fetchOnSubmit,
+    submit,
+  ]);
+
   const [postSelected, setPostSelected] = useState(null);
   const [dataToShare, setDataToShare] = useState({
     title: "PressReader",
@@ -383,6 +444,7 @@ export const PressReaderContextProvider = ({ children }) => {
         handleTextChange,
         applyFilters,
         handleReset,
+        setSubmit,
         connected,
         fetchLastSession,
         setFetchLastSession,
@@ -392,8 +454,8 @@ export const PressReaderContextProvider = ({ children }) => {
         setFetchOnSubmit,
         fetchLastSessionOnce,
         setFetchLastSessionOnce,
-        fetchOnlyUpTo,
-        setFetchOnlyUpTo,
+        // fetchOnlyUpTo,
+        // setFetchOnlyUpTo,
       }}
     >
       {children}

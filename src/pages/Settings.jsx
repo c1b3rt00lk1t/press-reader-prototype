@@ -16,8 +16,8 @@ const Settings = () => {
     setLastSessionFetched,
     fetchLastSessionOnce,
     setFetchLastSessionOnce,
-    fetchOnlyUpTo,
-    setFetchOnlyUpTo,
+    // fetchOnlyUpTo,
+    // setFetchOnlyUpTo,
   } = useContext(PressReaderContext);
 
   const [downloadProgress, setDownLoadProgress] = useState("pending");
@@ -27,7 +27,7 @@ const Settings = () => {
     setDownLoadProgress("downloading");
     const lastSession = uniqueSessions[0];
     try {
-      const result = await Promise.all(
+      await Promise.all(
         dataOrdered
           .filter((file) => file.session === lastSession)
           .slice(0,251)
@@ -38,7 +38,6 @@ const Settings = () => {
             })
           )
       );
-      console.log(result);
       setLastSessionFetched(lastSession);
       window.localStorage.setItem("PrRe_lastSessionFetched", lastSession);
       setDownLoadProgress("completed");
@@ -52,7 +51,7 @@ const Settings = () => {
     <div className="no-footer">
       <Offline />
       <h1>Settings</h1>
-      <p style={{ fontSize: "0.8em" }}>Prototype: v1.2.3</p>
+      <p style={{ fontSize: "0.8em" }}>Prototype: v1.3.1</p>
       <div
         className="vertical justify-items-space-between"
         style={{ height: "65vh" }}
@@ -81,12 +80,12 @@ const Settings = () => {
             local="fetchOnSubmit"
             text="Prefetch on Submit"
           />
-          <SettingToogle
+          {/* <SettingToogle
             setter={setFetchOnlyUpTo}
             state={fetchOnlyUpTo}
             local="fetchOnlyUpTo"
             text="Prefetch only < 1MB"
-          />
+          /> */}
         </div>
         <DownloadSession
           fetchData={fetchData}
