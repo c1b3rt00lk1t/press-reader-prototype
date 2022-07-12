@@ -35,7 +35,7 @@ export const PressReaderContextProvider = ({ children }) => {
   const [fetchLastSession, setFetchLastSession] = useState(window.localStorage.getItem("PrRe_fetchLastSession") === "true" || false);
   const [fetchLastSessionOnce, setFetchLastSessionOnce] = useState(window.localStorage.getItem("PrRe_fetchLastSessionOnce") === "true" || false);
   const [fetchOnSubmit, setFetchOnSubmit] = useState(window.localStorage.getItem("PrRe_fetchOnSubmit") === "true" || false);
-  const [fetchOnlyUpTo, setFetchOnlyUpTo] = useState(window.localStorage.getItem("PrRe_fetchOnlyUpTo") === "true" && true);
+  const [fetchOnlyUpTo, setFetchOnlyUpTo] = useState(!window.localStorage.getItem("PrRe_fetchOnlyUpTo") ? true : window.localStorage.getItem("PrRe_fetchOnlyUpTo") === "true");
   const [lastSessionFetched, setLastSessionFetched] = useState(
     window.localStorage.getItem("PrRe_lastSessionFetched") || "00000000"
   );
