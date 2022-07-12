@@ -10,15 +10,27 @@ import {
 } from "react-icons/io";
 
 const Footer = () => {
-
   const { handleShare, handleList } = useContext(PressReaderContext);
 
   return (
     <footer>
-      <Link to="/search">
+      <Link
+        onClick={() => {
+          document.getElementsByTagName("meta").viewport.content =
+            "width=device-width, initial-scale=1, maximum-scale=1";
+        }}
+        to="/search"
+      >
         <IoMdSearch className="footer-icon" />
       </Link>
-      <Link onClick={handleList} to="/">
+      <Link
+        onClick={() => {
+          document.getElementsByTagName("meta").viewport.content =
+            "width=device-width, initial-scale=1";
+          handleList();
+        }}
+        to="/"
+      >
         <IoMdEye className="footer-icon" />
       </Link>
       <div onClick={handleShare}>

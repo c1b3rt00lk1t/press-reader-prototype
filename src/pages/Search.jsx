@@ -30,12 +30,12 @@ const Search = () => {
     handleReset,
   } = useContext(PressReaderContext);
 
-
-
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    document.getElementsByTagName("meta").viewport.content =
+              "width=device-width, initial-scale=1";
     applyFilters(dataAll, filter);
     navigate(`/`);
   };
@@ -43,7 +43,7 @@ const Search = () => {
   return (
     <div className="no-footer vertical justify-items-space-between">
       <div>
-      <Offline />
+        <Offline />
         <h1>Search </h1>
         <form action="#">
           <SearchSession
