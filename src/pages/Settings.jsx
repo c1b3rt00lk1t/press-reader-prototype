@@ -54,7 +54,7 @@ const Settings = () => {
       <p style={{ fontSize: "0.8em" }}>Prototype: v1.2.3</p>
       <div
         className="vertical justify-items-space-between"
-        style={{ height: "70vh" }}
+        style={{ height: "65vh" }}
       >
         <div style={{ marginLeft:"2vw" }}>
           <SettingToogle
