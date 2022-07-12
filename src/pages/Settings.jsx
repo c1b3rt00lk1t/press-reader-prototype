@@ -56,7 +56,7 @@ const Settings = () => {
         className="vertical justify-items-space-between"
         style={{ height: "70vh" }}
       >
-        <div>
+        <div style={{ marginLeft:"2vw" }}>
           <SettingToogle
             setter={setFetchLastSessionOnce}
             state={fetchLastSessionOnce}
