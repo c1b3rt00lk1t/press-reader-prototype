@@ -9,7 +9,6 @@ export const PressReaderContextProvider = ({ children }) => {
   const [connected, setConnected] = useState(true);
   const [dataAll, setDataAll] = useState();
 
-
   const [uniqueSessions, setUniqueSessions] = useState([]);
   const [uniqueZones, setUniqueZones] = useState([]);
   const [uniqueIndustries, setUniqueIndustries] = useState([]);
@@ -30,6 +29,16 @@ export const PressReaderContextProvider = ({ children }) => {
     tagsAND: ["any"],
     text: "",
   });
+
+  /** CONTEXT FOR PREFETCH */
+
+  const [fetchLastSession, setFetchLastSession] = useState(window.localStorage.getItem("PrRe_fetchLastSession") === "true" || false);
+  const [fetchLastSessionOnce, setFetchLastSessionOnce] = useState(window.localStorage.getItem("PrRe_fetchLastSessionOnce") === "true" || false);
+  const [fetchOnSubmit, setFetchOnSubmit] = useState(window.localStorage.getItem("PrRe_fetchOnSubmit") === "true" || false);
+  const [fetchOnlyUpTo, setFetchOnlyUpTo] = useState(window.localStorage.getItem("PrRe_fetchOnlyUpTo") === "true" && true);
+  const [lastSessionFetched, setLastSessionFetched] = useState(
+    window.localStorage.getItem("PrRe_lastSessionFetched") || "00000000"
+  );
 
   /** CONTEXT FOR SEARCH */
 
@@ -308,8 +317,8 @@ export const PressReaderContextProvider = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    if (!connected && window.localStorage.getItem('dataJK')) {
-      handleDataFromDB(JSON.parse(window.localStorage.getItem('dataJK')))
+    if (!connected && window.localStorage.getItem("PrRe_data")) {
+      handleDataFromDB(JSON.parse(window.localStorage.getItem("PrRe_data")));
     }
   }, [connected, handleDataFromDB]);
 
@@ -375,6 +384,16 @@ export const PressReaderContextProvider = ({ children }) => {
         applyFilters,
         handleReset,
         connected,
+        fetchLastSession,
+        setFetchLastSession,
+        lastSessionFetched,
+        setLastSessionFetched,
+        fetchOnSubmit,
+        setFetchOnSubmit,
+        fetchLastSessionOnce,
+        setFetchLastSessionOnce,
+        fetchOnlyUpTo,
+        setFetchOnlyUpTo,
       }}
     >
       {children}
