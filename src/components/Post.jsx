@@ -46,8 +46,8 @@ const Post = () => {
   };
 
   useEffect(() => {
-    const fetchData = () => {
-      fetch(item.url, {
+    const fetchData = async (url) => {
+      return await fetch(url, {
         method: "GET",
         mode: "cors",
       })
@@ -55,26 +55,29 @@ const Post = () => {
           if (res.ok) {
             return res.blob();
           } else if (res.status === 404 || res.status === 402) {
-            // In case of 402 or 404, check the alternative url
-            // This feature is NOT enabled in the prefetching calls
-            console.log("Fetching alternative url.");
-            return fetch(item.url2, {
-              method: "GET",
-              mode: "cors",
-            }).then((res) => {
-              if (res.ok) {
-                return res.blob();
-              }
-            });
+            console.log("Not found");
           }
         })
-        .then((data) => {
-          setPdfContent(data);
-        })
-        .catch((e) => console.log("Error in fetch"));
+        .catch((e) => {
+          console.log("Connection error");
+        });
     };
 
-    fetchData();
+    fetchData(item.url)
+      .then((data) => {
+        if (data) {
+          setPdfContent(data);
+        } else {
+          // If there is no data, let's try form the backup
+          fetchData(item.url2).then((data) => setPdfContent(data));
+        }
+      })
+      .catch((e) => {
+        // Call on error needed to recover the cache (if exist) of the backup
+        fetchData(item.url2).then((data) => setPdfContent(data));
+      });
+
+
   }, [item.url, item.url2]);
 
   return (

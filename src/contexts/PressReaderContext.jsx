@@ -36,9 +36,7 @@ export const PressReaderContextProvider = ({ children }) => {
     window.localStorage.getItem("PrRe_fetchLastSession") === "true" || false
   );
   const [fetchLastSessionOnce, setFetchLastSessionOnce] = useState(
-    !window.localStorage.getItem("PrRe_fetchLastSessionOnce")
-      ? true
-      : window.localStorage.getItem("PrRe_fetchLastSessionOnce") === "true"
+    window.localStorage.getItem("PrRe_fetchLastSessionOnce") === "true" || false
   );
   const [fetchOnSubmit, setFetchOnSubmit] = useState(
     !window.localStorage.getItem("PrRe_fetchOnSubmit")
