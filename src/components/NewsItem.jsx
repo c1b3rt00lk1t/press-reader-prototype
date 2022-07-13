@@ -15,7 +15,7 @@ const NewsItem = ({ item }) => {
     setDataToShare({
       title: "PressReader",
       text: text,
-      url: item.url,
+      url: item.url2,
     });
     navigate(`/post/${item.id}`);
   };
