@@ -48,20 +48,34 @@ const Post = () => {
   useEffect(() => {
     const fetchData = () => {
       fetch(item.url, {
-        method: 'GET', 
-        mode: 'cors', 
+        method: "GET",
+        mode: "cors",
       })
-        .then((res) => res.blob())
+        .then((res) => {
+          if (res.ok) {
+            return res.blob();
+          } else if (res.status === 404 || res.status === 402) {
+            // In case of 402 or 404, check the alternative url
+            // This feature is NOT enabled in the prefetching calls
+            console.log("Fetching alternative url.");
+            return fetch(item.url2, {
+              method: "GET",
+              mode: "cors",
+            }).then((res) => {
+              if (res.ok) {
+                return res.blob();
+              }
+            });
+          }
+        })
         .then((data) => {
           setPdfContent(data);
-        });
+        })
+        .catch((e) => console.log("Error in fetch"));
     };
 
     fetchData();
-  }, [item.url]);
-
-
-  
+  }, [item.url, item.url2]);
 
   return (
     <>
@@ -107,9 +121,8 @@ const Post = () => {
         >
           <MdNavigateNext className="previous-next" />
         </div>
-        
+
         {!!item.url && (
-         
           <ErrorBoundary>
             <PDFDocument url={pdfContent} />
           </ErrorBoundary>
