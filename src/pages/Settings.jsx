@@ -51,7 +51,7 @@ const Settings = () => {
     <div className="no-footer">
       <Offline />
       <h1>Settings</h1>
-      <p style={{ fontSize: "0.8em" }}>Prototype: v1.4.1</p>
+      <p style={{ fontSize: "0.8em" }}>Prototype: v1.4.2</p>
       <div
         className="vertical justify-items-space-between"
         style={{ height: "65vh" }}
