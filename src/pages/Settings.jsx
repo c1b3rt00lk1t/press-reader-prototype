@@ -20,6 +20,7 @@ const Settings = () => {
     setDownLoadProgress,
     // fetchOnlyUpTo,
     // setFetchOnlyUpTo,
+    URLFromSize
   } = useContext(PressReaderContext);
 
   // Check that to not exceed th MAX cache expiration plugin
@@ -31,8 +32,9 @@ const Settings = () => {
         dataOrdered
           .filter((file) => file.session === lastSession)
           .slice(0, 251)
+          .filter((file) => file.size < 5000000)
           .map((file) =>
-            fetch(file.url, {
+            fetch(URLFromSize(file), {
               method: "GET",
               mode: "cors",
             })
@@ -51,7 +53,7 @@ const Settings = () => {
     <div className="no-footer">
       <Offline />
       <h1>Settings</h1>
-      <p style={{ fontSize: "0.8em" }}>Prototype: v1.4.2</p>
+      <p style={{ fontSize: "0.8em" }}>Prototype: v1.4.3</p>
       <div
         className="vertical justify-items-space-between"
         style={{ height: "65vh" }}

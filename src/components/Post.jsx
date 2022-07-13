@@ -18,6 +18,7 @@ const Post = () => {
     setPostSelected,
     dataOrdered: data,
     setDataToShare,
+    URLFromSize
   } = useContext(PressReaderContext);
 
   const [pdfContent, setPdfContent] = useState();
@@ -62,12 +63,12 @@ const Post = () => {
           console.log("Connection error");
         });
     };
-
-    fetchData(item.url)
+    const url = URLFromSize(item);
+    fetchData(url)
       .then((data) => {
         if (data) {
           setPdfContent(data);
-        } else {
+        } else if (url === item.url2) {
           // If there is no data, let's try form the backup
           fetchData(item.url2).then((data) => setPdfContent(data));
         }
@@ -78,7 +79,7 @@ const Post = () => {
       });
 
 
-  }, [item.url, item.url2]);
+  }, [URLFromSize, item]);
 
   return (
     <>

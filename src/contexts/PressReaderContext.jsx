@@ -327,6 +327,10 @@ export const PressReaderContextProvider = ({ children }) => {
     [applyFilters, filter]
   );
 
+  const URLFromSize = useCallback((file) => {
+     const url = file.size < 500000 ? file.url : file.url2
+     return url
+  }, [])
 
   /** USE EFFECTS */
   useEffect(() => {
@@ -345,6 +349,7 @@ export const PressReaderContextProvider = ({ children }) => {
 
   // Prefetch according to user's preferences
   useEffect(() => {
+
     const fetchData = async (lastSession) => {
       if(lastSession){
         setDownLoadProgress("downloading");
@@ -353,9 +358,10 @@ export const PressReaderContextProvider = ({ children }) => {
         await Promise.all(
           dataOrdered
             .filter((file) => !lastSession || file.session === lastSession)
+            .filter((file) => file.size < 2000000)
             .slice(0, 251)
             .map((file) =>
-              fetch(file.url, {
+              fetch(URLFromSize(file), {
                 method: "GET",
                 mode: "cors",
               })
@@ -383,15 +389,7 @@ export const PressReaderContextProvider = ({ children }) => {
       console.log("Fetch on submit.");
       setSubmit(false);
     }
-  }, [
-    dataOrdered,
-    fetchLastSession,
-    fetchLastSessionOnce,
-    lastSessionFetched,
-    uniqueSessions,
-    fetchOnSubmit,
-    submit,
-  ]);
+  }, [dataOrdered, fetchLastSession, fetchLastSessionOnce, lastSessionFetched, uniqueSessions, fetchOnSubmit, submit, URLFromSize]);
 
   const [postSelected, setPostSelected] = useState(null);
   const [dataToShare, setDataToShare] = useState({
@@ -464,6 +462,7 @@ export const PressReaderContextProvider = ({ children }) => {
         setDownLoadProgress,
         // fetchOnlyUpTo,
         // setFetchOnlyUpTo,
+        URLFromSize
       }}
     >
       {children}
