@@ -40,7 +40,7 @@ const Post = () => {
       text: `${data[indexItem + 1 * sign].date} - ${
         data[indexItem + 1 * sign].source
       } - ${data[indexItem + 1 * sign].title}`,
-      url: data[indexItem + 1 * sign].url,
+      url: data[indexItem + 1 * sign].url2,
     });
     navigate(`/post/${data[indexItem + 1 * sign].id}`);
   };
@@ -91,7 +91,7 @@ const Post = () => {
           <Tags tags={item.tags} type="1" />
         </div>
         <a
-          href={item.url}
+          href={item.url2}
           download
           target="_blank"
           rel="noopener noreferrer"
