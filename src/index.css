@@ -339,10 +339,18 @@ embed{
   } 
 }
 
+.only-wider-screen{
+  display:none;
+}
+
 
 /* DESKTOP VIEW*/
 
 @media (min-width: 1250px){
+
+  .only-wider-screen{
+    display:flex;
+  }
 
   /* Tags */
 

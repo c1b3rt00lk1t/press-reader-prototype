@@ -18,9 +18,12 @@ const Settings = () => {
     setFetchLastSessionOnce,
     downloadProgress,
     setDownLoadProgress,
+    setDesktop,
+    desktop,
+
     // fetchOnlyUpTo,
     // setFetchOnlyUpTo,
-    URLFromSize
+    URLFromSize,
   } = useContext(PressReaderContext);
 
   // Check that to not exceed th MAX cache expiration plugin
@@ -66,6 +69,7 @@ const Settings = () => {
             text="Always prefetch last session once"
             setExclude={setFetchLastSession}
             localExclude="fetchLastSession"
+            disable={desktop}
           />
           <SettingToogle
             setter={setFetchLastSession}
@@ -74,12 +78,21 @@ const Settings = () => {
             text="Always prefetch last session"
             setExclude={setFetchLastSessionOnce}
             localExclude="fetchLastSessionOnce"
+            disable={desktop}
           />
           <SettingToogle
             setter={setFetchOnSubmit}
             state={fetchOnSubmit}
             local="fetchOnSubmit"
             text="Prefetch on Submit"
+            disable={desktop}
+          />
+          <SettingToogle
+            setter={setDesktop}
+            state={desktop}
+            local="desktop"
+            text="Desktop"
+            onlyWiderScreen={true}
           />
           {/* <SettingToogle
             setter={setFetchOnlyUpTo}
@@ -88,11 +101,13 @@ const Settings = () => {
             text="Prefetch only < 1MB"
           /> */}
         </div>
-        <DownloadSession
-          fetchData={fetchData}
-          lastSessionFetched={lastSessionFetched}
-          downloadProgress={downloadProgress}
-        />
+        {!desktop && (
+          <DownloadSession
+            fetchData={fetchData}
+            lastSessionFetched={lastSessionFetched}
+            downloadProgress={downloadProgress}
+          />
+        )}
       </div>
     </div>
   );

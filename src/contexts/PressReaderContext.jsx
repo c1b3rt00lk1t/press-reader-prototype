@@ -55,6 +55,9 @@ export const PressReaderContextProvider = ({ children }) => {
     window.localStorage.getItem("PrRe_lastSessionFetched") || "00000000"
   );
 
+  const [desktop, setDesktop] = useState(
+    window.localStorage.getItem("PrRe_desktop") === "true" || false
+  );
   /** CONTEXT FOR SEARCH */
 
   const [orderType, setOrderType] = useState("sessionOrder");
@@ -328,9 +331,9 @@ export const PressReaderContextProvider = ({ children }) => {
   );
 
   const URLFromSize = useCallback((file) => {
-     const url = file.size < 500000 ? file.url : file.url2
-     return url
-  }, [])
+    const url = file.size < 500000 ? file.url : file.url2;
+    return url;
+  }, []);
 
   /** USE EFFECTS */
   useEffect(() => {
@@ -349,9 +352,8 @@ export const PressReaderContextProvider = ({ children }) => {
 
   // Prefetch according to user's preferences
   useEffect(() => {
-
     const fetchData = async (lastSession) => {
-      if(lastSession){
+      if (lastSession) {
         setDownLoadProgress("downloading");
       }
       try {
@@ -389,7 +391,16 @@ export const PressReaderContextProvider = ({ children }) => {
       console.log("Fetch on submit.");
       setSubmit(false);
     }
-  }, [dataOrdered, fetchLastSession, fetchLastSessionOnce, lastSessionFetched, uniqueSessions, fetchOnSubmit, submit, URLFromSize]);
+  }, [
+    dataOrdered,
+    fetchLastSession,
+    fetchLastSessionOnce,
+    lastSessionFetched,
+    uniqueSessions,
+    fetchOnSubmit,
+    submit,
+    URLFromSize,
+  ]);
 
   const [postSelected, setPostSelected] = useState(null);
   const [dataToShare, setDataToShare] = useState({
@@ -460,9 +471,11 @@ export const PressReaderContextProvider = ({ children }) => {
         setFetchLastSessionOnce,
         downloadProgress,
         setDownLoadProgress,
+        desktop,
+        setDesktop,
         // fetchOnlyUpTo,
         // setFetchOnlyUpTo,
-        URLFromSize
+        URLFromSize,
       }}
     >
       {children}
