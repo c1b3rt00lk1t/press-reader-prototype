@@ -20,6 +20,7 @@ const Settings = () => {
     setDownLoadProgress,
     setDesktop,
     desktop,
+    handleSelectFolder,
 
     // fetchOnlyUpTo,
     // setFetchOnlyUpTo,
@@ -50,6 +51,13 @@ const Settings = () => {
       setDownLoadProgress("error");
       console.log("Connection error");
     }
+  };
+
+
+  const clickSelector = () => {
+    // Resets the next states
+    // Triggers the event
+    document.getElementById("file-selector").click();
   };
 
   return (
@@ -87,13 +95,24 @@ const Settings = () => {
             text="Prefetch on Submit"
             disable={desktop}
           />
-          <SettingToogle
+          <SettingToogle 
             setter={setDesktop}
             state={desktop}
             local="desktop"
             text="Desktop"
             onlyWiderScreen={true}
+            trigger={clickSelector}
           />
+          <span id="selection-result" className="contador"></span>
+          <input
+            onChange={handleSelectFolder}
+            type="file"
+            id="file-selector"
+            name="fileList"
+            style={{ display: "none" }}
+            webkitdirectory="true"
+          />
+          
           {/* <SettingToogle
             setter={setFetchOnlyUpTo}
             state={fetchOnlyUpTo}

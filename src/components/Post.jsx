@@ -18,7 +18,9 @@ const Post = () => {
     setPostSelected,
     dataOrdered: data,
     setDataToShare,
-    URLFromSize
+    desktop,
+    URLFromSize,
+    pdfFiles
   } = useContext(PressReaderContext);
 
   const [pdfContent, setPdfContent] = useState();
@@ -64,22 +66,28 @@ const Post = () => {
         });
     };
     const url = URLFromSize(item);
-    fetchData(url)
-      .then((data) => {
-        if (data) {
-          setPdfContent(data);
-        } else if (url === item.url2) {
-          // If there is no data, let's try form the backup
+
+    if (!desktop) {
+      fetchData(url)
+        .then((data) => {
+          if (data) {
+            setPdfContent(data);
+          } else if (url === item.url2) {
+            // If there is no data, let's try form the backup
+            fetchData(item.url2).then((data) => setPdfContent(data));
+          }
+        })
+        .catch((e) => {
+          // Call on error needed to recover the cache (if exist) of the backup
           fetchData(item.url2).then((data) => setPdfContent(data));
-        }
-      })
-      .catch((e) => {
-        // Call on error needed to recover the cache (if exist) of the backup
-        fetchData(item.url2).then((data) => setPdfContent(data));
-      });
+        });
+    } else {
+      setPdfContent(pdfFiles.filter(file => file.name.includes(item.title))[0])
+    }
+  }, [URLFromSize, desktop, item, pdfFiles]);
 
 
-  }, [URLFromSize, item]);
+
 
   return (
     <>

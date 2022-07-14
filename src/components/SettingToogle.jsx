@@ -9,7 +9,8 @@ const SettingToogle = ({
   setExclude,
   localExclude,
   disable = false,
-  onlyWiderScreen = false
+  onlyWiderScreen = false,
+  trigger = () => {}
 }) => {
   return (
     <div
@@ -21,7 +22,8 @@ const SettingToogle = ({
           setExclude(false);
           window.localStorage.setItem(`PrRe_${localExclude}`, false);
           console.log(`PrRe_${localExclude}`);
-        }
+        };
+        result && trigger();
       }}
       className={`horizontal align-items-center ${onlyWiderScreen && 'only-wider-screen'}`}
     >

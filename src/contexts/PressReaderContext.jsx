@@ -58,6 +58,16 @@ export const PressReaderContextProvider = ({ children }) => {
   const [desktop, setDesktop] = useState(
     window.localStorage.getItem("PrRe_desktop") === "true" || false
   );
+
+  const [pdfFiles, setPdfFiles] = useState([]);
+  // const [relativePath, setRelativePath] = useState([]);
+
+  const handleSelectFolder = (ev) => {
+    const filesArray = [...ev.target.files];
+    setPdfFiles(filesArray.filter((file) => file.type === "application/pdf"));
+
+  };
+
   /** CONTEXT FOR SEARCH */
 
   const [orderType, setOrderType] = useState("sessionOrder");
@@ -476,6 +486,8 @@ export const PressReaderContextProvider = ({ children }) => {
         // fetchOnlyUpTo,
         // setFetchOnlyUpTo,
         URLFromSize,
+        handleSelectFolder,
+        pdfFiles
       }}
     >
       {children}
