@@ -452,7 +452,7 @@ embed{
     position: fixed;
     left: 0;
     bottom: 0;
-    width: 7.5vw;
+    width: 5vw;
     height: 100vh;
     background-color: white;
     border-right: dotted 0.5px grey;
@@ -468,8 +468,8 @@ embed{
   
   /* PDFs*/
   .react-pdf__Page__canvas {
-    margin: 0 0 0 10vw;
-    width: 80vw !important;
+    margin: 0 0 0 5vw;
+    width: 90vw !important;
     height: auto !important;
   }
   .react-pdf__Document{
