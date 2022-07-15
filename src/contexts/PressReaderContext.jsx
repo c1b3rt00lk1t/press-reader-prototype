@@ -39,9 +39,7 @@ export const PressReaderContextProvider = ({ children }) => {
     window.localStorage.getItem("PrRe_fetchLastSessionOnce") === "true" || false
   );
   const [fetchOnSubmit, setFetchOnSubmit] = useState(
-    !window.localStorage.getItem("PrRe_fetchOnSubmit")
-      ? true
-      : window.localStorage.getItem("PrRe_fetchOnSubmit") === "true"
+     window.localStorage.getItem("PrRe_fetchOnSubmit") === "true" || false
   );
   const [submit, setSubmit] = useState(false);
   /* If this feature is finally needed, the uploader has to provide the property to check*/
