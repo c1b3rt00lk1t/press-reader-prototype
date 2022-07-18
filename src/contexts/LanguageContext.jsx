@@ -104,10 +104,10 @@ export const LanguageContextProvider = ({ children }) => {
 
   const handleSetLanguage = (ev) => {
     setLanguage(ev.target.id);
-    console.log(ev.target.id)
+    window.localStorage.setItem("PrRe_lang",ev.target.id);
   };
 
-  const [language, setLanguage] = useState("es");
+  const [language, setLanguage] = useState(window.localStorage.getItem("PrRe_lang") || "es");
   return (
     <LanguageContext.Provider
       value={{
