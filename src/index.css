@@ -339,6 +339,26 @@ embed{
   } 
 }
 
+.language-selector{
+  margin: 1vh 1vw 0 0;
+  padding: 0 0.5em;
+  width: 22.5vw;
+  text-align: center;
+  height: 1.8em;
+  line-height: 1.8em;
+  background-color: rgb(206, 206, 206);
+  color: rgb(89, 89, 89);
+  border-style: solid;
+  border-radius: 7.5px;
+  border-width: 0;
+}
+
+.language-selected{
+  background-color: var(--blue-color);
+  color: white;
+}
+
+
 .only-wider-screen{
   display:none;
 }
@@ -498,6 +518,9 @@ embed{
   bottom: 35vh;
 }
 
+.language-selector{
+  width: 7.5vw;
+}
 
 }
 

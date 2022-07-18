@@ -28,7 +28,7 @@ const Settings = () => {
     URLFromSize,
   } = useContext(PressReaderContext);
 
-  const { texts, language } = useContext(LanguageContext);
+  const { texts, language, handleSetLanguage } = useContext(LanguageContext);
 
   // Check that to not exceed th MAX cache expiration plugin
   const fetchData = async () => {
@@ -67,7 +67,7 @@ const Settings = () => {
       <Offline />
       <h1>{texts[language].settings.title}</h1>
       <p style={{ fontSize: "0.8em" }}>
-        {texts[language].settings.prototype}: v1.5.2
+        {texts[language].settings.prototype}: v1.6.1
       </p>
       <div
         className="vertical justify-items-space-between"
@@ -116,6 +116,29 @@ const Settings = () => {
             style={{ display: "none" }}
             webkitdirectory="true"
           />
+          <div className="horizontal">
+            <div
+              onClick={handleSetLanguage}
+              id="es"
+              className={`language-selector ${language === 'es' ? 'language-selected' : null}`}
+            >
+              Castellano
+            </div>
+            <div
+              onClick={handleSetLanguage}
+              id="en"
+              className={`language-selector ${language === 'en' ? 'language-selected' : null}`}
+            >
+              English
+            </div>
+            <div
+              onClick={handleSetLanguage}
+              id="it"
+              className={`language-selector ${language === 'it' ? 'language-selected' : null}`}
+            >
+              Italiano
+            </div>
+          </div>
 
           {/* <SettingToogle
             setter={setFetchOnlyUpTo}
@@ -124,6 +147,7 @@ const Settings = () => {
             text="Prefetch only < 1MB"
           /> */}
         </div>
+
         {!desktop && (
           <DownloadSession
             texts={texts[language].settings}
