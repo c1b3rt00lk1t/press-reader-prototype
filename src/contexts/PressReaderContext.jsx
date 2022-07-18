@@ -1,11 +1,15 @@
-import { createContext, useState, useEffect, useCallback } from "react";
+import { createContext, useState, useEffect, useCallback, useContext } from "react";
 import { getDataFromDB, checkConnectionFromDB } from "../firebase";
+import LanguageContext from "../contexts/LanguageContext";
 
 // import { data } from "../data/data.js";
 
 const PressReaderContext = createContext();
 
 export const PressReaderContextProvider = ({ children }) => {
+
+  const { texts, language } = useContext(LanguageContext);
+
   const [connected, setConnected] = useState(true);
   const [dataAll, setDataAll] = useState();
 
@@ -413,7 +417,7 @@ export const PressReaderContextProvider = ({ children }) => {
   const [postSelected, setPostSelected] = useState(null);
   const [dataToShare, setDataToShare] = useState({
     title: "PressReader",
-    text: "Try this prototype!",
+    text: texts[language].share.msg,
     url: "https://tourmaline-unicorn-2c62ec.netlify.app",
   });
 

@@ -1,8 +1,11 @@
 import { createContext, useState } from "react";
 
+
 const LanguageContext = createContext();
 
 export const LanguageContextProvider = ({ children }) => {
+
+
   const texts = {
     es: {
       main: { title: "Lector", results: "resultados" },
@@ -18,11 +21,15 @@ export const LanguageContextProvider = ({ children }) => {
         text: "Texto",
         order: "Orden",
         clear: "Limpiar",
-        submit: "Buscar"
-
+        submit: "Buscar",
       },
+      share: {
+        msg: "Aplicación para la revisión de la prensa burguesa."
+      }
     },
-    en: { main: { title: "Reader", results: "results" }, search: {
+    en: {
+      main: { title: "Reader", results: "results" },
+      search: {
         title: "Buscar",
         session: "Sesión",
         range: "Rango",
@@ -33,9 +40,9 @@ export const LanguageContextProvider = ({ children }) => {
         text: "Texto",
         order: "Orden",
         clear: "Limpiar",
-        submit: "Buscar"
-
-      }, },
+        submit: "Buscar",
+      },
+    },
   };
 
   const handleSetLanguage = (lang) => {
