@@ -61,7 +61,7 @@ export const LanguageContextProvider = ({ children }) => {
           title: "Settings",
           prototype: "Prototype",
           prefetchOnce: "Always prefetch last session (once)",
-          prefetchAlways: "Always prefetch last session (once)",
+          prefetchAlways: "Always prefetch last session",
           prefetchOnSubmit: "Prefetch on Search",
           desktop: "Desktop",
           fetchLastSession: "Prefetch last session",
