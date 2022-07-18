@@ -39,64 +39,64 @@ export const LanguageContextProvider = ({ children }) => {
       }
     },
     en: {
-        main: { title: "Lector", results: "resultados" },
+        main: { title: "Reader", results: "results" },
         search: {
-          title: "Buscar",
-          session: "Sesión",
-          range: "Rango",
-          start: "Inicio",
+          title: "Search",
+          session: "Session",
+          range: "Range",
+          start: "Start",
           end: "Final",
-          zone: "Zona",
+          zone: "Zone",
           sector: "Sector",
-          tags: "Etiquetas",
-          text: "Texto",
-          order: "Orden",
-          clear: "Limpiar",
-          submit: "Buscar",
+          tags: "Tags",
+          text: "Text",
+          order: "Order",
+          clear: "Clear",
+          submit: "Search",
         },
         share: {
-          msg: "Aplicación para la revisión de la prensa burguesa."
+          msg: "App for the review of the borgoise press."
         },
         settings:{
-          title: "Configuración",
-          prototype: "Prototipo",
-          prefetchOnce: "Precarga siempre la última sesión (una vez)",
-          prefetchAlways: "Precarga siempre la última sesión ",
-          prefetchOnSubmit: "Precarga con Buscar",
+          title: "Settings",
+          prototype: "Prototype",
+          prefetchOnce: "Always prefetch last session (once)",
+          prefetchAlways: "Always prefetch last session (once)",
+          prefetchOnSubmit: "Prefetch on Search",
           desktop: "Desktop",
-          fetchLastSession: "Precarga última sesión",
-          lastFetched: "Precargada"
+          fetchLastSession: "Prefetch last session",
+          lastFetched: "Last prefetched"
           
         }
       },
       it: {
-        main: { title: "Lector", results: "resultados" },
+        main: { title: "Lettore", results: "risultati" },
         search: {
-          title: "Buscar",
-          session: "Sesión",
+          title: "Cercare",
+          session: "Sesione",
           range: "Rango",
-          start: "Inicio",
-          end: "Final",
+          start: "Inizio",
+          end: "Finale",
           zone: "Zona",
-          sector: "Sector",
-          tags: "Etiquetas",
-          text: "Texto",
-          order: "Orden",
-          clear: "Limpiar",
-          submit: "Buscar",
+          sector: "Settore",
+          tags: "Tags",
+          text: "Testo",
+          order: "Ordine",
+          clear: "Clear",
+          submit: "Cerca",
         },
         share: {
-          msg: "Aplicación para la revisión de la prensa burguesa."
+          msg: "App per la revisione dei giornali borghesi."
         },
         settings:{
-          title: "Configuración",
+          title: "Configurazione",
           prototype: "Prototipo",
-          prefetchOnce: "Precarga siempre la última sesión (una vez)",
-          prefetchAlways: "Precarga siempre la última sesión ",
-          prefetchOnSubmit: "Precarga con Buscar",
+          prefetchOnce: "Precarica sempre l'ultima sesione (una volta)",
+          prefetchAlways: "Precarica sempre l'ultima sesione ",
+          prefetchOnSubmit: "Precarica con Cercare",
           desktop: "Desktop",
-          fetchLastSession: "Precarga última sesión",
-          lastFetched: "Precargada"
+          fetchLastSession: "Precarica ultima sesione",
+          lastFetched: "Precaricata"
           
         }
       },
