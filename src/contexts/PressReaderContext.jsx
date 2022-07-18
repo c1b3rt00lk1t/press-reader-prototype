@@ -424,7 +424,7 @@ export const PressReaderContextProvider = ({ children }) => {
   const handleList = () => {
     setDataToShare({
       title: "PressReader",
-      text: "Try this prototype!",
+      text: texts[language].share.msg,
       url: "https://tourmaline-unicorn-2c62ec.netlify.app",
     });
   };
