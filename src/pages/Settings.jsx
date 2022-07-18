@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import Offline from "../components/Offline";
 import PressReaderContext from "../contexts/PressReaderContext";
+import LanguageContext from "../contexts/LanguageContext";
 import SettingToogle from "../components/SettingToogle";
 import DownloadSession from "../components/DownloadSession";
 
@@ -26,6 +27,8 @@ const Settings = () => {
     // setFetchOnlyUpTo,
     URLFromSize,
   } = useContext(PressReaderContext);
+
+  const { texts, language } = useContext(LanguageContext);
 
   // Check that to not exceed th MAX cache expiration plugin
   const fetchData = async () => {
@@ -53,7 +56,6 @@ const Settings = () => {
     }
   };
 
-
   const clickSelector = () => {
     // Resets the next states
     // Triggers the event
@@ -63,8 +65,10 @@ const Settings = () => {
   return (
     <div className="no-footer">
       <Offline />
-      <h1>Settings</h1>
-      <p style={{ fontSize: "0.8em" }}>Prototype: v1.5.2</p>
+      <h1>{texts[language].settings.title}</h1>
+      <p style={{ fontSize: "0.8em" }}>
+        {texts[language].settings.prototype}: v1.5.2
+      </p>
       <div
         className="vertical justify-items-space-between"
         style={{ height: "65vh" }}
@@ -74,7 +78,7 @@ const Settings = () => {
             setter={setFetchLastSessionOnce}
             state={fetchLastSessionOnce}
             local="fetchLastSessionOnce"
-            text="Always prefetch last session once"
+            text={texts[language].settings.prefetchOnce}
             setExclude={setFetchLastSession}
             localExclude="fetchLastSession"
             disable={desktop}
@@ -83,7 +87,7 @@ const Settings = () => {
             setter={setFetchLastSession}
             state={fetchLastSession}
             local="fetchLastSession"
-            text="Always prefetch last session"
+            text={texts[language].settings.prefetchAlways}
             setExclude={setFetchLastSessionOnce}
             localExclude="fetchLastSessionOnce"
             disable={desktop}
@@ -92,14 +96,14 @@ const Settings = () => {
             setter={setFetchOnSubmit}
             state={fetchOnSubmit}
             local="fetchOnSubmit"
-            text="Prefetch on Submit"
+            text={texts[language].settings.prefetchOnSubmit}
             disable={desktop}
           />
-          <SettingToogle 
+          <SettingToogle
             setter={setDesktop}
             state={desktop}
             local="desktop"
-            text="Desktop"
+            text={texts[language].settings.desktop}
             onlyWiderScreen={true}
             trigger={clickSelector}
           />
@@ -112,7 +116,7 @@ const Settings = () => {
             style={{ display: "none" }}
             webkitdirectory="true"
           />
-          
+
           {/* <SettingToogle
             setter={setFetchOnlyUpTo}
             state={fetchOnlyUpTo}
@@ -122,6 +126,7 @@ const Settings = () => {
         </div>
         {!desktop && (
           <DownloadSession
+            texts={texts[language].settings}
             fetchData={fetchData}
             lastSessionFetched={lastSessionFetched}
             downloadProgress={downloadProgress}

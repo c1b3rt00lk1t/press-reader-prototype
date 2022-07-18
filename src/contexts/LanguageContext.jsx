@@ -25,6 +25,17 @@ export const LanguageContextProvider = ({ children }) => {
       },
       share: {
         msg: "Aplicación para la revisión de la prensa burguesa."
+      },
+      settings:{
+        title: "Configuración",
+        prototype: "Prototipo",
+        prefetchOnce: "Precarga siempre la última sesión (una vez)",
+        prefetchAlways: "Precarga siempre la última sesión ",
+        prefetchOnSubmit: "Precarga con Buscar",
+        desktop: "Desktop",
+        fetchLastSession: "Precarga última sesión",
+        lastFetched: "Precargada"
+        
       }
     },
     en: {

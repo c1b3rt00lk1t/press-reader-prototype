@@ -2,15 +2,13 @@ import React from "react";
 import { BsArrowDownCircle, BsCheckCircle, BsXCircle } from "react-icons/bs";
 import { BiLoaderCircle } from "react-icons/bi";
 
-
 const DownloadSession = ({
   fetchData,
   lastSessionFetched,
   downloadProgress,
-  
+  texts,
 }) => {
-
-    // downloadProgress = "error";
+  // downloadProgress = "error";
   return (
     <div className="horizontal justify-items-space-around">
       <div className="horizontal">
@@ -23,13 +21,13 @@ const DownloadSession = ({
         {downloadProgress === "completed" && (
           <BsCheckCircle className="download-icon" />
         )}
-         {downloadProgress === "error" && (
+        {downloadProgress === "error" && (
           <BsXCircle className="download-icon" />
         )}
 
-        <div onClick={fetchData}> Fetch last session</div>
+        <div onClick={fetchData}> {texts.fetchLastSession}</div>
       </div>
-      <span>Last fetched: {lastSessionFetched}</span>
+      <span>{texts.lastFetched}: {lastSessionFetched}</span>
     </div>
   );
 };
