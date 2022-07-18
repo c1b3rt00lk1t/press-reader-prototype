@@ -1,16 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
+import LanguageContext from "../contexts/LanguageContext";
 
 import NewsList from "../components/NewsList";
 import Offline from "../components/Offline";
 
 const Main = () => {
-
+  const {texts, language} = useContext(LanguageContext)
   return (
     <>
       <div className="no-footer">
         <Offline />
-        <h1>Reader</h1>
-        <NewsList />
+        <h1>{texts[language].main.title}</h1>
+        <NewsList texts={texts} language={language}/>
       </div>
     </>
   );
