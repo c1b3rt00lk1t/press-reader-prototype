@@ -67,7 +67,7 @@ const Settings = () => {
       <Offline />
       <h1>{texts[language].settings.title}</h1>
       <p style={{ fontSize: "0.8em" }}>
-        {texts[language].settings.prototype}: v1.6.1
+        {texts[language].settings.prototype}: v1.6.2
       </p>
       <div
         className="vertical justify-items-space-between"
@@ -117,36 +117,19 @@ const Settings = () => {
             webkitdirectory="true"
           />
           <div className="horizontal">
+            {Object.keys(texts).map(lang => 
             <div
               onClick={handleSetLanguage}
-              id="es"
-              className={`language-selector ${language === 'es' ? 'language-selected' : null}`}
-            >
-              Castellano
+              id={lang}
+              className={`language-selector ${language === lang ? 'language-selected' : null}`}
+            >{texts[lang].language}
             </div>
-            <div
-              onClick={handleSetLanguage}
-              id="en"
-              className={`language-selector ${language === 'en' ? 'language-selected' : null}`}
-            >
-              English
-            </div>
-            <div
-              onClick={handleSetLanguage}
-              id="it"
-              className={`language-selector ${language === 'it' ? 'language-selected' : null}`}
-            >
-              Italiano
-            </div>
+            )
+            }
+
           </div>
 
-          {/* <SettingToogle
-            setter={setFetchOnlyUpTo}
-            state={fetchOnlyUpTo}
-            local="fetchOnlyUpTo"
-            text="Prefetch only < 1MB"
-          /> */}
-        </div>
+       </div>
 
         {!desktop && (
           <DownloadSession

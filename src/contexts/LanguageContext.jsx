@@ -8,6 +8,7 @@ export const LanguageContextProvider = ({ children }) => {
 
   const texts = {
     es: {
+      language:"Castellano",
       main: { title: "Lector", results: "resultados" },
       search: {
         title: "Buscar",
@@ -39,6 +40,7 @@ export const LanguageContextProvider = ({ children }) => {
       }
     },
     en: {
+        language:"English",
         main: { title: "Reader", results: "results" },
         search: {
           title: "Search",
@@ -70,6 +72,7 @@ export const LanguageContextProvider = ({ children }) => {
         }
       },
       it: {
+        language:"Italiano",
         main: { title: "Lettore", results: "risultati" },
         search: {
           title: "Cercare",
