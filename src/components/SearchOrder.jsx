@@ -2,7 +2,7 @@ import React from "react";
 import { useContext } from "react";
 import PressReaderContext from "../contexts/PressReaderContext";
 
-const SearchOrder = () => {
+const SearchOrder = ({texts}) => {
   const { orderType, setOrderType } = useContext(PressReaderContext);
 
   const handleOrderChange = (ev) => {
@@ -11,7 +11,7 @@ const SearchOrder = () => {
 
   return (
     <fieldset>
-      <legend>Order</legend>
+      <legend>{texts.order}</legend>
 
       <div className="horizontal justify-items-space-around">
         <div>
@@ -42,7 +42,7 @@ const SearchOrder = () => {
             name="order"
             checked={orderType === "sessionOrder"}
           />{" "}
-          session
+          {texts.session.toLowerCase()}
         </div>
       </div>
     </fieldset>

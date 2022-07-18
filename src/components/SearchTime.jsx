@@ -1,12 +1,12 @@
 import React from 'react'
 
-const SearchTime = ({selectSession,selectStartDate,selectEndDate,filter,uniqueSessions}) => {
+const SearchTime = ({selectStartDate,selectEndDate,filter, texts}) => {
   return (
     <fieldset>
-    <legend>Range</legend>
+    <legend>{texts.range}</legend>
       <div className="horizontal justify-items-space-around ">
         <div className="horizontal justify-items-space-around vw-35">
-          <label htmlFor="start-date">Start</label>
+          <label htmlFor="start-date">{texts.start}</label>
           <input
             onChange={selectStartDate}
             name="start-date"
@@ -15,7 +15,7 @@ const SearchTime = ({selectSession,selectStartDate,selectEndDate,filter,uniqueSe
           />
         </div>
         <div className="horizontal justify-items-space-around vw-35">
-          <label htmlFor="end-date">End</label>
+          <label htmlFor="end-date">{texts.end}</label>
           <input
             onChange={selectEndDate}
             name="end-date"

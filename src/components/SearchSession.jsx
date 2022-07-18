@@ -3,14 +3,15 @@ import React from "react";
 const SearchSession = (
   {selectSession,
   filter,
-  uniqueSessions}
+  uniqueSessions,
+title}
 ) => {
   return (
     <fieldset>
-      <legend>Session</legend>
+      <legend>{title}</legend>
 
         <div className="horizontal justify-items-space-around vw-35">
-          <label htmlFor="session">Session</label>
+          <label htmlFor="session">{title}</label>
           <select
             onChange={selectSession}
             name="sessions"

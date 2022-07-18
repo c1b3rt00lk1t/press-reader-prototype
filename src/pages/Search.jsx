@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import PressReaderContext from "../contexts/PressReaderContext";
+import LanguageContext from "../contexts/LanguageContext";
 import { useNavigate } from "react-router-dom";
 import SearchTime from "../components/SearchTime";
 import SearchTags from "../components/SearchTags";
@@ -28,8 +29,10 @@ const Search = () => {
     handleTextChange,
     applyFilters,
     handleReset,
-    setSubmit
+    setSubmit,
   } = useContext(PressReaderContext);
+
+  const { texts, language } = useContext(LanguageContext);
 
   const navigate = useNavigate();
 
@@ -37,7 +40,7 @@ const Search = () => {
     e.preventDefault();
     setSubmit(true);
     document.getElementsByTagName("meta").viewport.content =
-              "width=device-width, initial-scale=1";
+      "width=device-width, initial-scale=1";
     applyFilters(dataAll, filter);
     navigate(`/`);
   };
@@ -46,14 +49,16 @@ const Search = () => {
     <div className="no-footer vertical justify-items-space-between">
       <div>
         <Offline />
-        <h1>Search </h1>
+        <h1>{texts[language].search.title} </h1>
         <form action="#">
           <SearchSession
+            title={texts[language].search.session}
             selectSession={selectSession}
             filter={filter}
             uniqueSessions={uniqueSessions}
           />
           <SearchTime
+            texts={texts[language].search}
             selectSession={selectSession}
             selectStartDate={selectStartDate}
             selectEndDate={selectEndDate}
@@ -61,7 +66,7 @@ const Search = () => {
             uniqueSessions={uniqueSessions}
           />
           <SearchTags
-            title="Zone"
+            title={texts[language].search.zone}
             type="zones"
             filter={filter}
             uniqueList={uniqueZones}
@@ -69,7 +74,7 @@ const Search = () => {
             selectAND={selectZonesAND}
           />
           <SearchTags
-            title="Sector"
+            title={texts[language].search.sector}
             type="sectors"
             filter={filter}
             uniqueList={uniqueIndustries}
@@ -77,24 +82,24 @@ const Search = () => {
             selectAND={selectSectorsAND}
           />
           <SearchTags
-            title="Tags"
+            title={texts[language].search.tags}
             type="tags"
             filter={filter}
             uniqueList={uniqueTags}
             selectOR={selectTagsOR}
             selectAND={selectTagsAND}
           />
-          <SearchText handleTextChange={handleTextChange} filter={filter} />
-          <SearchOrder />
+          <SearchText handleTextChange={handleTextChange} filter={filter} title={texts[language].search.text} />
+          <SearchOrder texts={texts[language].search}/>
         </form>
       </div>
 
       <div className="horizontal margin-lines justify-items-space-around btn-container">
         <button className="btn-touch" onClick={handleReset}>
-          Clear
+          {texts[language].search.clear}
         </button>
         <button className="btn-touch" onClick={handleSubmit}>
-          Submit
+          {texts[language].search.submit}
         </button>
       </div>
     </div>

@@ -4,8 +4,38 @@ const LanguageContext = createContext();
 
 export const LanguageContextProvider = ({ children }) => {
   const texts = {
-    es: { main: { title: "Lector", results: "resultados" } },
-    en: { main: { title: "Reader", results: "results" } },
+    es: {
+      main: { title: "Lector", results: "resultados" },
+      search: {
+        title: "Buscar",
+        session: "Sesión",
+        range: "Rango",
+        start: "Inicio",
+        end: "Final",
+        zone: "Zona",
+        sector: "Sector",
+        tags: "Etiquetas",
+        text: "Texto",
+        order: "Orden",
+        clear: "Limpiar",
+        submit: "Buscar"
+
+      },
+    },
+    en: { main: { title: "Reader", results: "results" }, search: {
+        title: "Buscar",
+        session: "Sesión",
+        range: "Rango",
+        start: "Inicio",
+        end: "Final",
+        sector: "Sector",
+        tags: "Etiquetas",
+        text: "Texto",
+        order: "Orden",
+        clear: "Limpiar",
+        submit: "Buscar"
+
+      }, },
   };
 
   const handleSetLanguage = (lang) => {
