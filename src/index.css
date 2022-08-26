@@ -366,7 +366,7 @@ embed{
 
 /* DESKTOP VIEW*/
 
-@media (min-width: 1250px){
+@media (min-width: 1000px){
 
   .only-wider-screen{
     display:flex;
