@@ -285,7 +285,7 @@ embed{
   }
   .react-pdf__Document{
     margin-bottom: 12.5vh;
-    margin-top: 5.5vh;
+    margin-top: 15.5vh;
   }
 }
 
@@ -297,7 +297,7 @@ embed{
   }
   .react-pdf__Document{
     margin-bottom: 12.5vh;
-    margin-top: 2.5vh;
+    margin-top: 12.5vh;
   }
 }
 
@@ -368,6 +368,7 @@ embed{
 
 .upper-tags {
   position: fixed;
+  left: 0px;
   top: 0px;
   z-index: 10;
   background-color: rgb(255, 255, 255, 0.8);
@@ -479,6 +480,9 @@ embed{
   .margin-left{
     margin-left: 10vw;
   }
+  .padding-left{
+    padding-left: 10vw;
+  }
 
   /* Footer */
   footer {
@@ -507,7 +511,7 @@ embed{
   }
   .react-pdf__Document{
     margin-bottom: 12.5vh;
-    margin-top: 2.5vh;
+    margin-top: 12.5vh;
   }
 
 

@@ -92,7 +92,7 @@ const Post = () => {
   return (
     <div>
       <div
-        className="horizontal align-items-center margin-left upper-tags"
+        className="horizontal align-items-center padding-left upper-tags"
         style={{ justifyContent: "space-between", paddingBottom: "1.5vh" }}
       >
         <div className="horizontal align-items-center min-height-1em" >
