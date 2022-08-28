@@ -366,7 +366,19 @@ embed{
 
 /* DESKTOP VIEW*/
 
+.upper-tags {
+  position: fixed;
+  top: 0px;
+  z-index: 10;
+  background-color: rgb(255, 255, 255, 0.8);
+}
+
+
+
 @media (min-width: 1000px){
+
+
+
 
   .only-wider-screen{
     display:flex;

@@ -90,12 +90,12 @@ const Post = () => {
 
 
   return (
-    <>
+    <div>
       <div
-        className="horizontal align-items-center margin-lines margin-left"
-        style={{ justifyContent: "space-between", marginBottom: "2.5vh" }}
+        className="horizontal align-items-center margin-left upper-tags"
+        style={{ justifyContent: "space-between", paddingBottom: "1.5vh" }}
       >
-        <div className="horizontal align-items-center min-height-1em">
+        <div className="horizontal align-items-center min-height-1em" >
           {!!item.tags && <FaTag className="news-item-tag " />}
           <Tags tags={item.tags} type="1" />
         </div>
@@ -140,7 +140,7 @@ const Post = () => {
           </ErrorBoundary>
         )}
       </div>
-    </>
+    </div>
   );
 };
 
