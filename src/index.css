@@ -296,7 +296,7 @@ embed{
     height: auto !important;
   }
   .react-pdf__Document{
-    margin-bottom: 12.5vh;
+    margin-bottom: 5.5vh;
     margin-top: 6.5vh;
   }
 }
