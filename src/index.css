@@ -221,8 +221,9 @@ footer {
   left: 0;
   bottom: 0;
   width: 100%;
-  height: 12.5vh;
-  background-color: white;
+  height: 7.5vh;
+  padding-top: 2vh;
+  background-color: rgb(255, 255, 255, 0.8);
   border-top: dotted 0.5px grey;
   color: rgb(0, 0, 30);
   text-align: center;
@@ -370,6 +371,7 @@ embed{
   position: fixed;
   left: 0px;
   top: 0px;
+  height: 7.5vh;
   z-index: 10;
   background-color: rgb(255, 255, 255, 0.8);
 }
@@ -491,7 +493,7 @@ embed{
     bottom: 0;
     width: 5vw;
     height: 100vh;
-    background-color: white;
+    /* background-color: white; */
     border-right: dotted 0.5px grey;
     border-top: none;
     color: rgb(0, 0, 30);
