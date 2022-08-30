@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { FaTag, FaIndustry, FaLocationArrow } from "react-icons/fa";
 import Tags from "./Tags";
@@ -23,6 +23,13 @@ const Post = () => {
     pdfFiles
   } = useContext(PressReaderContext);
 
+    // get the focus for usage of onKeyDown
+    const ref = useRef(null);
+
+    useEffect(() => {
+      ref.current.focus();
+    }, []);
+
   const [pdfContent, setPdfContent] = useState();
 
   const params = useParams();
@@ -31,12 +38,9 @@ const Post = () => {
 
   const navigate = useNavigate();
 
-  const handleTouch = (ev) => {
-    let el = ev.target;
-    while (!el.classList.value.includes("on-touch")) {
-      el = el.parentElement;
-    }
-    const sign = el.classList.value.includes("to-next") ? 1 : -1;
+
+  const moveTo = (sign) => {
+    // console.log(sign);
     setPostSelected(data[indexItem + 1 * sign].id);
     setDataToShare({
       title: "PressReader",
@@ -46,6 +50,26 @@ const Post = () => {
       url: data[indexItem + 1 * sign].url2,
     });
     navigate(`/post/${data[indexItem + 1 * sign].id}`);
+  }
+
+  const handleTouch = (ev) => {
+    let el = ev.target;
+    while (!el.classList.value.includes("on-touch")) {
+      el = el.parentElement;
+    }
+    const sign = el.classList.value.includes("to-next") ? 1 : -1;
+
+    moveTo(sign);
+    
+  };
+
+  /* Handling of the onKeyDown event */
+  const handleKeyDown = (ev) => {
+    if (ev.keyCode === 37) {
+      moveTo(-1);
+    } else if (ev.keyCode === 39) {
+      moveTo(1);
+    } 
   };
 
   useEffect(() => {
@@ -90,7 +114,8 @@ const Post = () => {
 
 
   return (
-    <div>
+    // ref, tabIndex are necessary to make use of onKeyDown
+    <div ref={ref} tabIndex="-1" onKeyDown={handleKeyDown}>
       <div
         className="horizontal align-items-center padding-left upper-tags"
         style={{ justifyContent: "space-between", paddingBottom: "1.5vh" }}

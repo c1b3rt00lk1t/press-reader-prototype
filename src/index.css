@@ -4,6 +4,9 @@
   --blue-color: rgb(0, 0, 100);
 }
 
+/* in order to avoid the border of the focus when using tabindex */
+div:focus { outline: none; }
+
 * {box-sizing:border-box;}
 
 
