@@ -25,7 +25,7 @@ export const LanguageContextProvider = ({ children }) => {
         submit: "Buscar",
       },
       share: {
-        msg: "Aplicación para la revisión de la prensa burguesa."
+        msg: "Aplicación para la revisión de la prensa."
       },
       settings:{
         title: "Configuración",
