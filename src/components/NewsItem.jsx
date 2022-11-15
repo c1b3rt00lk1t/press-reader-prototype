@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import Tags from "./Tags";
 import { FaTag, FaIndustry, FaLocationArrow } from "react-icons/fa";
 import { useContext } from "react";
@@ -6,7 +6,8 @@ import PressReaderContext from "../contexts/PressReaderContext";
 import { useNavigate } from "react-router-dom";
 
 const NewsItem = ({ item }) => {
-  const { setPostSelected, setDataToShare } = useContext(PressReaderContext);
+  const { setPostSelected, setDataToShare, postSelected } =
+    useContext(PressReaderContext);
   const navigate = useNavigate();
 
   const handleClickOnItem = () => {
@@ -20,8 +21,26 @@ const NewsItem = ({ item }) => {
     navigate(`/post/${item.id}`);
   };
 
+  /* Forces a scroll to the element that has the same id than the las postSelected */
+  const myRef = useRef(null);
+  const useMountEffect = (fun) => useEffect(fun, [fun]);
+  const executeScroll = () => {
+    if (postSelected === item.id) {
+      myRef.current.scrollIntoView({
+        block: "start",
+        inline: "nearest",
+      });
+    }
+  };
+
+  useMountEffect(executeScroll); // Scroll on mount
+
   return (
-    <li onClick={handleClickOnItem} className="news-item">
+    <li
+      onClick={handleClickOnItem}
+      ref={myRef}
+      className="news-item"
+    >
       <div>
         <div className="horizontal align-items-center margin-lines min-height-1em">
           {!!item.tags && <FaTag className="news-item-tag " />}
@@ -37,7 +56,7 @@ const NewsItem = ({ item }) => {
         <div className="horizontal margin-lines">
           <div className="horizontal  align-items-center ">
             {!!item.zones && <FaLocationArrow className="news-item-tag" />}
-            <Tags tags={item.zones} type="2" marginRight={true}/>
+            <Tags tags={item.zones} type="2" marginRight={true} />
           </div>
           <div className="horizontal  align-items-center ">
             {!!item.sectors && <FaIndustry className="news-item-tag" />}
