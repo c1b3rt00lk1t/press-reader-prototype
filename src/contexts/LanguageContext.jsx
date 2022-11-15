@@ -57,7 +57,7 @@ export const LanguageContextProvider = ({ children }) => {
           submit: "Search",
         },
         share: {
-          msg: "App for the review of the borgoise press."
+          msg: "App for the review of the press."
         },
         settings:{
           title: "Settings",
@@ -89,7 +89,7 @@ export const LanguageContextProvider = ({ children }) => {
           submit: "Cerca",
         },
         share: {
-          msg: "App per la revisione dei giornali borghesi."
+          msg: "App per la revisione dei giornali."
         },
         settings:{
           title: "Configurazione",
