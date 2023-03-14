@@ -37,7 +37,9 @@ export const checkConnectionFromDB = (setConnected) => {
 export const getDataFromDB = (handleDataFromDB) => {
   onValue(refDB, (snapshot) => {
     const data = snapshot.val();
-    window.localStorage.setItem("PrRe_data", JSON.stringify(data));
+    if (!navigator.userAgent.match(/safari/i)){
+      window.localStorage.setItem("PrRe_data", JSON.stringify(data));
+    }
     handleDataFromDB(data);
   });
 };
