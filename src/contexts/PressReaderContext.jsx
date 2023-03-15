@@ -302,6 +302,13 @@ export const PressReaderContextProvider = ({ children }) => {
   };
 
   /** CONTEXT FOR MAIN */
+
+
+  const handleDataFromDBSessionList = useCallback(
+    (data) => {
+        data.sort((a,b) => b - a).forEach(a => console.log(a));
+  },[]);
+
   const handleDataFromDBSessions = useCallback(
     (data) => {
 
@@ -368,8 +375,8 @@ export const PressReaderContextProvider = ({ children }) => {
   }, [handleDataFromDBSessions]);
 
   useEffect(() => {
-    getDataFromDBSessionList((a) => console.log(a));
-  },[]);
+    getDataFromDBSessionList(handleDataFromDBSessionList);
+  },[handleDataFromDBSessionList]);
 
   // Prefetch according to user's preferences
   useEffect(() => {
