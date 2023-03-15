@@ -302,7 +302,7 @@ export const PressReaderContextProvider = ({ children }) => {
   };
 
   /** CONTEXT FOR MAIN */
-  const handleDataFromDB = useCallback(
+  const handleDataFromDBSessions = useCallback(
     (data) => {
 
       if (!navigator.userAgent.match(/safari/i)){
@@ -359,13 +359,13 @@ export const PressReaderContextProvider = ({ children }) => {
 
   useEffect(() => {
     if (!connected && window.localStorage.getItem("PrRe_data")) {
-      handleDataFromDB(JSON.parse(window.localStorage.getItem("PrRe_data")));
+      handleDataFromDBSessions(JSON.parse(window.localStorage.getItem("PrRe_data")));
     }
-  }, [connected, handleDataFromDB]);
+  }, [connected, handleDataFromDBSessions]);
 
   useEffect(() => {
-    getDataFromDBSessions(handleDataFromDB);
-  }, [handleDataFromDB]);
+    getDataFromDBSessions(handleDataFromDBSessions);
+  }, [handleDataFromDBSessions]);
 
   // Prefetch according to user's preferences
   useEffect(() => {
