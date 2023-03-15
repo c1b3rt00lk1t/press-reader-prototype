@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect, useCallback, useContext } from "react";
-import { getDataFromDBSessions, checkConnectionFromDB } from "../firebase";
+import { getDataFromDBSessions, checkConnectionFromDB,getDataFromDBSessionList } from "../firebase";
 import LanguageContext from "../contexts/LanguageContext";
 
 // import { data } from "../data/data.js";
@@ -366,6 +366,10 @@ export const PressReaderContextProvider = ({ children }) => {
   useEffect(() => {
     getDataFromDBSessions(handleDataFromDBSessions);
   }, [handleDataFromDBSessions]);
+
+  useEffect(() => {
+    getDataFromDBSessionList((a) => console.log(a));
+  },[]);
 
   // Prefetch according to user's preferences
   useEffect(() => {
