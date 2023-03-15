@@ -20,7 +20,7 @@ export const app = initializeApp(firebaseConfig);
 // Initialize Real-time database
 const database = getDatabase(app);
 const connectedRef = ref(database, ".info/connected");
-const refDB = ref(database, "/sessions/");
+
 
 export const checkConnectionFromDB = (setConnected) => {
   onValue(connectedRef, (snap) => {
@@ -34,7 +34,8 @@ export const checkConnectionFromDB = (setConnected) => {
   });
 };
 
-export const getDataFromDB = (handleDataFromDB) => {
+const getDataFromDB = (path) => (handleDataFromDB) => {
+  const refDB = ref(database, path);
   onValue(refDB, (snapshot) => {
     const data = snapshot.val();
     if (!navigator.userAgent.match(/safari/i)){
@@ -43,3 +44,5 @@ export const getDataFromDB = (handleDataFromDB) => {
     handleDataFromDB(data);
   });
 };
+
+export const getDataFromDBSessions =  getDataFromDB("/sessions/");
