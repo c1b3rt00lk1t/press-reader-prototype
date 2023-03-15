@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect, useCallback, useContext } from "react";
-import { getDataFromDBSessions, checkConnectionFromDB,getDataFromDBSessionList } from "../firebase";
+import { getDataFromDBSessions, checkConnectionFromDB,getDataFromDBSessionList, getDataFromDBOneSession } from "../firebase";
 import LanguageContext from "../contexts/LanguageContext";
 
 // import { data } from "../data/data.js";
@@ -306,7 +306,7 @@ export const PressReaderContextProvider = ({ children }) => {
 
   const handleDataFromDBSessionList = useCallback(
     (data) => {
-        data.sort((a,b) => b - a).forEach(a => console.log(a));
+        data.sort((a,b) => b - a).forEach(a => getDataFromDBOneSession(a)(a => console.log(a)));
   },[]);
 
   const handleDataFromDBSessions = useCallback(
