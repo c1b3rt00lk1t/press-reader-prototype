@@ -304,6 +304,11 @@ export const PressReaderContextProvider = ({ children }) => {
   /** CONTEXT FOR MAIN */
   const handleDataFromDB = useCallback(
     (data) => {
+
+      if (!navigator.userAgent.match(/safari/i)){
+        window.localStorage.setItem("PrRe_data", JSON.stringify(data));
+      }
+      
       // The object is transformed into an Array and flattened, so that the first level of properties disappears
       const dataFlat = Object.keys(data).flatMap(function (key) {
         return data[key];

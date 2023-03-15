@@ -38,9 +38,6 @@ const getDataFromDB = (path) => (handleDataFromDB) => {
   const refDB = ref(database, path);
   onValue(refDB, (snapshot) => {
     const data = snapshot.val();
-    if (!navigator.userAgent.match(/safari/i)){
-      window.localStorage.setItem("PrRe_data", JSON.stringify(data));
-    }
     handleDataFromDB(data);
   });
 };
