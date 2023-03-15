@@ -305,16 +305,26 @@ export const PressReaderContextProvider = ({ children }) => {
 
   const handleDataFromDBOneSession = (data) => {
     console.log(data);
-        // window.localStorage.setItem(`PrRe_data_${session}`)      
+    window.localStorage.setItem(`PrRe_data_${data[0].session}`, JSON.stringify(data));    
   };
 
   const handleDataFromDBSessionList = useCallback(
     (data) => {
       // Stores the session list in localStorage
       window.localStorage.setItem("PrRe_data", JSON.stringify(data));
-      setUniqueSessions(data);
+
+      // Order session list and check which ones are already in the localStorage
+      const sessionListSorted = data.sort((a,b) => b - a);
+      const sessionListInLocalStorage = sessionListSorted.filter( session => window.localStorage.getItem(`PrRe_data_${session}`));
+      const sessionListNotInLocalStorage = sessionListSorted.filter( session => !window.localStorage.getItem(`PrRe_data_${session}`));
+
       // For each session in the session list, calls the function to get the Data from that session
-        data.sort((a,b) => b - a).forEach(a => getDataFromDBOneSession(a)(handleDataFromDBOneSession));
+      sessionListNotInLocalStorage.forEach(
+            (a) => {
+              getDataFromDBOneSession(a)(handleDataFromDBOneSession)
+            }
+          );
+      
   },[]);
 
   const handleDataFromDBSessions = useCallback(
