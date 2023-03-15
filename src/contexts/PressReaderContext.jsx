@@ -303,11 +303,18 @@ export const PressReaderContextProvider = ({ children }) => {
 
   /** CONTEXT FOR MAIN */
 
+  const handleDataFromDBOneSession = (data) => {
+    console.log(data);
+        // window.localStorage.setItem(`PrRe_data_${session}`)      
+  };
 
   const handleDataFromDBSessionList = useCallback(
     (data) => {
+      // Stores the session list in localStorage
+      window.localStorage.setItem("PrRe_data", JSON.stringify(data));
+      setUniqueSessions(data);
       // For each session in the session list, calls the function to get the Data from that session
-        data.sort((a,b) => b - a).forEach(a => getDataFromDBOneSession(a)(a => console.log(a)));
+        data.sort((a,b) => b - a).forEach(a => getDataFromDBOneSession(a)(handleDataFromDBOneSession));
   },[]);
 
   const handleDataFromDBSessions = useCallback(
