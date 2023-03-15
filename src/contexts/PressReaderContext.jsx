@@ -306,6 +306,7 @@ export const PressReaderContextProvider = ({ children }) => {
 
   const handleDataFromDBSessionList = useCallback(
     (data) => {
+      // For each session in the session list, calls the function to get the Data from that session
         data.sort((a,b) => b - a).forEach(a => getDataFromDBOneSession(a)(a => console.log(a)));
   },[]);
 
@@ -364,15 +365,15 @@ export const PressReaderContextProvider = ({ children }) => {
     checkConnectionFromDB(setConnected);
   }, []);
 
-  useEffect(() => {
-    if (!connected && window.localStorage.getItem("PrRe_data")) {
-      handleDataFromDBSessions(JSON.parse(window.localStorage.getItem("PrRe_data")));
-    }
-  }, [connected, handleDataFromDBSessions]);
+  // useEffect(() => {
+  //   if (!connected && window.localStorage.getItem("PrRe_data")) {
+  //     handleDataFromDBSessions(JSON.parse(window.localStorage.getItem("PrRe_data")));
+  //   }
+  // }, [connected, handleDataFromDBSessions]);
 
-  useEffect(() => {
-    getDataFromDBSessions(handleDataFromDBSessions);
-  }, [handleDataFromDBSessions]);
+  // useEffect(() => {
+  //   getDataFromDBSessions(handleDataFromDBSessions);
+  // }, [handleDataFromDBSessions]);
 
   useEffect(() => {
     getDataFromDBSessionList(handleDataFromDBSessionList);
