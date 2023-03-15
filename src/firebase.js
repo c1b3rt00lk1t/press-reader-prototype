@@ -42,5 +42,7 @@ const getDataFromDB = (path) => (handleDataFromDB) => {
   });
 };
 
-export const getDataFromDBSessions =  getDataFromDB("/sessions/");
+
 export const getDataFromDBSessionList =  getDataFromDB("/sys/sessions/");
+export const getDataFromDBSessions =  getDataFromDB("/sessions/");
+export const getDataFromDBOneSession = (session) =>  getDataFromDB("/sessions/" + session);
