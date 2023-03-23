@@ -521,7 +521,8 @@ export const PressReaderContextProvider = ({ children }) => {
         // setFetchOnlyUpTo,
         URLFromSize,
         handleSelectFolder,
-        pdfFiles
+        pdfFiles,
+        sessionListSorted
       }}
     >
       {children}
