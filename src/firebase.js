@@ -34,9 +34,9 @@ export const checkConnectionFromDB = (setConnected) => {
   });
 };
 
-const getDataFromDB = (path) => (handleDataFromDB) => {
+const getDataFromDB =  (path) => (handleDataFromDB) => {
   const refDB = ref(database, path);
-  onValue(refDB, (snapshot) => {
+  onValue(refDB,  (snapshot) => {
     const data = snapshot.val();
     handleDataFromDB(data);
   });
@@ -44,5 +44,5 @@ const getDataFromDB = (path) => (handleDataFromDB) => {
 
 
 export const getDataFromDBSessionList =  getDataFromDB("/sys/sessions/");
-export const getDataFromDBSessions =  getDataFromDB("/sessions/");
-export const getDataFromDBOneSession = (session) =>  getDataFromDB("/sessions/" + session);
+// export const getDataFromDBSessions =  getDataFromDB("/sessions/");
+export const getDataFromDBOneSession = (session) => getDataFromDB("/sessions/" + session);

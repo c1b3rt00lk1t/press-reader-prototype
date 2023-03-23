@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect, useCallback, useContext } from "react";
-import { getDataFromDBSessions, checkConnectionFromDB,getDataFromDBSessionList, getDataFromDBOneSession } from "../firebase";
+import { checkConnectionFromDB,getDataFromDBSessionList, getDataFromDBOneSession } from "../firebase";
 import LanguageContext from "../contexts/LanguageContext";
 
 // import { data } from "../data/data.js";
@@ -11,7 +11,9 @@ export const PressReaderContextProvider = ({ children }) => {
   const { texts, language } = useContext(LanguageContext);
 
   const [connected, setConnected] = useState(true);
-  const [dataAll, setDataAll] = useState();
+  const [dataAll, setDataAll] = useState([]);
+  const [sessionListSorted, setSessionListSorted] = useState([]);
+  const [sessionLastInLocalStorage, setSessionLastInLocalStorage] = useState();
 
   const [uniqueSessions, setUniqueSessions] = useState([]);
   const [uniqueZones, setUniqueZones] = useState([]);
@@ -303,45 +305,23 @@ export const PressReaderContextProvider = ({ children }) => {
 
   /** CONTEXT FOR MAIN */
 
-  const handleDataFromDBOneSession = (data) => {
-    console.log(data);
-    window.localStorage.setItem(`PrRe_data_${data[0].session}`, JSON.stringify(data));    
+  const handleDataFromDBOneSession =   (data) => {
+    // console.log(data)
+    window.localStorage.setItem(`PrRe_data_${data[0].session}`, JSON.stringify(data)); 
+    setSessionLastInLocalStorage(data[0].session)
   };
-
-  const handleDataFromDBSessionList = useCallback(
-    (data) => {
-      // Stores the session list in localStorage
-      window.localStorage.setItem("PrRe_data", JSON.stringify(data));
-
-      // Order session list and check which ones are already in the localStorage
-      const sessionListSorted = data.sort((a,b) => b - a);
-      const sessionListInLocalStorage = sessionListSorted.filter( session => window.localStorage.getItem(`PrRe_data_${session}`));
-      const sessionListNotInLocalStorage = sessionListSorted.filter( session => !window.localStorage.getItem(`PrRe_data_${session}`));
-
-      // For each session in the session list, calls the function to get the Data from that session
-      sessionListNotInLocalStorage.forEach(
-            (a) => {
-              getDataFromDBOneSession(a)(handleDataFromDBOneSession)
-            }
-          );
-      
-  },[]);
 
   const handleDataFromDBSessions = useCallback(
     (data) => {
-
-      if (!navigator.userAgent.match(/safari/i)){
-        window.localStorage.setItem("PrRe_data", JSON.stringify(data));
-      }
       
-      // The object is transformed into an Array and flattened, so that the first level of properties disappears
+      // // The object is transformed into an Array and flattened, so that the first level of properties disappears
       const dataFlat = Object.keys(data).flatMap(function (key) {
         return data[key];
       });
 
       // The states derived from the data are set
       setDataAll(dataFlat);
-
+      
       setUniqueSessions(
         dataFlat
           .map((a) => a.session)
@@ -372,6 +352,15 @@ export const PressReaderContextProvider = ({ children }) => {
     [applyFilters, filter]
   );
 
+  const handleDataFromDBSessionList = useCallback(
+    (data) =>  {
+    // Stores the session list in localStorage
+    window.localStorage.setItem("PrRe_data", data.join(','));
+
+    // Order session list and check which ones are already in the localStorage
+    setSessionListSorted(data.sort((a,b) => b - a));
+},[]);
+
   const URLFromSize = useCallback((file) => {
     const url = file.size < 500000 ? file.url : file.url2;
     return url;
@@ -382,19 +371,28 @@ export const PressReaderContextProvider = ({ children }) => {
     checkConnectionFromDB(setConnected);
   }, []);
 
-  // useEffect(() => {
-  //   if (!connected && window.localStorage.getItem("PrRe_data")) {
-  //     handleDataFromDBSessions(JSON.parse(window.localStorage.getItem("PrRe_data")));
-  //   }
-  // }, [connected, handleDataFromDBSessions]);
+  useEffect(() => {
+    const sessionList = window.localStorage.getItem("PrRe_data");
+    if (sessionList.length) {
+      const sessionsInLocalStorage = sessionList.split(",").filter( session => window.localStorage.getItem(`PrRe_data_${session}`)).map(session => JSON.parse(window.localStorage.getItem(`PrRe_data_${session}`) ))
+      handleDataFromDBSessions(sessionsInLocalStorage);
+      // console.log(sessionList.split(",").filter( session => window.localStorage.getItem(`PrRe_data_${session}`)).map(session => window.localStorage.getItem(`PrRe_data_${session}`) ))
+    }
+  }, [connected, handleDataFromDBSessions, sessionLastInLocalStorage]);
 
-  // useEffect(() => {
-  //   getDataFromDBSessions(handleDataFromDBSessions);
-  // }, [handleDataFromDBSessions]);
 
   useEffect(() => {
     getDataFromDBSessionList(handleDataFromDBSessionList);
   },[handleDataFromDBSessionList]);
+
+  useEffect(() => {
+    // console.log(sessionListSorted)
+    const sessionListInLocalStorage = sessionListSorted.filter( session => window.localStorage.getItem(`PrRe_data_${session}`));
+    const sessionListNotInLocalStorage = sessionListSorted.filter( session => !window.localStorage.getItem(`PrRe_data_${session}`));
+    console.log('sessionListNotInLocalStorage',sessionListNotInLocalStorage)
+    console.log('sessionListInLocalStorage',sessionListInLocalStorage)
+    sessionListSorted.forEach(async session => getDataFromDBOneSession(session)(handleDataFromDBOneSession));
+  }, [sessionListSorted])
 
   // Prefetch according to user's preferences
   useEffect(() => {
