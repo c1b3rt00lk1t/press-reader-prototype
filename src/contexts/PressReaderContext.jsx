@@ -373,7 +373,7 @@ export const PressReaderContextProvider = ({ children }) => {
 
   useEffect(() => {
     const sessionList = window.localStorage.getItem("PrRe_data");
-    if (sessionList.length) {
+    if (sessionList) {
       const sessionsInLocalStorage = sessionList.split(",").filter( session => window.localStorage.getItem(`PrRe_data_${session}`)).map(session => JSON.parse(window.localStorage.getItem(`PrRe_data_${session}`) ))
       handleDataFromDBSessions(sessionsInLocalStorage);
       // console.log(sessionList.split(",").filter( session => window.localStorage.getItem(`PrRe_data_${session}`)).map(session => window.localStorage.getItem(`PrRe_data_${session}`) ))
