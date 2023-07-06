@@ -8,7 +8,6 @@ import PressReaderContext from "../contexts/PressReaderContext";
 const Main = () => {
   const {texts, language} = useContext(LanguageContext)
   const {sessionListSorted} = useContext(PressReaderContext)
-  console.log(sessionListSorted)
   return (
     <>
       <div className="no-footer">
