@@ -414,7 +414,7 @@ export const PressReaderContextProvider = ({ children }) => {
     // const sessionListNotInLocalStorage = sessionListSorted.filter( session => !window.localStorage.getItem(`PrRe_data_${session}`));
     // console.log('sessionListNotInLocalStorage',sessionListNotInLocalStorage)
     // console.log('sessionListInLocalStorage',sessionListInLocalStorage)
-    // sessionListSorted.forEach(session => localStorage.removeItem(`PrRe_data_${session}`));
+    sessionListSorted.forEach(session => localStorage.removeItem(`PrRe_data_${session}`));
 
     // for (let session of sessionListSorted){
     //   getDataFromDBOneSession(session)(handleDataFromDBOneSession)
