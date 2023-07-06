@@ -357,7 +357,7 @@ export const PressReaderContextProvider = ({ children }) => {
     // Stores the session list in localStorage
     window.localStorage.setItem("PrRe_data", data.join(','));
 
-    // Order session list and check which ones are already in the localStorage
+    // Order session list
     setSessionListSorted(data.sort((a,b) => b - a));
 },[]);
 
@@ -386,11 +386,10 @@ export const PressReaderContextProvider = ({ children }) => {
   },[handleDataFromDBSessionList]);
 
   useEffect(() => {
-    // console.log(sessionListSorted)
-    const sessionListInLocalStorage = sessionListSorted.filter( session => window.localStorage.getItem(`PrRe_data_${session}`));
-    const sessionListNotInLocalStorage = sessionListSorted.filter( session => !window.localStorage.getItem(`PrRe_data_${session}`));
-    console.log('sessionListNotInLocalStorage',sessionListNotInLocalStorage)
-    console.log('sessionListInLocalStorage',sessionListInLocalStorage)
+    // const sessionListInLocalStorage = sessionListSorted.filter( session => window.localStorage.getItem(`PrRe_data_${session}`));
+    // const sessionListNotInLocalStorage = sessionListSorted.filter( session => !window.localStorage.getItem(`PrRe_data_${session}`));
+    // console.log('sessionListNotInLocalStorage',sessionListNotInLocalStorage)
+    // console.log('sessionListInLocalStorage',sessionListInLocalStorage)
     sessionListSorted.forEach(async session => getDataFromDBOneSession(session)(handleDataFromDBOneSession));
   }, [sessionListSorted])
 
