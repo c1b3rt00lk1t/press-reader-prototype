@@ -13,8 +13,8 @@ import {
 import LanguageContext from "../contexts/LanguageContext";
 import { set as setIdb, get as getIdb } from "../indexedDB/indexedDB.js";
 
-setIdb("PrReSessionList", "PrRe_data", "20221204");
-getIdb("PrReSessionList", "PrRe_data").then((res) => console.log("getIdb", res));
+//  setIdb("PrReSessionList", "PrRe_data", "20220403,20220515,20220605,20220619,20220703,20220717,20220819,20220904,20220918,20221002,20221016,20221120,20221204,20230108,20230122,20230205,20230219,20230305,20230319,20230402,20230507,20230521,20230604,20230611,20230702");
+// getIdb("PrReSessionList", "PrRe_data").then((res) => console.log("getIdb", res));
 
 const PressReaderContext = createContext();
 
@@ -59,12 +59,7 @@ export const PressReaderContextProvider = ({ children }) => {
     window.localStorage.getItem("PrRe_fetchOnSubmit") === "true" || false
   );
   const [submit, setSubmit] = useState(false);
-  /* If this feature is finally needed, the uploader has to provide the property to check*/
-  // const [fetchOnlyUpTo, setFetchOnlyUpTo] = useState(
-  //   !window.localStorage.getItem("PrRe_fetchOnlyUpTo")
-  //     ? true
-  //     : window.localStorage.getItem("PrRe_fetchOnlyUpTo") === "true"
-  // );
+
   const [downloadProgress, setDownLoadProgress] = useState("pending");
   const [lastSessionFetched, setLastSessionFetched] = useState(
     window.localStorage.getItem("PrRe_lastSessionFetched") || "00000000"
@@ -315,9 +310,10 @@ export const PressReaderContextProvider = ({ children }) => {
 
   /** CONTEXT FOR MAIN */
 
-  const handleDataFromDBOneSession = (data) => {
+  const handleDataFromDBOneSession = async (data) => {
     try {
-      window.localStorage.setItem(
+      await setIdb(
+        "PrReSessionList",
         `PrRe_data_${data[0].session}`,
         JSON.stringify(data)
       );
@@ -367,9 +363,9 @@ export const PressReaderContextProvider = ({ children }) => {
     [applyFilters, filter]
   );
 
-  const handleDataFromDBSessionList = useCallback((data) => {
-    // Stores the session list in localStorage
-    window.localStorage.setItem("PrRe_data", data.join(","));
+  const handleDataFromDBSessionList = useCallback(async (data) => {
+    // Stores the session list in indexedDB
+    await setIdb("PrReSessionList", "PrRe_data", data.join(","));
 
     // Order session list
     setSessionListSorted(data.sort((a, b) => b - a));
@@ -386,19 +382,27 @@ export const PressReaderContextProvider = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    const sessionList = window.localStorage.getItem("PrRe_data");
-    if (sessionList) {
-      const sessionsInLocalStorage = sessionList
-        .split(",")
-        .filter((session) =>
-          window.localStorage.getItem(`PrRe_data_${session}`)
-        )
-        .map((session) =>
-          JSON.parse(window.localStorage.getItem(`PrRe_data_${session}`))
+    async function fetchData() {
+      const sessionList = await getIdb("PrReSessionList", "PrRe_data");
+      console.log("list refreshed");
+      if (sessionList) {
+        const sessionsInStorage = await Promise.all(
+          sessionList
+            .split(",")
+            .filter(
+              async (session) =>
+                await getIdb("PrReSessionList", `PrRe_data_${session}`)
+            )
+            .map(async (session) =>
+              JSON.parse(
+                await getIdb("PrReSessionList", `PrRe_data_${session}`)
+              )
+            )
         );
-      handleDataFromDBSessions(sessionsInLocalStorage);
-      // console.log(sessionList.split(",").filter( session => window.localStorage.getItem(`PrRe_data_${session}`)).map(session => window.localStorage.getItem(`PrRe_data_${session}`) ))
+        handleDataFromDBSessions(sessionsInStorage);
+      }
     }
+    fetchData();
   }, [connected, handleDataFromDBSessions, sessionLastInLocalStorage]);
 
   useEffect(() => {
