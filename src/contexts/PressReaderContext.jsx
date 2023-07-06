@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect, useCallback, useContext } from "react";
-import { checkConnectionFromDB,getDataFromDBSessionList, getDataFromDBOneSession } from "../firebase";
+import { checkConnectionFromDB,getDataFromDBSessionList, getDataFromDBOneSession } from "../firebase.mjs";
 import LanguageContext from "../contexts/LanguageContext";
 
 // import { data } from "../data/data.js";
@@ -393,7 +393,12 @@ export const PressReaderContextProvider = ({ children }) => {
     // const sessionListNotInLocalStorage = sessionListSorted.filter( session => !window.localStorage.getItem(`PrRe_data_${session}`));
     // console.log('sessionListNotInLocalStorage',sessionListNotInLocalStorage)
     // console.log('sessionListInLocalStorage',sessionListInLocalStorage)
-    sessionListSorted.forEach(async session => getDataFromDBOneSession(session)(handleDataFromDBOneSession));
+    // sessionListSorted.forEach(session => localStorage.removeItem(`PrRe_data_${session}`));
+
+    // for (let session of sessionListSorted){
+    //   getDataFromDBOneSession(session)(handleDataFromDBOneSession)
+    // }
+    sessionListSorted.forEach(session => getDataFromDBOneSession(session)(handleDataFromDBOneSession));
   }, [sessionListSorted])
 
   // Prefetch according to user's preferences
