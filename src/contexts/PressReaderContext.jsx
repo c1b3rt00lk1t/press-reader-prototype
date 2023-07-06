@@ -306,8 +306,11 @@ export const PressReaderContextProvider = ({ children }) => {
   /** CONTEXT FOR MAIN */
 
   const handleDataFromDBOneSession =   (data) => {
-    // console.log(data)
-    window.localStorage.setItem(`PrRe_data_${data[0].session}`, JSON.stringify(data)); 
+    try {
+      window.localStorage.setItem(`PrRe_data_${data[0].session}`, JSON.stringify(data)); 
+    } catch (error){
+      console.log(`Error trying to set PrRe_data_${data[0].session}: ${error}`)
+    }
     setSessionLastInLocalStorage(data[0].session)
   };
 
