@@ -1,27 +1,23 @@
-// import { openDB, deleteDB, wrap, unwrap } from 'idb';
+import { openDB } from 'idb';
+// using https://github.com/jakearchibald/idb
 
-// let db;
-// const dbname = 'PressReader';
-// const version = 1;
 
-// export async function init() {
-//   db = await openDB(dbname, version, db => {
-//       db.createObjectStore('PrReSessionList', {keyPath: 'sessions'});
-//   })
-// };
+const dbname = 'PressReader';
+const version = 1;
 
-// async function addSessionList() {
+
+export const dbPromise = openDB(dbname, version, {
+    upgrade(db) {
+      db.createObjectStore('PrReSessionList');
+    },
+  });
   
-// }
 
+export async function set(obj, key, val) {
+    return (await dbPromise).put(obj, val, key);
+}
 
-// async function getSessionlist (){
-//     let tx = db.transaction('getSessionList');
-//     let sessionListStore = tx.objectStore('PrReSessionList');
+export async function get(obj,key) {
+    return (await dbPromise).get(obj, key);
+}
 
-//     let sessionList = await sessionListStore.getAll();
-
-//     if (sessionList.length){
-//       console.log(`The sessions are the following: ${sessionList}`)
-//     }
-// };
