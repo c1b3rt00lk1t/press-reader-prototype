@@ -1,13 +1,24 @@
-import { createContext, useState, useEffect, useCallback, useContext } from "react";
-import { checkConnectionFromDB,getDataFromDBSessionList, getDataFromDBOneSession } from "../firebase.mjs";
+import {
+  createContext,
+  useState,
+  useEffect,
+  useCallback,
+  useContext,
+} from "react";
+import {
+  checkConnectionFromDB,
+  getDataFromDBSessionList,
+  getDataFromDBOneSession,
+} from "../firebase.js";
 import LanguageContext from "../contexts/LanguageContext";
+import { set as setIdb, get as getIdb } from "../indexedDB/indexedDB.js";
 
-// import { data } from "../data/data.js";
+setIdb("PrReSessionList", "PrRe_data", "20221204");
+getIdb("PrReSessionList", "PrRe_data").then((res) => console.log("getIdb", res));
 
 const PressReaderContext = createContext();
 
 export const PressReaderContextProvider = ({ children }) => {
-
   const { texts, language } = useContext(LanguageContext);
 
   const [connected, setConnected] = useState(true);
@@ -45,7 +56,7 @@ export const PressReaderContextProvider = ({ children }) => {
     window.localStorage.getItem("PrRe_fetchLastSessionOnce") === "true" || false
   );
   const [fetchOnSubmit, setFetchOnSubmit] = useState(
-     window.localStorage.getItem("PrRe_fetchOnSubmit") === "true" || false
+    window.localStorage.getItem("PrRe_fetchOnSubmit") === "true" || false
   );
   const [submit, setSubmit] = useState(false);
   /* If this feature is finally needed, the uploader has to provide the property to check*/
@@ -69,7 +80,6 @@ export const PressReaderContextProvider = ({ children }) => {
   const handleSelectFolder = (ev) => {
     const filesArray = [...ev.target.files];
     setPdfFiles(filesArray.filter((file) => file.type === "application/pdf"));
-
   };
 
   /** CONTEXT FOR SEARCH */
@@ -305,18 +315,20 @@ export const PressReaderContextProvider = ({ children }) => {
 
   /** CONTEXT FOR MAIN */
 
-  const handleDataFromDBOneSession =   (data) => {
+  const handleDataFromDBOneSession = (data) => {
     try {
-      window.localStorage.setItem(`PrRe_data_${data[0].session}`, JSON.stringify(data)); 
-    } catch (error){
-      console.log(`Error trying to set PrRe_data_${data[0].session}: ${error}`)
+      window.localStorage.setItem(
+        `PrRe_data_${data[0].session}`,
+        JSON.stringify(data)
+      );
+    } catch (error) {
+      console.log(`Error trying to set PrRe_data_${data[0].session}: ${error}`);
     }
-    setSessionLastInLocalStorage(data[0].session)
+    setSessionLastInLocalStorage(data[0].session);
   };
 
   const handleDataFromDBSessions = useCallback(
     (data) => {
-      
       // // The object is transformed into an Array and flattened, so that the first level of properties disappears
       const dataFlat = Object.keys(data).flatMap(function (key) {
         return data[key];
@@ -324,7 +336,7 @@ export const PressReaderContextProvider = ({ children }) => {
 
       // The states derived from the data are set
       setDataAll(dataFlat);
-      
+
       setUniqueSessions(
         dataFlat
           .map((a) => a.session)
@@ -355,14 +367,13 @@ export const PressReaderContextProvider = ({ children }) => {
     [applyFilters, filter]
   );
 
-  const handleDataFromDBSessionList = useCallback(
-    (data) =>  {
+  const handleDataFromDBSessionList = useCallback((data) => {
     // Stores the session list in localStorage
-    window.localStorage.setItem("PrRe_data", data.join(','));
+    window.localStorage.setItem("PrRe_data", data.join(","));
 
     // Order session list
-    setSessionListSorted(data.sort((a,b) => b - a));
-},[]);
+    setSessionListSorted(data.sort((a, b) => b - a));
+  }, []);
 
   const URLFromSize = useCallback((file) => {
     const url = file.size < 500000 ? file.url : file.url2;
@@ -377,16 +388,22 @@ export const PressReaderContextProvider = ({ children }) => {
   useEffect(() => {
     const sessionList = window.localStorage.getItem("PrRe_data");
     if (sessionList) {
-      const sessionsInLocalStorage = sessionList.split(",").filter( session => window.localStorage.getItem(`PrRe_data_${session}`)).map(session => JSON.parse(window.localStorage.getItem(`PrRe_data_${session}`) ))
+      const sessionsInLocalStorage = sessionList
+        .split(",")
+        .filter((session) =>
+          window.localStorage.getItem(`PrRe_data_${session}`)
+        )
+        .map((session) =>
+          JSON.parse(window.localStorage.getItem(`PrRe_data_${session}`))
+        );
       handleDataFromDBSessions(sessionsInLocalStorage);
       // console.log(sessionList.split(",").filter( session => window.localStorage.getItem(`PrRe_data_${session}`)).map(session => window.localStorage.getItem(`PrRe_data_${session}`) ))
     }
   }, [connected, handleDataFromDBSessions, sessionLastInLocalStorage]);
 
-
   useEffect(() => {
     getDataFromDBSessionList(handleDataFromDBSessionList);
-  },[handleDataFromDBSessionList]);
+  }, [handleDataFromDBSessionList]);
 
   useEffect(() => {
     // const sessionListInLocalStorage = sessionListSorted.filter( session => window.localStorage.getItem(`PrRe_data_${session}`));
@@ -398,8 +415,10 @@ export const PressReaderContextProvider = ({ children }) => {
     // for (let session of sessionListSorted){
     //   getDataFromDBOneSession(session)(handleDataFromDBOneSession)
     // }
-    sessionListSorted.forEach(session => getDataFromDBOneSession(session)(handleDataFromDBOneSession));
-  }, [sessionListSorted])
+    sessionListSorted.forEach((session) =>
+      getDataFromDBOneSession(session)(handleDataFromDBOneSession)
+    );
+  }, [sessionListSorted]);
 
   // Prefetch according to user's preferences
   useEffect(() => {
@@ -529,7 +548,7 @@ export const PressReaderContextProvider = ({ children }) => {
         URLFromSize,
         handleSelectFolder,
         pdfFiles,
-        sessionListSorted
+        sessionListSorted,
       }}
     >
       {children}
