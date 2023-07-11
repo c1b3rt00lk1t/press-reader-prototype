@@ -364,11 +364,17 @@ export const PressReaderContextProvider = ({ children }) => {
   );
 
   const handleDataFromDBSessionList = useCallback(async (data) => {
-    // Stores the session list in indexedDB
-    await setIdb("PrReSessionList", "PrRe_data", data.join(","));
+    // Receives an object
 
-    // Order session list
-    setSessionListSorted(data.sort((a, b) => b - a));
+    // // Stores the session list in indexedDB
+    // await setIdb("PrReSessionList", "PrRe_data", Object.keys(data).join(","));
+
+    // // Order session list
+    // setSessionListSorted(data.sort((a, b) => b - a));
+    console.log('data from sessions list', data)
+    console.log('list of sessions', Object.keys(data).join(","))
+    console.log('sessions array', Object.entries(data))
+    // console.log('joined', data.join(','))
   }, []);
 
   const URLFromSize = useCallback((file) => {
