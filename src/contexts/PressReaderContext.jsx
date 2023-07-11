@@ -384,7 +384,6 @@ export const PressReaderContextProvider = ({ children }) => {
   useEffect(() => {
     async function fetchData() {
       const sessionList = await getIdb("PrReSessionList", "PrRe_data");
-      console.log("list refreshed");
       if (sessionList) {
         const sessionsInStorage = await Promise.all(
           sessionList
