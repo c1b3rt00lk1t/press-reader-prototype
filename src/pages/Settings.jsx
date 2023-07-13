@@ -107,7 +107,7 @@ const Settings = () => {
             setter={setDesktop}
             state={desktop}
             local="desktop"
-            text={texts[language].settings.desktop}
+            text={`${texts[language].settings.desktop} ${!sessionListDownloaded.length ? '(select a folder)': ''}`}
             onlyWiderScreen={true}
             trigger={clickSelector}
             actionPending={!sessionListDownloaded.length}
