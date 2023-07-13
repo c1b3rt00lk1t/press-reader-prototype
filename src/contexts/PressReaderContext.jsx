@@ -24,6 +24,7 @@ export const PressReaderContextProvider = ({ children }) => {
   const [connected, setConnected] = useState(true);
   const [dataAll, setDataAll] = useState([]);
   const [sessionListSorted, setSessionListSorted] = useState([]);
+  const [sessionURLsSorted, setSessionURLsSorted] = useState([]);
   const [sessionLastInLocalStorage, setSessionLastInLocalStorage] = useState();
 
   const [uniqueSessions, setUniqueSessions] = useState([]);
@@ -365,15 +366,17 @@ export const PressReaderContextProvider = ({ children }) => {
 
   const handleDataFromDBSessionList = useCallback(async (data) => {
     // Receives an object
+    const sessionList = Object.keys(data).sort((a, b) => b - a);
 
     // // Stores the session list in indexedDB
-    // await setIdb("PrReSessionList", "PrRe_data", Object.keys(data).join(","));
+    await setIdb("PrReSessionList", "PrRe_data", sessionList.join(","));
 
     // // Order session list
-    // setSessionListSorted(data.sort((a, b) => b - a));
-    console.log('data from sessions list', data)
-    console.log('list of sessions', Object.keys(data).join(","))
-    console.log('sessions array', Object.entries(data))
+    setSessionListSorted(sessionList);
+    setSessionURLsSorted(Object.entries(data).sort((a,b) => +a[0] > +b[0] ? 1 : -1));
+    console.log('data from sessions list', data);
+    console.log('list of sessions', Object.keys(data).join(","));
+    console.log('sessions array', Object.entries(data).sort((a,b) => +a[0] > +b[0] ? 1 : -1));
     // console.log('joined', data.join(','))
   }, []);
 
