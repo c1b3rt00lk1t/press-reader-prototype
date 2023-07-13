@@ -25,6 +25,7 @@ export const PressReaderContextProvider = ({ children }) => {
   const [dataAll, setDataAll] = useState([]);
   const [sessionListSorted, setSessionListSorted] = useState([]);
   const [sessionURLsSorted, setSessionURLsSorted] = useState([]);
+  const [sessionDownloaded,setSessionDownloaded] = useState([]);
   const [sessionLastInLocalStorage, setSessionLastInLocalStorage] = useState();
 
   const [uniqueSessions, setUniqueSessions] = useState([]);
@@ -75,6 +76,14 @@ export const PressReaderContextProvider = ({ children }) => {
 
   const handleSelectFolder = (ev) => {
     const filesArray = [...ev.target.files];
+    setSessionDownloaded(
+      new Set(
+        filesArray
+          .map((file) => file.webkitRelativePath.substring(14, 40))
+          .filter(file => file.startsWith('Revisión prensa'))
+          .map(folder => folder.slice(16,20) + folder.slice(21,23) + folder.slice(24,26) )
+      )
+    );
     setPdfFiles(filesArray.filter((file) => file.type === "application/pdf"));
   };
 
@@ -373,7 +382,9 @@ export const PressReaderContextProvider = ({ children }) => {
 
     // // Order session list
     setSessionListSorted(sessionList);
-    setSessionURLsSorted(Object.entries(data).sort((a,b) => +a[0] < +b[0] ? 1 : -1));
+    setSessionURLsSorted(
+      Object.entries(data).sort((a, b) => (+a[0] < +b[0] ? 1 : -1))
+    );
   }, []);
 
   const URLFromSize = useCallback((file) => {
@@ -418,7 +429,9 @@ export const PressReaderContextProvider = ({ children }) => {
     // const sessionListNotInLocalStorage = sessionListSorted.filter( session => !window.localStorage.getItem(`PrRe_data_${session}`));
     // console.log('sessionListNotInLocalStorage',sessionListNotInLocalStorage)
     // console.log('sessionListInLocalStorage',sessionListInLocalStorage)
-    sessionListSorted.forEach(session => localStorage.removeItem(`PrRe_data_${session}`));
+    sessionListSorted.forEach((session) =>
+      localStorage.removeItem(`PrRe_data_${session}`)
+    );
     localStorage.removeItem(`PrRe_data`);
     // for (let session of sessionListSorted){
     //   getDataFromDBOneSession(session)(handleDataFromDBOneSession)
@@ -557,7 +570,8 @@ export const PressReaderContextProvider = ({ children }) => {
         handleSelectFolder,
         pdfFiles,
         sessionListSorted,
-        sessionURLsSorted
+        sessionURLsSorted,
+        setSessionDownloaded,
       }}
     >
       {children}
