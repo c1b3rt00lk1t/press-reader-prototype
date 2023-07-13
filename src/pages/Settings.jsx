@@ -26,6 +26,7 @@ const Settings = () => {
     // fetchOnlyUpTo,
     // setFetchOnlyUpTo,
     URLFromSize,
+    sessionURLsSorted,
   } = useContext(PressReaderContext);
 
   const { texts, language, handleSetLanguage } = useContext(LanguageContext);
@@ -117,28 +118,34 @@ const Settings = () => {
             webkitdirectory="true"
           />
           <div className="horizontal">
-            {Object.keys(texts).map(lang => 
-            <div
-              onClick={handleSetLanguage}
-              id={lang}
-              className={`language-selector ${language === lang ? 'language-selected' : null}`}
-            >{texts[lang].language}
-            </div>
-            )
-            }
-
+            {Object.keys(texts).map((lang) => (
+              <div
+                onClick={handleSetLanguage}
+                id={lang}
+                className={`language-selector ${
+                  language === lang ? "language-selected" : null
+                }`}
+              >
+                {texts[lang].language}
+              </div>
+            ))}
           </div>
-
-       </div>
-
-       {desktop && (
-        <div>
-          <h3>Descargas desde Drive</h3>
-          <a href="https://drive.google.com/drive/folders/1-Lio8YaC3aZ5ExKLryKHPui7DB8mv24a?usp=sharing" target="_blank" rel="noreferrer" style={{display:"block"}}>Sesión 20221016</a>
-          <a href="https://drive.google.com/drive/folders/1pGXr_8qDz0e77J0_sQbYr6sMum_Md1RJ?usp=sharing" target="_blank" rel="noreferrer" style={{display:"block"}}>Sesión 20221002</a>
-          <a href="https://drive.google.com/drive/folders/1xzPko1pLlVByk3pWoVJJxdcQ7zmUj0Wg?usp=sharing" target="_blank" rel="noreferrer" style={{display:"block"}}>Sesión 20220918</a>
         </div>
-       )}
+
+        {desktop && (
+          <div>
+            <h3>Descargas desde Drive</h3>
+            {sessionURLsSorted.map(([session,url]) => (
+              <a
+                key={session}
+                href={url}
+                target="_blank"
+                rel="noreferrer"
+                style={{ display: "block" }}
+              >{`${session}`}</a>
+            ))}
+          </div>
+        )}
 
         {!desktop && (
           <DownloadSession
