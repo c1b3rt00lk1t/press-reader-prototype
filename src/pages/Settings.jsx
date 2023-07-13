@@ -123,6 +123,7 @@ const Settings = () => {
           <div className="horizontal">
             {Object.keys(texts).map((lang) => (
               <div
+                key={lang}
                 onClick={handleSetLanguage}
                 id={lang}
                 className={`language-selector ${
