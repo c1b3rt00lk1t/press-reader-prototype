@@ -571,7 +571,7 @@ export const PressReaderContextProvider = ({ children }) => {
         pdfFiles,
         sessionListSorted,
         sessionURLsSorted,
-        setSessionDownloaded,
+        sessionDownloaded,
       }}
     >
       {children}
