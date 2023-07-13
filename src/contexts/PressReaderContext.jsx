@@ -373,11 +373,7 @@ export const PressReaderContextProvider = ({ children }) => {
 
     // // Order session list
     setSessionListSorted(sessionList);
-    setSessionURLsSorted(Object.entries(data).sort((a,b) => +a[0] > +b[0] ? 1 : -1));
-    console.log('data from sessions list', data);
-    console.log('list of sessions', Object.keys(data).join(","));
-    console.log('sessions array', Object.entries(data).sort((a,b) => +a[0] > +b[0] ? 1 : -1));
-    // console.log('joined', data.join(','))
+    setSessionURLsSorted(Object.entries(data).sort((a,b) => +a[0] < +b[0] ? 1 : -1));
   }, []);
 
   const URLFromSize = useCallback((file) => {
