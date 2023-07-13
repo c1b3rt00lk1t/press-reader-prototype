@@ -4,7 +4,7 @@ import PressReaderContext from "../contexts/PressReaderContext";
 import LanguageContext from "../contexts/LanguageContext";
 import SettingToogle from "../components/SettingToogle";
 import DownloadSession from "../components/DownloadSession";
-
+import { BsArrowDownCircle, BsCheckCircle } from "react-icons/bs";
 
 
 const Settings = () => {
@@ -110,6 +110,7 @@ const Settings = () => {
             text={texts[language].settings.desktop}
             onlyWiderScreen={true}
             trigger={clickSelector}
+            actionPending={!sessionListDownloaded.length}
           />
           <span id="selection-result" className="contador"></span>
           <input
@@ -141,16 +142,14 @@ const Settings = () => {
             <h3>{texts[language].settings.driveDownload}</h3>
             <ul>
             {sessionURLsSorted.map(([session, url]) => (
-              <li key={session} style={{ display: "flex", width:"20vw",justifyContent:'space-between' }}>
+              <li key={session} className="sessions-li" >
+                {sessionListDownloaded.includes(session) ? <BsCheckCircle className="download-icon download-icon-done"/> : <BsArrowDownCircle className="download-icon"/>}
                 <a
                   href={url}
                   target="_blank"
                   rel="noreferrer"
                   style={{ display: "block" }}
-                >{`${texts[language].settings.session} ${session}`}</a>
-                <span style={{color:'grey'}}>
-                  {sessionListDownloaded.includes(session) && "(downloaded)"}
-                </span>
+                >{`${session}`}</a>
               </li>
             ))}
             </ul>

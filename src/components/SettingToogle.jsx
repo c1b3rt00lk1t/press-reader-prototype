@@ -8,6 +8,7 @@ const SettingToogle = ({
   text,
   setExclude,
   localExclude,
+  actionPending,
   disable = false,
   onlyWiderScreen = false,
   trigger = () => {}
@@ -28,7 +29,7 @@ const SettingToogle = ({
       className={`horizontal align-items-center ${onlyWiderScreen && 'only-wider-screen'}`}
     >
       {state ? (
-        <RiToggleFill className="settings-icon" style={disable && {color:"grey"}}/>
+        <RiToggleFill className="settings-icon" style={(actionPending || disable) && {color:"grey"}}/>
       ) : (
         <RiToggleLine className="settings-icon" style={disable && {color:"grey"}}/>
       )}

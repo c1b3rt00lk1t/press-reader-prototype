@@ -318,10 +318,29 @@ embed{
   color:var(--blue-color);
 }
 
+.sessions-li {
+  height: 4vh;
+  display: flex;
+  width: 10vw;
+  justify-content:space-between;
+}
+
+.sessions-li > a {
+  text-decoration: none;
+}
+
+.sessions-li > a:visited {
+  color:var(--blue-color);
+}
+
 .download-icon {
   font-size: 1.5em;
   margin-right: 2vw;
-  color:var(--blue-color);
+  color: black;
+}
+
+.download-icon-done {
+  color: green;
 }
 
 .rotate{
