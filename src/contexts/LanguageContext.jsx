@@ -6,7 +6,7 @@ export const LanguageContextProvider = ({ children }) => {
   const texts = {
     es: {
       language: "Castellano",
-      main: { title: "Lector", results: "resultados" },
+      main: { title: "Lector", results: "resultados", warningDesktop:"modo desktop activado, clica para seleccionar una carpeta" },
       search: {
         title: "Buscar",
         session: "Sesión",
@@ -40,7 +40,7 @@ export const LanguageContextProvider = ({ children }) => {
     },
     en: {
       language: "English",
-      main: { title: "Reader", results: "results" },
+      main: { title: "Reader", results: "results", warningDesktop:"desktop mode activated, click to select a folder"  },
       search: {
         title: "Search",
         session: "Session",
@@ -74,7 +74,7 @@ export const LanguageContextProvider = ({ children }) => {
     },
     it: {
       language: "Italiano",
-      main: { title: "Lettore", results: "risultati" },
+      main: { title: "Lettore", results: "risultati", warningDesktop:"modo desktop attivato, clica per selezionare una cartella"  },
       search: {
         title: "Cercare",
         session: "Sesione",
