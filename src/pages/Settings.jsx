@@ -134,7 +134,7 @@ const Settings = () => {
 
         {desktop && (
           <div>
-            <h3>Descargas desde Drive</h3>
+            <h3>{texts[language].settings.driveDownload}</h3>
             {sessionURLsSorted.map(([session,url]) => (
               <a
                 key={session}
@@ -142,7 +142,7 @@ const Settings = () => {
                 target="_blank"
                 rel="noreferrer"
                 style={{ display: "block" }}
-              >{`${session}`}</a>
+              >{`${texts[language].settings.session} ${session}`}</a>
             ))}
           </div>
         )}

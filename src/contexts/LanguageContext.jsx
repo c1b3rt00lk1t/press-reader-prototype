@@ -1,14 +1,11 @@
 import { createContext, useState } from "react";
 
-
 const LanguageContext = createContext();
 
 export const LanguageContextProvider = ({ children }) => {
-
-
   const texts = {
     es: {
-      language:"Castellano",
+      language: "Castellano",
       main: { title: "Lector", results: "resultados" },
       search: {
         title: "Buscar",
@@ -25,9 +22,9 @@ export const LanguageContextProvider = ({ children }) => {
         submit: "Buscar",
       },
       share: {
-        msg: "Aplicación para la revisión de la prensa."
+        msg: "Aplicación para la revisión de la prensa.",
       },
-      settings:{
+      settings: {
         title: "Configuración",
         prototype: "Prototipo",
         prefetchOnce: "Precarga siempre la última sesión (una vez)",
@@ -35,82 +32,87 @@ export const LanguageContextProvider = ({ children }) => {
         prefetchOnSubmit: "Precarga con Buscar",
         desktop: "Desktop",
         fetchLastSession: "Precarga última sesión",
-        lastFetched: "Precargada"
-        
-      }
+        lastFetched: "Precargada",
+        driveDownload: "Descarga desde drive",
+        session: "Sesión",
+      },
     },
     en: {
-        language:"English",
-        main: { title: "Reader", results: "results" },
-        search: {
-          title: "Search",
-          session: "Session",
-          range: "Range",
-          start: "Start",
-          end: "Final",
-          zone: "Zone",
-          sector: "Sector",
-          tags: "Tags",
-          text: "Text",
-          order: "Order",
-          clear: "Clear",
-          submit: "Search",
-        },
-        share: {
-          msg: "App for the review of the press."
-        },
-        settings:{
-          title: "Settings",
-          prototype: "Prototype",
-          prefetchOnce: "Always prefetch last session (once)",
-          prefetchAlways: "Always prefetch last session",
-          prefetchOnSubmit: "Prefetch on Search",
-          desktop: "Desktop",
-          fetchLastSession: "Prefetch last session",
-          lastFetched: "Last prefetched"
-          
-        }
+      language: "English",
+      main: { title: "Reader", results: "results" },
+      search: {
+        title: "Search",
+        session: "Session",
+        range: "Range",
+        start: "Start",
+        end: "Final",
+        zone: "Zone",
+        sector: "Sector",
+        tags: "Tags",
+        text: "Text",
+        order: "Order",
+        clear: "Clear",
+        submit: "Search",
       },
-      it: {
-        language:"Italiano",
-        main: { title: "Lettore", results: "risultati" },
-        search: {
-          title: "Cercare",
-          session: "Sesione",
-          range: "Rango",
-          start: "Inizio",
-          end: "Finale",
-          zone: "Zona",
-          sector: "Settore",
-          tags: "Tags",
-          text: "Testo",
-          order: "Ordine",
-          clear: "Clear",
-          submit: "Cerca",
-        },
-        share: {
-          msg: "App per la revisione dei giornali."
-        },
-        settings:{
-          title: "Configurazione",
-          prototype: "Prototipo",
-          prefetchOnce: "Precarica sempre l'ultima sesione (una volta)",
-          prefetchAlways: "Precarica sempre l'ultima sesione ",
-          prefetchOnSubmit: "Precarica con Cercare",
-          desktop: "Desktop",
-          fetchLastSession: "Precarica ultima sesione",
-          lastFetched: "Precaricata"
-          
-        }
+      share: {
+        msg: "App for the review of the press.",
       },
+      settings: {
+        title: "Settings",
+        prototype: "Prototype",
+        prefetchOnce: "Always prefetch last session (once)",
+        prefetchAlways: "Always prefetch last session",
+        prefetchOnSubmit: "Prefetch on Search",
+        desktop: "Desktop",
+        fetchLastSession: "Prefetch last session",
+        lastFetched: "Last prefetched",
+        driveDownload: "Download from drive",
+        session: "Session",
+      },
+    },
+    it: {
+      language: "Italiano",
+      main: { title: "Lettore", results: "risultati" },
+      search: {
+        title: "Cercare",
+        session: "Sesione",
+        range: "Rango",
+        start: "Inizio",
+        end: "Finale",
+        zone: "Zona",
+        sector: "Settore",
+        tags: "Tags",
+        text: "Testo",
+        order: "Ordine",
+        clear: "Clear",
+        submit: "Cerca",
+      },
+      share: {
+        msg: "App per la revisione dei giornali.",
+      },
+      settings: {
+        title: "Configurazione",
+        prototype: "Prototipo",
+        prefetchOnce: "Precarica sempre l'ultima sesione (una volta)",
+        prefetchAlways: "Precarica sempre l'ultima sesione ",
+        prefetchOnSubmit: "Precarica con Cercare",
+        desktop: "Desktop",
+        fetchLastSession: "Precarica ultima sesione",
+        lastFetched: "Precaricata",
+        driveDownload: "Scarica dal drive",
+        session: "Sessione",
+      },
+    },
   };
 
   const handleSetLanguage = (ev) => {
     setLanguage(ev.target.id);
-    window.localStorage.setItem("PrRe_lang",ev.target.id);
+    window.localStorage.setItem("PrRe_lang", ev.target.id);
   };
 
-  const [language, setLanguage] = useState(window.localStorage.getItem("PrRe_lang") || "es");
+  const [language, setLanguage] = useState(
+    window.localStorage.getItem("PrRe_lang") || "es"
+  );
   return (
     <LanguageContext.Provider
       value={{
