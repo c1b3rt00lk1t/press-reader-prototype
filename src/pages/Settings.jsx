@@ -5,6 +5,8 @@ import LanguageContext from "../contexts/LanguageContext";
 import SettingToogle from "../components/SettingToogle";
 import DownloadSession from "../components/DownloadSession";
 
+
+
 const Settings = () => {
   const {
     dataOrdered,
@@ -136,10 +138,10 @@ const Settings = () => {
         {desktop && (
           <div>
             <h3>{texts[language].settings.driveDownload}</h3>
+            <ul>
             {sessionURLsSorted.map(([session, url]) => (
-              <div style={{ display: "flex", width:"20vw",justifyContent:'space-between' }}>
+              <li key={session} style={{ display: "flex", width:"20vw",justifyContent:'space-between' }}>
                 <a
-                  key={session}
                   href={url}
                   target="_blank"
                   rel="noreferrer"
@@ -148,8 +150,9 @@ const Settings = () => {
                 <span style={{color:'grey'}}>
                   {sessionListDownloaded.includes(session) && "(downloaded)"}
                 </span>
-              </div>
+              </li>
             ))}
+            </ul>
           </div>
         )}
 
