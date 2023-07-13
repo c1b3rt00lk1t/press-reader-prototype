@@ -27,6 +27,7 @@ const Settings = () => {
     // setFetchOnlyUpTo,
     URLFromSize,
     sessionURLsSorted,
+    sessionListDownloaded,
   } = useContext(PressReaderContext);
 
   const { texts, language, handleSetLanguage } = useContext(LanguageContext);
@@ -135,14 +136,19 @@ const Settings = () => {
         {desktop && (
           <div>
             <h3>{texts[language].settings.driveDownload}</h3>
-            {sessionURLsSorted.map(([session,url]) => (
-              <a
-                key={session}
-                href={url}
-                target="_blank"
-                rel="noreferrer"
-                style={{ display: "block" }}
-              >{`${texts[language].settings.session} ${session}`}</a>
+            {sessionURLsSorted.map(([session, url]) => (
+              <div style={{ display: "flex", width:"20vw",justifyContent:'space-between' }}>
+                <a
+                  key={session}
+                  href={url}
+                  target="_blank"
+                  rel="noreferrer"
+                  style={{ display: "block" }}
+                >{`${texts[language].settings.session} ${session}`}</a>
+                <span style={{color:'grey'}}>
+                  {sessionListDownloaded.includes(session) && "(downloaded)"}
+                </span>
+              </div>
             ))}
           </div>
         )}
