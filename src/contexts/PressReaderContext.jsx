@@ -25,7 +25,7 @@ export const PressReaderContextProvider = ({ children }) => {
   const [dataAll, setDataAll] = useState([]);
   const [sessionListSorted, setSessionListSorted] = useState([]);
   const [sessionURLsSorted, setSessionURLsSorted] = useState([]);
-  const [sessionDownloaded,setSessionDownloaded] = useState([]);
+  const [sessionListDownloaded,setSessionListDownloaded] = useState([]);
   const [sessionLastInLocalStorage, setSessionLastInLocalStorage] = useState();
 
   const [uniqueSessions, setUniqueSessions] = useState([]);
@@ -76,7 +76,7 @@ export const PressReaderContextProvider = ({ children }) => {
 
   const handleSelectFolder = (ev) => {
     const filesArray = [...ev.target.files];
-    setSessionDownloaded(
+    setSessionListDownloaded(
       new Set(
         filesArray
           .map((file) => file.webkitRelativePath.substring(14, 40))
@@ -571,7 +571,7 @@ export const PressReaderContextProvider = ({ children }) => {
         pdfFiles,
         sessionListSorted,
         sessionURLsSorted,
-        sessionDownloaded,
+        sessionListDownloaded,
       }}
     >
       {children}
