@@ -561,6 +561,7 @@ export const PressReaderContextProvider = ({ children }) => {
         handleSelectFolder,
         pdfFiles,
         sessionListSorted,
+        sessionURLsSorted
       }}
     >
       {children}
