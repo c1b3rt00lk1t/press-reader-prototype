@@ -77,12 +77,12 @@ export const PressReaderContextProvider = ({ children }) => {
   const handleSelectFolder = (ev) => {
     const filesArray = [...ev.target.files];
     setSessionListDownloaded(
-      new Set(
+      [...new Set(
         filesArray
           .map((file) => file.webkitRelativePath.substring(14, 40))
           .filter(file => file.startsWith('Revisión prensa'))
           .map(folder => folder.slice(16,20) + folder.slice(21,23) + folder.slice(24,26) )
-      )
+      )]
     );
     setPdfFiles(filesArray.filter((file) => file.type === "application/pdf"));
   };
