@@ -11,7 +11,7 @@ const DownloadSession = ({
   // downloadProgress = "error";
   return (
     <div className="horizontal justify-items-space-around">
-      <div className="horizontal">
+      <div className="horizontal  align-items-center">
         {downloadProgress === "pending" && (
           <BsArrowDownCircle className="download-icon" />
         )}
