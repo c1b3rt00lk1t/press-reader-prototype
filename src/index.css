@@ -321,9 +321,15 @@ embed{
 .sessions-li {
   height: 4vh;
   display: flex;
-  width: 10vw;
+  width: 9vw;
   justify-content:space-between;
   align-items: center;
+}
+
+@media (min-width: 1200px){
+  .sessions-li {
+    width: 7.5vw;
+  }
 }
 
 .sessions-li > a {
@@ -336,8 +342,11 @@ embed{
 
 .download-icon {
   font-size: 1.1em;
-  margin-right: 2vw;
   color: black;
+}
+
+.download-icon-margin {
+  margin-right: 2vw;
 }
 
 .download-icon-done {
@@ -406,9 +415,6 @@ embed{
 
 
 @media (min-width: 1000px){
-
-
-
 
   .only-wider-screen{
     display:flex;
