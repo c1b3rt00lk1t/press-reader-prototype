@@ -4,7 +4,7 @@ import PressReaderContext from "../contexts/PressReaderContext";
 import LanguageContext from "../contexts/LanguageContext";
 import SettingToogle from "../components/SettingToogle";
 import DownloadSession from "../components/DownloadSession";
-import { BsArrowDownCircle, BsCheckCircle } from "react-icons/bs";
+import { BsXCircle, BsCheckCircle } from "react-icons/bs";
 
 
 const Settings = () => {
@@ -143,7 +143,7 @@ const Settings = () => {
             <ul>
             {sessionURLsSorted.map(([session, url]) => (
               <li key={session} className="sessions-li" >
-                {sessionListDownloaded.includes(session) ? <BsCheckCircle className="download-icon download-icon-done"/> : <BsArrowDownCircle className="download-icon"/>}
+                {sessionListDownloaded.includes(session) ? <BsCheckCircle className="download-icon download-icon-done"/> : <BsXCircle className="download-icon download-icon-missing"/>}
                 <a
                   href={url}
                   target="_blank"
