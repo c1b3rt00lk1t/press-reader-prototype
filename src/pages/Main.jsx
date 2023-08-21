@@ -7,16 +7,21 @@ import Offline from "../components/Offline";
 import Warning from "../components/Warning";
 
 const Main = () => {
-  const {texts, language} = useContext(LanguageContext)
-  const {sessionListDownloaded} = useContext(PressReaderContext);
+  const { texts, language } = useContext(LanguageContext);
+  const { desktop, sessionListDownloaded } = useContext(PressReaderContext);
 
   return (
     <>
       <div className="no-footer">
         <Offline />
         <h1>{texts[language].main.title}</h1>
-        {!sessionListDownloaded.length && <Warning text={texts[language].main.warningDesktop} linkto="settings"/>}
-        <NewsList texts={texts} language={language}/>
+        {desktop && !sessionListDownloaded.length && (
+          <Warning
+            text={texts[language].main.warningDesktop}
+            linkto="settings"
+          />
+        )}
+        <NewsList texts={texts} language={language} />
       </div>
     </>
   );
