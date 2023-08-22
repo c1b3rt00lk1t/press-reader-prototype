@@ -3,14 +3,12 @@ import { initializeApp } from "firebase/app";
 import { getDatabase, ref, onValue } from "firebase/database";
 import { firebaseConfig } from "./firebaseEnv.mjs";
 
-
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);
 
 // Initialize Real-time database
 const database = getDatabase(app);
 const connectedRef = ref(database, ".info/connected");
-
 
 export const checkConnectionFromDB = (setConnected) => {
   onValue(connectedRef, (snap) => {
@@ -24,14 +22,15 @@ export const checkConnectionFromDB = (setConnected) => {
   });
 };
 
-const getDataFromDB =  (path) => (handleDataFromDB) => {
+const getDataFromDB = (path) => (handleDataFromDB) => {
   const refDB = ref(database, path);
-  onValue(refDB,  (snapshot) => {
+  onValue(refDB, (snapshot) => {
     const data = snapshot.val();
     handleDataFromDB(data);
   });
 };
 
-
-export const getDataFromDBSessionList =  getDataFromDB("/sys/sessions/");
-export const getDataFromDBOneSession = (session) =>  getDataFromDB("/sessions/" + session);
+export const getDataFromDBSessionList = getDataFromDB("/sys/sessions/");
+export const getDataFromDBOneSession = (session) =>
+  getDataFromDB("/sessions/" + session);
+export const getDataFromDBDictionary = getDataFromDB("/dictionary/");
