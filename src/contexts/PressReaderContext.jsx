@@ -109,6 +109,54 @@ export const PressReaderContextProvider = ({ children }) => {
     handleGetDictionaryFromDB();
   }, []);
 
+  const [flatItems, setFlatItems] = useState({});
+
+  useEffect(() => {
+    // temp variables for destructring any of the three trees
+    const zones = [];
+    const sectors = [];
+    const tags = [];
+
+    // generic recursive function for destructring any of the three trees
+    const destructureItems = (target) => (path) => (object) => {
+      for (let [prop, value] of Object.entries(object)) {
+        if (typeof value === "object") {
+          // `${path}/${prop}` is kept in order to unfold also the target subfolder
+          // to avoid this behavior and be more restrictive with unfolding, the /${prop} could be removed
+          target.push({ item: prop, path: `${path}/${prop}` });
+          destructureItems(target)(`${path}/${prop}`)(value);
+        } else if (typeof value === "boolean") {
+          target.push({ item: prop, path: `${path}` });
+        }
+      }
+      return target;
+    };
+
+    // the result of the calculation is stored in the corresponding states
+    const flatZones = destructureItems(zones)("zones")(dictionary.zones);
+    const flatSectors = destructureItems(sectors)("sectors")(
+      dictionary.sectors
+    );
+    const flatTags = destructureItems(tags)("tags")(dictionary.tags);
+
+    setFlatItems({ flatZones, flatSectors, flatTags });
+  }, [dictionary.sectors, dictionary.tags, dictionary.zones]);
+
+  //returns an array of all subnodes of the target nodes provided via an array
+  const flatDictionary = (type) => (targets) => {
+    return targets.reduce((acc, target) => {
+      return acc.concat(
+        flatItems[type]
+          .filter((zone) => zone.path.includes(`/${target}`))
+          .map((zone) => zone.item)
+      );
+    }, []);
+  };
+
+  const flatDictionaryZones = flatDictionary("flatZones");
+  const flatDictionarySectors = flatDictionary("flatSectors");
+  const flatDictionaryTags = flatDictionary("flatTags");
+
   /** CONTEXT FOR SEARCH */
 
   const [orderType, setOrderType] = useState("sessionOrder");
@@ -130,16 +178,14 @@ export const PressReaderContextProvider = ({ children }) => {
   };
 
   const selectZonesOR = (e) => {
-    console.log("e.target.selectedOptions", e.target.selectedOptions);
-    console.log(dictionary);
-
     setFilter({
       ...filter,
-      /** HERE IS WHERE THE INITIAL SELECTION HAS TO BE EXPANDED TO ALL SUB NODES OF THE TREE */
-      // zonesOR: [...e.target.selectedOptions].map((a) => a.value),
       zonesOR: [
         ...[...e.target.selectedOptions].map((a) => a.value),
-        "this is a test",
+        // expands the filter to all subtrees
+        ...flatDictionaryZones(
+          [...e.target.selectedOptions].map((option) => option.label)
+        ),
       ],
     });
   };
@@ -154,7 +200,13 @@ export const PressReaderContextProvider = ({ children }) => {
   const selectSectorsOR = (e) => {
     setFilter({
       ...filter,
-      sectorsOR: [...e.target.selectedOptions].map((a) => a.value),
+      sectorsOR: [
+        ...[...e.target.selectedOptions].map((a) => a.value),
+        // expands the filter to all subtrees
+        ...flatDictionarySectors(
+          [...e.target.selectedOptions].map((option) => option.label)
+        ),
+      ],
     });
   };
 
@@ -168,7 +220,13 @@ export const PressReaderContextProvider = ({ children }) => {
   const selectTagsOR = (e) => {
     setFilter({
       ...filter,
-      tagsOR: [...e.target.selectedOptions].map((a) => a.value),
+      tagsOR: [
+        ...[...e.target.selectedOptions].map((a) => a.value),
+        // expands the filter to all subtrees
+        ...flatDictionaryTags(
+          [...e.target.selectedOptions].map((option) => option.label)
+        ),
+      ],
     });
   };
 
@@ -191,7 +249,7 @@ export const PressReaderContextProvider = ({ children }) => {
       fns.reduceRight((g, f) => f(g), x);
 
   const trace = (value) => {
-    console.log("trace", value);
+    // console.log("trace", value);
     return value;
   };
   const applyFilters = useCallback(
