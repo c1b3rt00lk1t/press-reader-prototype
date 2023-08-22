@@ -9,6 +9,7 @@ import {
   checkConnectionFromDB,
   getDataFromDBSessionList,
   getDataFromDBOneSession,
+  getDataFromDBDictionary,
 } from "../firebase.js";
 import LanguageContext from "../contexts/LanguageContext";
 import { set as setIdb, get as getIdb } from "../indexedDB/indexedDB.js";
@@ -25,7 +26,7 @@ export const PressReaderContextProvider = ({ children }) => {
   const [dataAll, setDataAll] = useState([]);
   const [sessionListSorted, setSessionListSorted] = useState([]);
   const [sessionURLsSorted, setSessionURLsSorted] = useState([]);
-  const [sessionListDownloaded,setSessionListDownloaded] = useState([]);
+  const [sessionListDownloaded, setSessionListDownloaded] = useState([]);
   const [sessionLastInLocalStorage, setSessionLastInLocalStorage] = useState();
 
   const [uniqueSessions, setUniqueSessions] = useState([]);
@@ -76,16 +77,37 @@ export const PressReaderContextProvider = ({ children }) => {
 
   const handleSelectFolder = (ev) => {
     const filesArray = [...ev.target.files];
-    setSessionListDownloaded(
-      [...new Set(
+    setSessionListDownloaded([
+      ...new Set(
         filesArray
           .map((file) => file.webkitRelativePath.substring(14, 40))
-          .filter(file => file.startsWith('Revisión prensa'))
-          .map(folder => folder.slice(16,20) + folder.slice(21,23) + folder.slice(24,26) )
-      )]
-    );
+          .filter((file) => file.startsWith("Revisión prensa"))
+          .map(
+            (folder) =>
+              folder.slice(16, 20) + folder.slice(21, 23) + folder.slice(24, 26)
+          )
+      ),
+    ]);
     setPdfFiles(filesArray.filter((file) => file.type === "application/pdf"));
   };
+
+  /** CONTEXT FOR DICTIONARY */
+
+  const [dictionary, setDictionary] = useState(
+    JSON.parse(window.localStorage.getItem("PrRe_dictionary"))
+  );
+
+  useEffect(() => {
+    const handleGetDictionaryFromDB = () => {
+      const handleDataFromDB = (data) => {
+        window.localStorage.setItem("PrRe_dictionary", JSON.stringify(data));
+        setDictionary(data);
+      };
+      getDataFromDBDictionary(handleDataFromDB);
+    };
+
+    handleGetDictionaryFromDB();
+  }, []);
 
   /** CONTEXT FOR SEARCH */
 
@@ -108,9 +130,17 @@ export const PressReaderContextProvider = ({ children }) => {
   };
 
   const selectZonesOR = (e) => {
+    console.log("e.target.selectedOptions", e.target.selectedOptions);
+    console.log(dictionary);
+
     setFilter({
       ...filter,
-      zonesOR: [...e.target.selectedOptions].map((a) => a.value),
+      /** HERE IS WHERE THE INITIAL SELECTION HAS TO BE EXPANDED TO ALL SUB NODES OF THE TREE */
+      // zonesOR: [...e.target.selectedOptions].map((a) => a.value),
+      zonesOR: [
+        ...[...e.target.selectedOptions].map((a) => a.value),
+        "this is a test",
+      ],
     });
   };
 
@@ -160,10 +190,10 @@ export const PressReaderContextProvider = ({ children }) => {
     (x) =>
       fns.reduceRight((g, f) => f(g), x);
 
-  // const trace = (value) => {
-  //   console.log(value);
-  //   return value;
-  // };
+  const trace = (value) => {
+    console.log("trace", value);
+    return value;
+  };
   const applyFilters = useCallback(
     (data, selection) => {
       const applySessionFilter = ({ data, selection }) => {
@@ -281,6 +311,7 @@ export const PressReaderContextProvider = ({ children }) => {
       };
 
       const { filtered } = compose(
+        trace,
         applyOrder,
         applyTextFilter,
         // trace,
