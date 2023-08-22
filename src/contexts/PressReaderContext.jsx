@@ -94,7 +94,7 @@ export const PressReaderContextProvider = ({ children }) => {
   /** CONTEXT FOR DICTIONARY */
 
   const [dictionary, setDictionary] = useState(
-    JSON.parse(window.localStorage.getItem("PrRe_dictionary"))
+    JSON.parse(window.localStorage.getItem("PrRe_dictionary") ?? "{}")
   );
 
   useEffect(() => {
