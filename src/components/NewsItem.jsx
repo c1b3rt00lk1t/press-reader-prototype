@@ -42,7 +42,6 @@ const NewsItem = ({ item }) => {
   const handleTitleClick = (item) => (ev) => {
     ev.stopPropagation();
     writeInClipboard(item);
-    // readFromClipboard();
   };
 
   const handleLinkClick =

@@ -34,26 +34,26 @@ export const ClipboardContextProvider = ({ children }) => {
     }
   };
 
-  // const readFromClipboard = async () => {
-  //   try {
-  //     const clipboardItems = await navigator.clipboard.read();
+  const readFromClipboard = async () => {
+    try {
+      const clipboardItems = await navigator.clipboard.read();
 
-  //     for (const clipboardItem of clipboardItems) {
-  //       console.log(clipboardItem);
-  //       for (const type of clipboardItem.types) {
-  //         const blob = await clipboardItem.getType(type);
-  //         console.log(blob);
-  //         console.log(type, await blob.text());
-  //       }
-  //     }
-  //   } catch (err) {
-  //     console.error(err.name, err.message);
-  //   }
-  // };
+      for (const clipboardItem of clipboardItems) {
+        console.log(clipboardItem);
+        for (const type of clipboardItem.types) {
+          const blob = await clipboardItem.getType(type);
+          console.log(blob);
+          console.log(type, await blob.text());
+        }
+      }
+    } catch (err) {
+      console.error(err.name, err.message);
+    }
+  };
 
   return (
     <ClipboardContext.Provider
-      value={{ writeTextInClipboard, writeInClipboard }}
+      value={{ writeTextInClipboard, writeInClipboard, readFromClipboard }}
     >
       {children}
     </ClipboardContext.Provider>
