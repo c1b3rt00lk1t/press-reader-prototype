@@ -106,6 +106,7 @@ const NewsItem = ({ item }) => {
           {!!item.tags && <FaTag className="news-item-tag " />}
           <Tags tags={item.tags} type="1" />
           <button
+            className="phone-hide"
             onClick={handleTitleClick(item)}
             style={{
               backgroundColor: "white",
@@ -117,6 +118,7 @@ const NewsItem = ({ item }) => {
             <MdOutlineArticle style={{ fontSize: "1.1rem" }}></MdOutlineArticle>
           </button>{" "}
           <button
+            className="phone-hide"
             onClick={handleLinkClick(item)}
             style={{
               backgroundColor: "white",

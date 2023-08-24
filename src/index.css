@@ -1,20 +1,23 @@
-:root{
+:root {
   --small-screen-em-small: 0.7em;
   --small-screen-em-normal: 1.1em;
   --blue-color: rgb(0, 0, 100);
 }
 
 /* in order to avoid the border of the focus when using tabindex */
-div:focus { outline: none; }
+div:focus {
+  outline: none;
+}
 
-* {box-sizing:border-box;}
-
+* {
+  box-sizing: border-box;
+}
 
 body {
   margin: 0;
   padding: 0 2.5vw;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -26,13 +29,13 @@ ul {
   padding: 1vh 0;
 }
 
-@media (min-height: 701px){
+@media (min-height: 701px) {
   li {
     height: 17.5vh;
   }
 }
 
-@media (max-height: 700px){
+@media (max-height: 700px) {
   li {
     height: 19vh;
   }
@@ -45,14 +48,14 @@ ul {
   align-items: center;
 }
 
-.margin-lines{
+.margin-lines {
   margin: 0.75vh 0 0 0;
 }
-.padding-lines{
+.padding-lines {
   padding: 0 0 0.35vh 0;
 }
 
-.news-item-title{
+.news-item-title {
   font-weight: bold;
   font-size: var(--small-screen-em-normal);
   line-height: 1;
@@ -62,15 +65,15 @@ ul {
 .line-clamp-2 {
   display: -webkit-box;
   -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;  
+  -webkit-box-orient: vertical;
 }
 .line-clamp-1 {
   display: -webkit-box;
   -webkit-line-clamp: 1;
-  -webkit-box-orient: vertical;  
+  -webkit-box-orient: vertical;
 }
 
-.news-item-source{
+.news-item-source {
   font-size: var(--small-screen-em-small);
   text-transform: uppercase;
   color: rgb(170, 170, 170);
@@ -78,7 +81,7 @@ ul {
 
 /* Connected */
 
-.connected{
+.connected {
   position: absolute;
   top: 4.5vh;
   left: 44vw;
@@ -92,106 +95,103 @@ ul {
   border-width: 0;
   text-align: center;
   font-size: var(--small-screen-em-small);
-  color:grey;
+  color: grey;
 }
 
 /* Flexbox*/
-.horizontal{
+.horizontal {
   display: flex;
   flex-direction: row;
   overflow: hidden;
   flex-wrap: wrap;
-
 }
 
-.align-items-center{
+.align-items-center {
   align-items: center;
 }
 
-.justify-items-center{
+.justify-items-center {
   justify-content: center;
 }
 
-.justify-items-space-around{
+.justify-items-space-around {
   justify-content: space-around;
 }
 
-.justify-items-space-between{
+.justify-items-space-between {
   justify-content: space-between;
 }
 
-.vertical{
+.vertical {
   display: flex;
   flex-direction: column;
 }
 
-.vw-35{
+.vw-35 {
   width: 37.5vw;
 }
-.vw-50{
+.vw-50 {
   width: 50vw;
 }
 
 /* Tags*/
 
-.min-height-1em{
+.min-height-1em {
   min-height: 1em;
 }
 
-.max-vw-tags-1{
+.max-vw-tags-1 {
   width: 80vw;
 }
-.margin-right-tag{
+.margin-right-tag {
   margin-right: 5vw;
 }
-.max-vw-tags-2{
-  width: 40vw;  
+.max-vw-tags-2 {
+  width: 40vw;
 }
 
-.news-item-tag{
+.news-item-tag {
   font-size: var(--small-screen-em-small);
-  color:rgb(170, 170, 170);
+  color: rgb(170, 170, 170);
   margin-right: 2vw;
 }
 
-.tags{
+.tags {
   font-size: var(--small-screen-em-small);
   color: var(--blue-color);
 }
 
 /*Form*/
-legend{
+legend {
   font-weight: bold;
 }
 
-select{
+select {
   width: 20vw;
-
 }
 
-input{
+input {
   width: 22.5vw;
-
 }
 
-input[type=radio]{
+input[type="radio"] {
   width: 10vw;
 }
 
-input[type=text]{
+input[type="text"] {
   width: 80vw;
 }
 
-label{
+label {
   width: 15vw;
   color: var(--blue-color);
 }
 
-.btn-container{  
+.btn-container {
   padding-bottom: 20vh;
 }
 
-.btn-touch{
+.btn-touch {
   background-color: rgb(185, 185, 185, 0.1);
   border-radius: 5px;
   border: 0;
@@ -202,22 +202,18 @@ label{
   z-index: 10;
   font-size: 1em;
   margin-bottom: 2vh;
-
 }
-
 
 /* Footer */
 .no-footer {
-  height: 87.5vh;  
+  height: 87.5vh;
   overflow: scroll;
-  scrollbar-width: none;  /* Firefox */
+  scrollbar-width: none; /* Firefox */
 }
 
 .no-footer::-webkit-scrollbar {
   display: none;
 }
-
-
 
 footer {
   position: fixed;
@@ -239,94 +235,89 @@ footer {
 .footer-icon {
   font-size: 1.5em;
   margin-bottom: 2vh;
-  color:var(--blue-color);
+  color: var(--blue-color);
 }
 
-embed{
+embed {
   z-index: -1;
   position: relative;
 }
 
-.on-touch{
+.on-touch {
   position: fixed;
   background-color: rgb(185, 185, 185, 0.1);
   border-radius: 50%;
   width: 12.5vw;
   height: 12.5vw;
- 
+
   z-index: 10;
 }
 
-.to-next{
-  right:2.5vw;
+.to-next {
+  right: 2.5vw;
   bottom: 13vh;
 }
-.to-previous{
-  left:2.5vw;
+.to-previous {
+  left: 2.5vw;
   bottom: 13vh;
 }
 
-
-
-
-.previous-next{
- color:rgb(0, 0, 55, 0.3);
- font-size: calc(var(--small-screen-em-normal)*2);
- z-index: -1;
- /* width: 3vw; */
+.previous-next {
+  color: rgb(0, 0, 55, 0.3);
+  font-size: calc(var(--small-screen-em-normal) * 2);
+  z-index: -1;
+  /* width: 3vw; */
 }
-
 
 /* For pdf */
 
 /* Mobile screens vertical */
 
-@media (min-height: 701px){
+@media (min-height: 701px) {
   .react-pdf__Page__canvas {
     margin: 0 0 0 -2.5vw;
     width: 100vw !important;
     height: 144vw !important;
   }
-  .react-pdf__Document{
+  .react-pdf__Document {
     margin-bottom: 12.5vh;
     margin-top: 6.5vh;
   }
 }
 
-@media (max-height: 700px){
+@media (max-height: 700px) {
   .react-pdf__Page__canvas {
     margin: 0 0 0 -2.5vw;
     width: 100vw !important;
     height: auto !important;
   }
-  .react-pdf__Document{
+  .react-pdf__Document {
     margin-bottom: 5.5vh;
     margin-top: 6.5vh;
   }
 }
 
-.share{
+.share {
   font-size: var(--small-screen-em-normal);
   color: var(--blue-color);
-  cursor:pointer;
+  cursor: pointer;
 }
-
 
 /* Settings page */
 .settings-icon {
   font-size: 2em;
-  color:var(--blue-color);
+  color: var(--blue-color);
 }
 
 .sessions-li {
   height: 4vh;
   display: flex;
   width: 9vw;
-  justify-content:space-between;
+  justify-content: space-between;
   align-items: center;
 }
 
-@media (min-width: 1200px){
+@media (min-width: 1200px) {
   .sessions-li {
     width: 7.5vw;
   }
@@ -337,7 +328,7 @@ embed{
 }
 
 .sessions-li > a:visited {
-  color:var(--blue-color);
+  color: var(--blue-color);
 }
 
 .download-icon {
@@ -357,26 +348,30 @@ embed{
   color: rgb(127, 4, 29);
 }
 
-.rotate{
-  -webkit-animation:spin 4s linear infinite;
-  -moz-animation:spin 4s linear infinite;
-  animation:spin 4s linear infinite;
+.rotate {
+  -webkit-animation: spin 4s linear infinite;
+  -moz-animation: spin 4s linear infinite;
+  animation: spin 4s linear infinite;
 }
 
-@-moz-keyframes spin { 
-  100% { -moz-transform: rotate(360deg); } 
+@-moz-keyframes spin {
+  100% {
+    -moz-transform: rotate(360deg);
+  }
 }
-@-webkit-keyframes spin { 
-  100% { -webkit-transform: rotate(360deg); } 
+@-webkit-keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
 }
-@keyframes spin { 
-  100% { 
-      -webkit-transform: rotate(360deg); 
-      transform:rotate(360deg); 
-  } 
+@keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
 }
 
-.language-selector{
+.language-selector {
   margin: 1vh 1vw 0 0;
   padding: 0 0.5em;
   width: 22.5vw;
@@ -390,16 +385,14 @@ embed{
   border-width: 0;
 }
 
-.language-selected{
+.language-selected {
   background-color: var(--blue-color);
   color: white;
 }
 
-
-.only-wider-screen{
-  display:none;
+.only-wider-screen {
+  display: none;
 }
-
 
 /* DESKTOP VIEW*/
 
@@ -412,79 +405,81 @@ embed{
   background-color: rgb(255, 255, 255, 0.8);
 }
 
+.phone-hide {
+  display: none;
+}
 
+@media (min-width: 1000px) {
+  .phone-hide {
+    display: inherit;
+  }
 
-@media (min-width: 1000px){
-
-  .only-wider-screen{
-    display:flex;
+  .only-wider-screen {
+    display: flex;
   }
 
   /* Tags */
 
-  .min-height-1em{
+  .min-height-1em {
     min-height: 1em;
     margin-top: 1.5vh;
   }
-  .max-vw-tags-1{
-      width: 70vw;
+  .max-vw-tags-1 {
+    width: 70vw;
   }
-  .margin-right-tag{
+  .margin-right-tag {
     margin-right: 5vw;
   }
-  .max-vw-tags-2{
-    width: 30vw;  
+  .max-vw-tags-2 {
+    width: 30vw;
   }
 
-
-  .news-item-tag{
+  .news-item-tag {
     font-size: 0.8em;
-    color:rgb(170, 170, 170);
+    color: rgb(170, 170, 170);
     margin-right: 2vw;
   }
-  
-  .tags{
+
+  .tags {
     font-size: 0.8em;
     color: var(--blue-color);
   }
   /*Form*/
 
-  .vw-35{
+  .vw-35 {
     width: 25vw;
   }
-  fieldset{
-    width: 75vw
+  fieldset {
+    width: 75vw;
   }
-  
-  legend{
+
+  legend {
     font-weight: bold;
   }
 
-  select{
+  select {
     width: 15vw;
     height: 25vh;
-
   }
 
-  input{
+  input {
     width: 15vw;
-
   }
 
-  input[type=radio]{
+  input[type="radio"] {
     width: 10vw;
   }
 
-  input[type=text]{
+  input[type="text"] {
     width: 60vw;
   }
 
-  label{
+  label {
     width: 5vw;
     color: var(--blue-color);
   }
 
-  .btn-container{  
+  .btn-container {
     /* position: fixed;
     top: 3.5vh;
     left: 15vw; */
@@ -492,7 +487,7 @@ embed{
     margin-top: 2.5vh;
   }
 
-  .btn-touch{
+  .btn-touch {
     background-color: rgb(185, 185, 185, 0.1);
     border-radius: 5px;
     border: 0;
@@ -503,19 +498,18 @@ embed{
     z-index: 10;
     font-size: 1em;
     margin-bottom: 2vh;
-  
   }
 
-  .no-footer{
+  .no-footer {
     margin-left: 10vw;
     height: 100vh;
     margin-bottom: 2.5vh;
   }
 
-  .margin-left{
+  .margin-left {
     margin-left: 10vw;
   }
-  .padding-left{
+  .padding-left {
     padding-left: 10vw;
   }
 
@@ -531,48 +525,45 @@ embed{
     border-top: none;
     color: rgb(0, 0, 30);
     text-align: center;
-  
+
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
   }
-  
+
   /* PDFs*/
   .react-pdf__Page__canvas {
     margin: 0 0 0 5vw;
     width: 90vw !important;
     height: auto !important;
   }
-  .react-pdf__Document{
+  .react-pdf__Document {
     margin-bottom: 12.5vh;
     margin-top: 12.5vh;
   }
 
+  /* navigation*/
+  .on-touch {
+    position: fixed;
+    background-color: rgb(185, 185, 185, 0.1);
+    border-radius: 50%;
+    width: 4vw;
+    height: 4vw;
 
-/* navigation*/
-.on-touch{
-  position: fixed;
-  background-color: rgb(185, 185, 185, 0.1);
-  border-radius: 50%;
-  width: 4vw;
-  height: 4vw;
- 
-  z-index: 10;
-}
+    z-index: 10;
+  }
 
-.to-previous{
-  left:8vw;
-  bottom: 35vh;
-}
-.to-next{
-  right: 3vw;
-  bottom: 35vh;
-}
+  .to-previous {
+    left: 8vw;
+    bottom: 35vh;
+  }
+  .to-next {
+    right: 3vw;
+    bottom: 35vh;
+  }
 
-.language-selector{
-  width: 7.5vw;
+  .language-selector {
+    width: 7.5vw;
+  }
 }
-
-}
-
