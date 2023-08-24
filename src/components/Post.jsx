@@ -3,7 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { FaTag, FaIndustry, FaLocationArrow } from "react-icons/fa";
 import Tags from "./Tags";
 import PressReaderContext from "../contexts/PressReaderContext";
-
+import ClipboardContext from "../contexts/ClipboardContext";
 import {
   MdNavigateBefore,
   MdNavigateNext,
@@ -20,15 +20,17 @@ const Post = () => {
     setDataToShare,
     desktop,
     URLFromSize,
-    pdfFiles
+    pdfFiles,
   } = useContext(PressReaderContext);
 
-    // get the focus for usage of onKeyDown
-    const ref = useRef(null);
+  const { writeInClipboard } = useContext(ClipboardContext);
 
-    useEffect(() => {
-      ref.current.focus();
-    }, []);
+  // get the focus for usage of onKeyDown
+  const ref = useRef(null);
+
+  useEffect(() => {
+    ref.current.focus();
+  }, []);
 
   const [pdfContent, setPdfContent] = useState();
 
@@ -38,19 +40,17 @@ const Post = () => {
 
   const navigate = useNavigate();
 
-
   const moveTo = (sign) => {
-    // console.log(sign);
-    setPostSelected(data[indexItem + 1 * sign].id);
+    const index = indexItem + 1 * sign;
+    setPostSelected(data[index].id);
     setDataToShare({
       title: "PressReader",
-      text: `${data[indexItem + 1 * sign].date} - ${
-        data[indexItem + 1 * sign].source
-      } - ${data[indexItem + 1 * sign].title}`,
-      url: data[indexItem + 1 * sign].url2,
+      text: `${data[index].date} - ${data[index].source} - ${data[index].title}`,
+      url: data[index].url2,
     });
+    writeInClipboard(data[index]);
     navigate(`/post/${data[indexItem + 1 * sign].id}`);
-  }
+  };
 
   const handleTouch = (ev) => {
     let el = ev.target;
@@ -60,7 +60,6 @@ const Post = () => {
     const sign = el.classList.value.includes("to-next") ? 1 : -1;
 
     moveTo(sign);
-    
   };
 
   /* Handling of the onKeyDown event */
@@ -69,8 +68,12 @@ const Post = () => {
       moveTo(-1);
     } else if (ev.keyCode === 39) {
       moveTo(1);
-    } 
+    }
   };
+
+  useEffect(() => {
+    writeInClipboard(data[indexItem]);
+  });
 
   useEffect(() => {
     const fetchData = async (url) => {
@@ -106,12 +109,11 @@ const Post = () => {
           fetchData(item.url2).then((data) => setPdfContent(data));
         });
     } else {
-      setPdfContent(pdfFiles.filter(file => file.name.includes(item.title))[0])
+      setPdfContent(
+        pdfFiles.filter((file) => file.name.includes(item.title))[0]
+      );
     }
   }, [URLFromSize, desktop, item, pdfFiles]);
-
-
-
 
   return (
     // ref, tabIndex are necessary to make use of onKeyDown
@@ -120,7 +122,7 @@ const Post = () => {
         className="horizontal align-items-center padding-left upper-tags"
         style={{ justifyContent: "space-between", paddingBottom: "1.5vh" }}
       >
-        <div className="horizontal align-items-center min-height-1em" >
+        <div className="horizontal align-items-center min-height-1em">
           {!!item.tags && <FaTag className="news-item-tag " />}
           <Tags tags={item.tags} type="1" />
         </div>

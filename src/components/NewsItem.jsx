@@ -10,7 +10,7 @@ import { MdOutlineArticle, MdOutlineLink } from "react-icons/md";
 const NewsItem = ({ item }) => {
   const { setPostSelected, setDataToShare, postSelected } =
     useContext(PressReaderContext);
-  const { writeTextInClipboard, writeInClipBoard } =
+  const { writeTextInClipboard, writeInClipboard } =
     useContext(ClipboardContext);
   const navigate = useNavigate();
 
@@ -39,13 +39,11 @@ const NewsItem = ({ item }) => {
 
   useMountEffect(executeScroll); // Scroll on mount
 
-  const handleTitleClick =
-    ({ title, date, source, url2 }) =>
-    (ev) => {
-      ev.stopPropagation();
-      writeInClipBoard(title, date, source, url2);
-      // readFromClipboard();
-    };
+  const handleTitleClick = (item) => (ev) => {
+    ev.stopPropagation();
+    writeInClipboard(item);
+    // readFromClipboard();
+  };
 
   const handleLinkClick =
     ({ url2 }) =>

@@ -12,7 +12,7 @@ export const ClipboardContextProvider = ({ children }) => {
       });
   };
 
-  const writeInClipBoard = (title, date, source, url2) => {
+  const writeInClipboard = ({ title, date, source, url2 }) => {
     const content = `<a href="${url2}" target="_blank" rel="noopener noreferrer">${title} (${source}, ${date.slice(
       0,
       4
@@ -53,7 +53,7 @@ export const ClipboardContextProvider = ({ children }) => {
 
   return (
     <ClipboardContext.Provider
-      value={{ writeTextInClipboard, writeInClipBoard }}
+      value={{ writeTextInClipboard, writeInClipboard }}
     >
       {children}
     </ClipboardContext.Provider>
