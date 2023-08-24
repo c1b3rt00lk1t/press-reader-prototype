@@ -7,30 +7,33 @@ import { LanguageContextProvider } from "./contexts/LanguageContext.jsx";
 import Search from "./pages/Search.jsx";
 import Settings from "./pages/Settings.jsx";
 import Main from "./pages/Main.jsx";
+import { ClipboardContextProvider } from "./contexts/ClipboardContext.jsx";
 
 function App() {
   return (
     <>
       <LanguageContextProvider>
         <PressReaderContextProvider>
-          <Router>
-            <Routes>
-              <Route
-                exact
-                path="/"
-                element={
-                  <>
-                    <Main />
-                  </>
-                }
-              />
-              <Route path="/search" element={<Search />} />
-              <Route path="/settings" element={<Settings />} />
-              <Route path="/post/:id" element={<Post />} />
-              <Route path="*" element={<h1>404 Not found</h1>} />
-            </Routes>
-            <Footer />
-          </Router>
+          <ClipboardContextProvider>
+            <Router>
+              <Routes>
+                <Route
+                  exact
+                  path="/"
+                  element={
+                    <>
+                      <Main />
+                    </>
+                  }
+                />
+                <Route path="/search" element={<Search />} />
+                <Route path="/settings" element={<Settings />} />
+                <Route path="/post/:id" element={<Post />} />
+                <Route path="*" element={<h1>404 Not found</h1>} />
+              </Routes>
+              <Footer />
+            </Router>
+          </ClipboardContextProvider>
         </PressReaderContextProvider>
       </LanguageContextProvider>
     </>
