@@ -4,6 +4,7 @@ import { FaTag, FaIndustry, FaLocationArrow } from "react-icons/fa";
 import { useContext } from "react";
 import PressReaderContext from "../contexts/PressReaderContext";
 import { useNavigate } from "react-router-dom";
+import { MdOutlineArticle, MdOutlineLink } from "react-icons/md";
 
 const NewsItem = ({ item }) => {
   const { setPostSelected, setDataToShare, postSelected } =
@@ -35,16 +36,63 @@ const NewsItem = ({ item }) => {
 
   useMountEffect(executeScroll); // Scroll on mount
 
+  const writeTextInClipboard = (text) => {
+    navigator.clipboard
+      .writeText(text)
+      .then(() => {
+        // console.log("Text copied to clipboard");
+      })
+      .catch((err) => {
+        console.error("Failed to copy text: ", err);
+      });
+  };
+
+  const handleTitleClick =
+    ({ title, date, source }) =>
+    (ev) => {
+      ev.stopPropagation();
+      writeTextInClipboard(
+        `${title} (${source}, ${date.slice(0, 4)}-${date
+          .slice(5, 6)
+          .padStart(2, "0")}-${date.slice(7, 8).padStart(2, "0")})`
+      );
+    };
+
+  const handleLinkClick =
+    ({ url2 }) =>
+    (ev) => {
+      ev.stopPropagation();
+      writeTextInClipboard(`${url2}`);
+    };
+
   return (
-    <li
-      onClick={handleClickOnItem}
-      ref={myRef}
-      className="news-item"
-    >
+    <li onClick={handleClickOnItem} ref={myRef} className="news-item">
       <div>
         <div className="horizontal align-items-center margin-lines min-height-1em">
           {!!item.tags && <FaTag className="news-item-tag " />}
           <Tags tags={item.tags} type="1" />
+          <button
+            onClick={handleTitleClick(item)}
+            style={{
+              backgroundColor: "white",
+              color: "darkblue",
+              border: "none",
+              cursor: "pointer",
+            }}
+          >
+            <MdOutlineArticle style={{ fontSize: "1.1rem" }}></MdOutlineArticle>
+          </button>{" "}
+          <button
+            onClick={handleLinkClick(item)}
+            style={{
+              backgroundColor: "white",
+              color: "darkblue",
+              border: "none",
+              cursor: "pointer",
+            }}
+          >
+            <MdOutlineLink style={{ fontSize: "1.1rem" }}></MdOutlineLink>
+          </button>
         </div>
         <div className="news-item-title line-clamp-2 margin-lines padding-lines">
           {item.title}
