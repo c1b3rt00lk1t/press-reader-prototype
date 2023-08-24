@@ -39,9 +39,7 @@ const NewsItem = ({ item }) => {
   const writeTextInClipboard = (text) => {
     navigator.clipboard
       .writeText(text)
-      .then(() => {
-        // console.log("Text copied to clipboard");
-      })
+      .then(() => {})
       .catch((err) => {
         console.error("Failed to copy text: ", err);
       });
