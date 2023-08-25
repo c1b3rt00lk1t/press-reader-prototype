@@ -16,8 +16,8 @@ export const ClipboardContextProvider = ({ children }) => {
     const content = `<a href="${url2}" target="_blank" rel="noopener noreferrer">${title} (${source}, ${date.slice(
       0,
       4
-    )}-${date.slice(5, 6).padStart(2, "0")}-${date
-      .slice(7, 8)
+    )}-${date.slice(4, 6).padStart(2, "0")}-${date
+      .slice(6, 8)
       .padStart(2, "0")})</a>`;
 
     try {
