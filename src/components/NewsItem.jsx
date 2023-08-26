@@ -86,7 +86,7 @@ const NewsItem = ({ item }) => {
           {item.title}
         </div>
         <div className="news-item-source margin-lines">
-          {item.date} - {item.source}
+          {item.date} - {item.source} - {`session: ${item.session}`}
         </div>
 
         <div className="horizontal margin-lines">
