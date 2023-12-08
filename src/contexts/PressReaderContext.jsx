@@ -493,17 +493,17 @@ export const PressReaderContextProvider = ({ children }) => {
         const sessionsInStorage = await Promise.all(
           sessionList
             .split(",")
-            .filter(
-              async (session) =>
-                await getIdb("PrReSessionList", `PrRe_data_${session}`)
-            )
             .map(async (session) =>
               JSON.parse(
-                await getIdb("PrReSessionList", `PrRe_data_${session}`)
+                (await getIdb("PrReSessionList", `PrRe_data_${session}`)) ||
+                  "{}"
               )
             )
         );
-        handleDataFromDBSessions(sessionsInStorage);
+
+        handleDataFromDBSessions(
+          sessionsInStorage.filter((session) => session.length)
+        );
       }
     }
     fetchData();
