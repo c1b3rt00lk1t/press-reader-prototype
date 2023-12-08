@@ -26,7 +26,11 @@ const getDataFromDB = (path) => (handleDataFromDB) => {
   const refDB = ref(database, path);
   onValue(refDB, (snapshot) => {
     const data = snapshot.val();
-    handleDataFromDB(data);
+    if (data) {
+      handleDataFromDB(data);
+    } else {
+      console.log(`There is no data in ${path}`);
+    }
   });
 };
 
