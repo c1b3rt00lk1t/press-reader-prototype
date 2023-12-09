@@ -40,10 +40,23 @@ The app leverages on the following technical pilars:
 - Pagination is achieved using <code>react-router-dom</code>.
 - A <code>serviceWorker</code> is implemented with <code>workbox</code> with a <code>CacheFirst</code> strategy.
 - The data is persisted using an <code>indexedeDB</code> implementation based on <code>Promises</code>.
+- The pdfs are rendered as images using the <code>react-pdf</code> library.
+- Pdfs are donwloaded from primary or secondary Firebase projects depending on the size, on the prefetch context and on the availability of the projects, in order to balance the load and remain in the free tier.
 
 ### Functional description
 
-The app allows a given set of pdfs in a group of folders to be managed in the following ways:
+The app allows a user to access a set of pdfs tagged using <a href="https://github.com/c1b3rt00lk1t/press-uploader-prototype/">Press Uploader</a>:
+
+- The documents can be searched and filtered by session, date range, zone, sector, tag or free text with inclusive of exclusive filters.
+- The result of the search is displayed in a row, the user being able to go back and forward to the list and through the pdfs.
+- The display includes the tags and the pdf is rendered as an image.
+- In each display, an url icon allows the user to access the source pdf.
+- In each display, the basic data of the pdf (title and url) is copied to the clipboard to make it straightforward to paste this info outside the app at any point in time.
+- The app or a specific pdf document can be shared via other platforms such as Telegram or Whatsapp.
+- In the desktop set up, the app can work with the local files without connecting.
+- In the mobile set up, the app can still work offline with the prefetched data.
+- The level of prefetch can be adjusted in the Settings page.
+- The language of the app can also be adjusted in the Settings page.
 
 <p align="center">
 <img src="https://github.com/c1b3rt00lk1t/press-reader-prototype/blob/demo/images/reader_flow.gif?raw=true" width="50%" >
