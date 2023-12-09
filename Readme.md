@@ -46,5 +46,5 @@ The app leverages on the following technical pilars:
 The app allows a given set of pdfs in a group of folders to be managed in the following ways:
 
 <p align="center">
-<img src="https://github.com/c1b3rt00lk1t/press-reader-prototype/blob/demo/images/reader_flow.gif?raw=true" width="80%" >
+<img src="https://github.com/c1b3rt00lk1t/press-reader-prototype/blob/demo/images/reader_flow.gif?raw=true" width="50%" >
 </p>
