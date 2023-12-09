@@ -57,6 +57,8 @@ The app allows a user to access a set of pdfs tagged using <a href="https://gith
 - In the mobile set up, the app can still work offline with the prefetched data.
 - The level of prefetch can be adjusted in the Settings page.
 - The language of the app can also be adjusted in the Settings page.
+  <br></br>
+  <br></br>
 
 <p align="center">
 <img src="https://github.com/c1b3rt00lk1t/press-reader-prototype/blob/demo/images/reader_flow.gif?raw=true" width="50%" >
