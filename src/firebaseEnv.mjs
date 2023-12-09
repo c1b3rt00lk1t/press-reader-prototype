@@ -1,23 +1,23 @@
 const firebaseConfig_DEV = {
-  apiKey: "AIzaSyDUy1hFE-VOkWqOS0FmeNakeqp531kVdx0",
-  authDomain: "press-uploader-2.firebaseapp.com",
+  apiKey: "AIzaSyA_-oNiXKfLQ3xojZ2uIVKzB30Y28M95jY",
+  authDomain: "press-uploader-2348f.firebaseapp.com",
   databaseURL:
-    "https://press-uploader-2-default-rtdb.europe-west1.firebasedatabase.app",
-  projectId: "press-uploader-2",
-  storageBucket: "press-uploader-2.appspot.com",
-  messagingSenderId: "75363353539",
-  appId: "1:75363353539:web:11077c15544e85eed47376",
+    "https://press-uploader-2348f-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "press-uploader-2348f",
+  storageBucket: "press-uploader-2348f.appspot.com",
+  messagingSenderId: "687171451792",
+  appId: "1:687171451792:web:f844e327108222c8389115",
 };
 
 const firebaseConfig_PRD = {
-  apiKey: "AIzaSyDlDzlrEY-VkPZdNkEZOTSbrLJcL2LoQTo",
-  authDomain: "press-uploader.firebaseapp.com",
-  projectId: "press-uploader",
-  storageBucket: "press-uploader.appspot.com",
-  messagingSenderId: "496555378224",
+  apiKey: "AIzaSyA_-oNiXKfLQ3xojZ2uIVKzB30Y28M95jY",
+  authDomain: "press-uploader-2348f.firebaseapp.com",
   databaseURL:
-    "https://press-uploader-default-rtdb.europe-west1.firebasedatabase.app/",
-  appId: "1:496555378224:web:323bd87185f34dfe5c8ff5",
+    "https://press-uploader-2348f-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "press-uploader-2348f",
+  storageBucket: "press-uploader-2348f.appspot.com",
+  messagingSenderId: "687171451792",
+  appId: "1:687171451792:web:f844e327108222c8389115",
 };
 
 const isDevelopment = process.env.NODE_ENV === "development";
