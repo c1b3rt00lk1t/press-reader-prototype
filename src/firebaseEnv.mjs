@@ -24,4 +24,4 @@ const isDevelopment = process.env.NODE_ENV === "development";
 
 export const firebaseConfig = isDevelopment
   ? firebaseConfig_PRD
-  : firebaseConfig_PRD;
+  : firebaseConfig_DEV;
