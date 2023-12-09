@@ -14,9 +14,6 @@ import {
 import LanguageContext from "../contexts/LanguageContext";
 import { set as setIdb, get as getIdb } from "../indexedDB/indexedDB.js";
 
-//  setIdb("PrReSessionList", "PrRe_data", "20220403,20220515,20220605,20220619,20220703,20220717,20220819,20220904,20220918,20221002,20221016,20221120,20221204,20230108,20230122,20230205,20230219,20230305,20230319,20230402,20230507,20230521,20230604,20230611,20230702");
-// getIdb("PrReSessionList", "PrRe_data").then((res) => console.log("getIdb", res));
-
 const PressReaderContext = createContext();
 
 export const PressReaderContextProvider = ({ children }) => {
@@ -514,17 +511,10 @@ export const PressReaderContextProvider = ({ children }) => {
   }, [handleDataFromDBSessionList]);
 
   useEffect(() => {
-    // const sessionListInLocalStorage = sessionListSorted.filter( session => window.localStorage.getItem(`PrRe_data_${session}`));
-    // const sessionListNotInLocalStorage = sessionListSorted.filter( session => !window.localStorage.getItem(`PrRe_data_${session}`));
-    // console.log('sessionListNotInLocalStorage',sessionListNotInLocalStorage)
-    // console.log('sessionListInLocalStorage',sessionListInLocalStorage)
     sessionListSorted.forEach((session) =>
       localStorage.removeItem(`PrRe_data_${session}`)
     );
     localStorage.removeItem(`PrRe_data`);
-    // for (let session of sessionListSorted){
-    //   getDataFromDBOneSession(session)(handleDataFromDBOneSession)
-    // }
     sessionListSorted.forEach((session) =>
       getDataFromDBOneSession(session)(handleDataFromDBOneSession)
     );
@@ -586,14 +576,14 @@ export const PressReaderContextProvider = ({ children }) => {
   const [dataToShare, setDataToShare] = useState({
     title: "PressReader",
     text: texts[language].share.msg,
-    url: "https://tourmaline-unicorn-2c62ec.netlify.app",
+    url: "https://press-reader-demo.web.app/",
   });
 
   const handleList = () => {
     setDataToShare({
       title: "PressReader",
       text: texts[language].share.msg,
-      url: "https://tourmaline-unicorn-2c62ec.netlify.app",
+      url: "https://press-reader-demo.web.app/",
     });
   };
 
@@ -653,8 +643,6 @@ export const PressReaderContextProvider = ({ children }) => {
         setDownLoadProgress,
         desktop,
         setDesktop,
-        // fetchOnlyUpTo,
-        // setFetchOnlyUpTo,
         URLFromSize,
         handleSelectFolder,
         pdfFiles,
