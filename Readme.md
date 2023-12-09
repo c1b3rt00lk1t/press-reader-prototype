@@ -44,3 +44,5 @@ The app leverages on the following technical pilars:
 ### Functional description
 
 The app allows a given set of pdfs in a group of folders to be managed in the following ways:
+
+![app functional flow](https://github.com/c1b3rt00lk1t/press-reader-prototype/blob/demo/images/reader_flow.gif?raw=true)
