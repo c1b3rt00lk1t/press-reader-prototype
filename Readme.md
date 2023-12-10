@@ -25,7 +25,7 @@ A working version of the mobile/desktop app can be found <a href="https://press-
 
 The app leverages on the following technical pillars:
 
-- The app is written in <code>Javascript</code> and <code>JSX</code> using the <code>React</code> library, initially bootstraped with create-react-app.
+- The app is written in <code>Javascript</code> and <code>JSX</code> using the <code>React</code> library, initially bootstraped with <code>create-react-app</code>.
 - The state is managed combining <code>useState</code> with <code>createContext()</code> provided with a functional component that takes <code>children</code> as props and returns the <code>context.Provider</code>.
 - The resulting contexts are consumed via <code>useContext</code>.
 - <code>ClipboardContext</code> is used to easily extract data from the documents and being able to paste it outside the app.
