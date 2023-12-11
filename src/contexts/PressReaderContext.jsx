@@ -109,6 +109,8 @@ export const PressReaderContextProvider = ({ children }) => {
   const [flatItems, setFlatItems] = useState({});
 
   useEffect(() => {
+    if (!dictionary.zones || !dictionary.tags || !dictionary.sectors) return;
+
     // temp variables for destructring any of the three trees
     const zones = [];
     const sectors = [];
