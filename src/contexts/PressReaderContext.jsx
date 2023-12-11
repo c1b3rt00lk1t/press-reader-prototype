@@ -118,6 +118,11 @@ export const PressReaderContextProvider = ({ children }) => {
 
     // generic recursive function for destructring any of the three trees
     const destructureItems = (target) => (path) => (object) => {
+      if (!object || typeof object !== "object") {
+        // Handle the case when object is not a valid object
+        return [];
+      }
+
       for (let [prop, value] of Object.entries(object)) {
         if (typeof value === "object") {
           // `${path}/${prop}` is kept in order to unfold also the target subfolder
