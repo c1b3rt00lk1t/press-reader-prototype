@@ -15,6 +15,7 @@ const Footer = () => {
   return (
     <footer>
       <Link
+        aria-label="footer-search"
         onClick={() => {
           document.getElementsByTagName("meta").viewport.content =
             "width=device-width, initial-scale=1, maximum-scale=1";
@@ -24,6 +25,7 @@ const Footer = () => {
         <IoMdSearch className="footer-icon" />
       </Link>
       <Link
+        aria-label="footer-list"
         onClick={() => {
           document.getElementsByTagName("meta").viewport.content =
             "width=device-width, initial-scale=1";
@@ -33,10 +35,10 @@ const Footer = () => {
       >
         <IoMdEye className="footer-icon" />
       </Link>
-      <div onClick={handleShare}>
+      <div onClick={handleShare} aria-label="footer-share">
         <IoMdShareAlt className="footer-icon" />
       </div>
-      <Link to="/settings">
+      <Link to="/settings" aria-label="footer-settings">
         <IoMdSettings className="footer-icon" />
       </Link>
     </footer>
