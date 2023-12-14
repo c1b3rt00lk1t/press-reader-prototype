@@ -1,6 +1,7 @@
 import React from "react";
 import { BsArrowDownCircle, BsCheckCircle, BsXCircle } from "react-icons/bs";
 import { BiLoaderCircle } from "react-icons/bi";
+import PropTypes from "prop-types";
 
 const DownloadSession = ({
   fetchData,
@@ -27,9 +28,18 @@ const DownloadSession = ({
 
         <div onClick={fetchData}> {texts.fetchLastSession}</div>
       </div>
-      <span>{texts.lastFetched}: {lastSessionFetched}</span>
+      <span>
+        {texts.lastFetched}: {lastSessionFetched}
+      </span>
     </div>
   );
+};
+
+DownloadSession.propTypes = {
+  fetchData: PropTypes.func.isRequired,
+  lastSessionFetched: PropTypes.string.isRequired,
+  downloadProgress: PropTypes.string.isRequired,
+  texts: PropTypes.object.isRequired,
 };
 
 export default DownloadSession;
