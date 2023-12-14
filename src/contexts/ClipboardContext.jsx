@@ -1,4 +1,6 @@
 import { createContext } from "react";
+import React from "react";
+import { PropTypes } from "prop-types";
 
 const ClipboardContext = createContext();
 
@@ -58,6 +60,10 @@ export const ClipboardContextProvider = ({ children }) => {
       {children}
     </ClipboardContext.Provider>
   );
+};
+
+ClipboardContextProvider.propTypes = {
+  children: PropTypes.node.isRequired,
 };
 
 export default ClipboardContext;
