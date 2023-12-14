@@ -1,4 +1,4 @@
-describe("template spec", () => {
+describe("Test Press Reader", () => {
   beforeEach(() => {
     cy.viewport(600, 900);
     cy.visit("http://localhost:3000/");
