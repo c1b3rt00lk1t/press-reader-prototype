@@ -42,8 +42,9 @@ The app leverages on the following technical pillars:
 - A <code>serviceWorker</code> is implemented with <code>workbox</code> with a <code>CacheFirst</code> strategy.
 - The data is persisted using an <code>indexedeDB</code> implementation based on <code>Promises</code>.
 - The pdfs are rendered as images using the <code>react-pdf</code> library.
+- Static check with <code>eslint</code> and prop validation with <code>prop-types</code>
 - End-to-end testing is done with Cypress.
-- Pdfs are donwloaded from primary or secondary Firebase projects depending on the size, on the prefetch context and on the availability of the projects, in order to balance the load and remain in the free tier.
+- Pdfs are downloaded from primary or secondary Firebase projects depending on the size, on the prefetch context and on the availability of the projects, in order to balance the load and remain in the free tier.
 
 ### Functional description
 
