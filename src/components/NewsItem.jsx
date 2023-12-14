@@ -6,6 +6,7 @@ import PressReaderContext from "../contexts/PressReaderContext";
 import ClipboardContext from "../contexts/ClipboardContext";
 import { useNavigate } from "react-router-dom";
 import { MdOutlineArticle, MdOutlineLink } from "react-icons/md";
+import Proptypes from "prop-types";
 
 const NewsItem = ({ item }) => {
   const { setPostSelected, setDataToShare, postSelected } =
@@ -102,6 +103,10 @@ const NewsItem = ({ item }) => {
       </div>
     </li>
   );
+};
+
+NewsItem.propTypes = {
+  item: Proptypes.object,
 };
 
 export default NewsItem;

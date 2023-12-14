@@ -1,9 +1,10 @@
-import React from 'react'
+import React from "react";
+import PropTypes from "prop-types";
 
-const SearchTime = ({selectStartDate,selectEndDate,filter, texts}) => {
+const SearchTime = ({ selectStartDate, selectEndDate, filter, texts }) => {
   return (
     <fieldset>
-    <legend>{texts.range}</legend>
+      <legend>{texts.range}</legend>
       <div className="horizontal justify-items-space-around ">
         <div className="horizontal justify-items-space-around vw-35">
           <label htmlFor="start-date">{texts.start}</label>
@@ -24,10 +25,15 @@ const SearchTime = ({selectStartDate,selectEndDate,filter, texts}) => {
           />
         </div>
       </div>
+    </fieldset>
+  );
+};
 
-  </fieldset>
+SearchTime.propTypes = {
+  selectStartDate: PropTypes.func.isRequired,
+  selectEndDate: PropTypes.func.isRequired,
+  filter: PropTypes.object.isRequired,
+  texts: PropTypes.object.isRequired,
+};
 
-  )
-}
-
-export default SearchTime
+export default SearchTime;

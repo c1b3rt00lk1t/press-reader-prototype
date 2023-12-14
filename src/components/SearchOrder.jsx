@@ -1,8 +1,9 @@
 import React from "react";
 import { useContext } from "react";
 import PressReaderContext from "../contexts/PressReaderContext";
+import PropTypes from "prop-types";
 
-const SearchOrder = ({texts}) => {
+const SearchOrder = ({ texts }) => {
   const { orderType, setOrderType } = useContext(PressReaderContext);
 
   const handleOrderChange = (ev) => {
@@ -47,6 +48,10 @@ const SearchOrder = ({texts}) => {
       </div>
     </fieldset>
   );
+};
+
+SearchOrder.propTypes = {
+  texts: PropTypes.object.isRequired,
 };
 
 export default SearchOrder;

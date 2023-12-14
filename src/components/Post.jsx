@@ -12,6 +12,7 @@ import {
 import PDFDocument from "./PDFDocument";
 import { ErrorBoundary } from "./ErrorBoundary";
 import Offline from "./Offline";
+import PropTypes from "prop-types";
 
 const Post = () => {
   const {
@@ -88,7 +89,7 @@ const Post = () => {
             console.log("Not found");
           }
         })
-        .catch((e) => {
+        .catch(() => {
           console.log("Connection error");
         });
     };
@@ -104,7 +105,7 @@ const Post = () => {
             fetchData(item.url2).then((data) => setPdfContent(data));
           }
         })
-        .catch((e) => {
+        .catch(() => {
           // Call on error needed to recover the cache (if exist) of the backup
           fetchData(item.url2).then((data) => setPdfContent(data));
         });
@@ -169,6 +170,15 @@ const Post = () => {
       </div>
     </div>
   );
+};
+
+Post.propTypes = {
+  setPostSelected: PropTypes.func.isRequired,
+  dataOrdered: PropTypes.array.isRequired,
+  setDataToShare: PropTypes.func.isRequired,
+  desktop: PropTypes.bool.isRequired,
+  URLFromSize: PropTypes.func.isRequired,
+  pdfFiles: PropTypes.array.isRequired,
 };
 
 export default Post;

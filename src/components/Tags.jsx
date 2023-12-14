@@ -1,9 +1,27 @@
-import React from 'react'
+import React from "react";
+import PropTypes from "prop-types";
 
-const Tags = ({tags, type, marginRight}) => {
+const Tags = ({ tags, type, marginRight }) => {
   return (
-    <div className={`tags line-clamp-1 max-vw-tags-${type} ${marginRight && "margin-right-tag"}`}>{!!tags && tags.map(a => a.toUpperCase()).sort().filter((a,i,arr) => a !== arr[i-1]).join(' , ')}</div>
-  )
-}
+    <div
+      className={`tags line-clamp-1 max-vw-tags-${type} ${
+        marginRight && "margin-right-tag"
+      }`}
+    >
+      {!!tags &&
+        tags
+          .map((a) => a.toUpperCase())
+          .sort()
+          .filter((a, i, arr) => a !== arr[i - 1])
+          .join(" , ")}
+    </div>
+  );
+};
 
-export default Tags
+Tags.propTypes = {
+  tags: PropTypes.array.isRequired,
+  type: PropTypes.string.isRequired,
+  marginRight: PropTypes.bool,
+};
+
+export default Tags;
