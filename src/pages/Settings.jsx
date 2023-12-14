@@ -6,7 +6,6 @@ import SettingToogle from "../components/SettingToogle";
 import DownloadSession from "../components/DownloadSession";
 import { BsXCircle, BsCheckCircle } from "react-icons/bs";
 
-
 const Settings = () => {
   const {
     dataOrdered,
@@ -107,7 +106,11 @@ const Settings = () => {
             setter={setDesktop}
             state={desktop}
             local="desktop"
-            text={`${texts[language].settings.desktop} ${!sessionListDownloaded.length ? texts[language].settings.selectFolder : ''}`}
+            text={`${texts[language].settings.desktop} ${
+              !sessionListDownloaded.length
+                ? texts[language].settings.selectFolder
+                : ""
+            }`}
             onlyWiderScreen={true}
             trigger={clickSelector}
             actionPending={!sessionListDownloaded.length}
@@ -124,6 +127,7 @@ const Settings = () => {
           <div className="horizontal">
             {Object.keys(texts).map((lang) => (
               <div
+                aria-label={`settings-${texts[lang].language}`}
                 key={lang}
                 onClick={handleSetLanguage}
                 id={lang}
@@ -141,17 +145,21 @@ const Settings = () => {
           <div>
             <h3>{texts[language].settings.driveDownload}</h3>
             <ul>
-            {sessionURLsSorted.map(([session, url]) => (
-              <li key={session} className="sessions-li" >
-                {sessionListDownloaded.includes(session) ? <BsCheckCircle className="download-icon download-icon-done"/> : <BsXCircle className="download-icon download-icon-missing"/>}
-                <a
-                  href={url}
-                  target="_blank"
-                  rel="noreferrer"
-                  style={{ display: "block" }}
-                >{`${session}`}</a>
-              </li>
-            ))}
+              {sessionURLsSorted.map(([session, url]) => (
+                <li key={session} className="sessions-li">
+                  {sessionListDownloaded.includes(session) ? (
+                    <BsCheckCircle className="download-icon download-icon-done" />
+                  ) : (
+                    <BsXCircle className="download-icon download-icon-missing" />
+                  )}
+                  <a
+                    href={url}
+                    target="_blank"
+                    rel="noreferrer"
+                    style={{ display: "block" }}
+                  >{`${session}`}</a>
+                </li>
+              ))}
             </ul>
           </div>
         )}
