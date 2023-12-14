@@ -16,6 +16,7 @@ A working version of the mobile/desktop app can be found <a href="https://press-
 ### Basic usage
 
 - To run the app in local: <code>$ npm run start</code>
+- To run the e2e test in local: <code>$ npm run cypress:open</code>
 
 ### Cloc stats
 
