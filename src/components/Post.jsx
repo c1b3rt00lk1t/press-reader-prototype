@@ -43,14 +43,17 @@ const Post = () => {
 
   const moveTo = (sign) => {
     const index = indexItem + 1 * sign;
-    setPostSelected(data[index].id);
-    setDataToShare({
-      title: "PressReader",
-      text: `${data[index].date} - ${data[index].source} - ${data[index].title}`,
-      url: data[index].url2,
-    });
-    writeInClipboard(data[index]);
-    navigate(`/post/${data[indexItem + 1 * sign].id}`);
+    if (data[index]) {
+      setPostSelected(data[index].id);
+      setDataToShare({
+        title: "PressReader",
+        text: `${data[index].date} - ${data[index].source} - ${data[index].title}`,
+        url: data[index].url2,
+      });
+      writeInClipboard(data[index]);
+
+      navigate(`/post/${data[indexItem + 1 * sign].id}`);
+    }
   };
 
   const handleTouch = (ev) => {
