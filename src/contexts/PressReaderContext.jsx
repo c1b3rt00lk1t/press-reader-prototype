@@ -5,6 +5,7 @@ import {
   useCallback,
   useContext,
 } from "react";
+import React from "react";
 import {
   checkConnectionFromDB,
   getDataFromDBSessionList,
@@ -13,6 +14,7 @@ import {
 } from "../firebase.js";
 import LanguageContext from "../contexts/LanguageContext";
 import { set as setIdb, get as getIdb } from "../indexedDB/indexedDB.js";
+import PropsTypes from "prop-types";
 
 const PressReaderContext = createContext();
 
@@ -268,10 +270,10 @@ export const PressReaderContextProvider = ({ children }) => {
       };
 
       const applyTimeRangeFilter = ({ filtered: data, selection }) => {
-        const startDate = !!selection.startDate
+        const startDate = selection.startDate
           ? selection.startDate.replace(/-/g, "")
           : "00000000";
-        const endDate = !!selection.endDate
+        const endDate = selection.endDate
           ? selection.endDate.replace(/-/g, "")
           : "99991231";
 
@@ -663,4 +665,7 @@ export const PressReaderContextProvider = ({ children }) => {
   );
 };
 
+PressReaderContextProvider.propTypes = {
+  children: PropsTypes.node.isRequired,
+};
 export default PressReaderContext;
