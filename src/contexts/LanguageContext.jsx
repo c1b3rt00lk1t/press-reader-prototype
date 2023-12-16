@@ -1,4 +1,6 @@
+import React from "react";
 import { createContext, useState } from "react";
+import PropsTypes from "prop-types";
 
 const LanguageContext = createContext();
 
@@ -6,7 +8,12 @@ export const LanguageContextProvider = ({ children }) => {
   const texts = {
     es: {
       language: "Castellano",
-      main: { title: "Lector", results: "resultados", warningDesktop:"modo desktop activado, clica para seleccionar una carpeta" },
+      main: {
+        title: "Lector",
+        results: "resultados",
+        warningDesktop:
+          "modo desktop activado, clica para seleccionar una carpeta",
+      },
       search: {
         title: "Buscar",
         session: "Sesión",
@@ -40,7 +47,11 @@ export const LanguageContextProvider = ({ children }) => {
     },
     en: {
       language: "English",
-      main: { title: "Reader", results: "results", warningDesktop:"desktop mode activated, click to select a folder"  },
+      main: {
+        title: "Reader",
+        results: "results",
+        warningDesktop: "desktop mode activated, click to select a folder",
+      },
       search: {
         title: "Search",
         session: "Session",
@@ -74,7 +85,12 @@ export const LanguageContextProvider = ({ children }) => {
     },
     it: {
       language: "Italiano",
-      main: { title: "Lettore", results: "risultati", warningDesktop:"modo desktop attivato, clica per selezionare una cartella"  },
+      main: {
+        title: "Lettore",
+        results: "risultati",
+        warningDesktop:
+          "modo desktop attivato, clica per selezionare una cartella",
+      },
       search: {
         title: "Cercare",
         session: "Sesione",
@@ -127,6 +143,10 @@ export const LanguageContextProvider = ({ children }) => {
       {children}
     </LanguageContext.Provider>
   );
+};
+
+LanguageContextProvider.propTypes = {
+  children: PropsTypes.node.isRequired,
 };
 
 export default LanguageContext;
