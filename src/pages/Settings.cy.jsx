@@ -5,5 +5,6 @@ import { withAppContext } from "../helpers/withAppContext";
 describe("<Settings />", () => {
   it("renders", () => {
     cy.mount(withAppContext(<Settings />));
+    cy.contains("Configuración");
   });
 });
