@@ -4,7 +4,7 @@ describe("Test Press Reader", () => {
     cy.visit("http://localhost:3000/");
   });
 
-  xit("changes pages", () => {
+  it("changes pages", () => {
     cy.get("[aria-label='footer-search']").click();
     cy.get("[aria-label='footer-list']").click();
     cy.get("[aria-label='footer-settings']").click();
