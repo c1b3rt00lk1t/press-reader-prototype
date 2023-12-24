@@ -1,3 +1,6 @@
+// cypress/support/e2e.js
+import "@cypress/code-coverage/support";
+
 describe("Test Press Reader", () => {
   beforeEach(() => {
     cy.viewport(600, 900);
