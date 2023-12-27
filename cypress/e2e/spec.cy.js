@@ -172,6 +172,8 @@ describe("Test Press Reader", () => {
 
     // Assert
     cy.findByText("Last prefetched: 20231203").should("exist");
+    cy.get(".download-error").should("not.exist");
+    cy.get(".download-completed").should("exist");
   });
 
   it("handles an error when prefetching last session in Mobile", () => {
