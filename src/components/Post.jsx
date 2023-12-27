@@ -50,7 +50,8 @@ const Post = () => {
         url: data[index].url2,
       });
       writeInClipboard(data[index]);
-
+      // Reset pdfContent to null when navigating
+      setPdfContent(null);
       navigate(`/post/${data[indexItem + 1 * sign].id}`);
     }
   };
@@ -164,7 +165,7 @@ const Post = () => {
           <MdNavigateNext className="previous-next" />
         </div>
 
-        {!!item.url && (
+        {!!item.url && !!pdfContent && (
           <ErrorBoundary>
             <PDFDocument url={pdfContent} />
           </ErrorBoundary>
