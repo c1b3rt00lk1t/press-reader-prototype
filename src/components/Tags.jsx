@@ -19,7 +19,7 @@ const Tags = ({ tags, type, marginRight }) => {
 };
 
 Tags.propTypes = {
-  tags: PropTypes.array.isRequired,
+  tags: PropTypes.array,
   type: PropTypes.string.isRequired,
   marginRight: PropTypes.bool,
 };
