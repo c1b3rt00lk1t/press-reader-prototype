@@ -14,16 +14,16 @@ const DownloadSession = ({
     <div className="horizontal justify-items-space-around">
       <div className="horizontal  align-items-center">
         {downloadProgress === "pending" && (
-          <BsArrowDownCircle className="download-icon download-icon-margin" />
+          <BsArrowDownCircle className="download-pending download-icon download-icon-margin" />
         )}
         {downloadProgress === "downloading" && (
-          <BiLoaderCircle className="download-icon rotate download-icon-margin" />
+          <BiLoaderCircle className="download-downloading download-icon rotate download-icon-margin" />
         )}
         {downloadProgress === "completed" && (
-          <BsCheckCircle className="download-icon download-icon-margin" />
+          <BsCheckCircle className="download-completed download-icon download-icon-margin" />
         )}
         {downloadProgress === "error" && (
-          <BsXCircle className="download-icon download-icon-margin" />
+          <BsXCircle className="download-error download-icon download-icon-margin" />
         )}
 
         <div onClick={fetchData}> {texts.fetchLastSession}</div>
