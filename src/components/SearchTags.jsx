@@ -14,11 +14,11 @@ const SearchTags = ({
       <legend>{title}</legend>
       <div className="horizontal justify-items-space-around ">
         <div className="vw-35  horizontal justify-items-space-around  ">
-          <label htmlFor={title}>OR</label>
+          <label htmlFor={title + "OR"}>OR</label>
           <select
             onChange={selectOR}
-            name={title}
-            id={title}
+            name={title + "OR"}
+            id={title + "OR"}
             multiple
             value={filter[type + "OR"]}
           >
@@ -31,11 +31,11 @@ const SearchTags = ({
           </select>
         </div>
         <div className="vw-35  horizontal justify-items-space-around  ">
-          <label htmlFor={title}>AND</label>
+          <label htmlFor={title + "AND"}>AND</label>
           <select
             onChange={selectAND}
-            name={title}
-            id={title}
+            name={title + "AND"}
+            id={title + "AND"}
             multiple
             value={filter[type + "AND"]}
           >
