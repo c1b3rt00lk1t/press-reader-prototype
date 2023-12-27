@@ -123,4 +123,21 @@ describe("Test Press Reader", () => {
     cy.contains("FINANCIERO");
     cy.get("[aria-label='footer-share']").click();
   });
+
+  it("enables local folder in Desktop", () => {
+    // Arrange
+    cy.viewport(1600, 900);
+    cy.get("[aria-label='footer-settings']").click();
+    cy.get("[aria-label='settings-English']").click();
+
+    // Interact
+    cy.findByText("Desktop (select a folder)").click();
+
+    // Assert
+    cy.get(".only-wider-screen svg").should(
+      "have.attr",
+      "aria-label",
+      "checked"
+    );
+  });
 });
