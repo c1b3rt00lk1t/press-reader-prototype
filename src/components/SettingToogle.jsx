@@ -33,11 +33,13 @@ const SettingToogle = ({
     >
       {state ? (
         <RiToggleFill
+          aria-label="checked"
           className="settings-icon"
           style={(actionPending || disable) && { color: "grey" }}
         />
       ) : (
         <RiToggleLine
+          aria-label="unchecked"
           className="settings-icon"
           style={disable && { color: "grey" }}
         />
