@@ -7,6 +7,7 @@ import PropTypes from "prop-types";
 // Good advise found here: https://stackoverflow.com/questions/65740268/create-react-app-how-to-copy-pdf-worker-js-file-from-pdfjs-dist-build-to-your
 
 import pdfjsWorker from "pdfjs-dist/build/pdf.worker.entry";
+import { ErrorBoundary } from "./ErrorBoundary";
 
 pdfjs.GlobalWorkerOptions.workerSrc = pdfjsWorker;
 
@@ -18,32 +19,32 @@ pdfjs.GlobalWorkerOptions.workerSrc = pdfjsWorker;
 
 const PDFDocument = ({ url }) => {
   const [numPages, setNumPages] = useState(null);
-  //   const [pageNumber, setPageNumber] = useState(1);
-  // const [pageNumber] = useState(1);
   const onDocumentLoadSuccess = ({ numPages }) => {
     setNumPages(numPages);
   };
 
-  console.log("url", url);
-  console.log("numPages", numPages);
-
   return (
     <div>
-      <Document
-        file={url}
-        options={{ workerSrc: "/pdf.worker.js" }}
-        onLoadSuccess={onDocumentLoadSuccess}
-      >
-        {Array.from(new Array(numPages), (el, index) => (
-          <Page
-            width={window.innerWidth >= 1500 ? 1800 : 750}
-            key={`page_${index + 1}`}
-            pageNumber={index + 1}
-            renderTextLayer={false}
-            renderAnnotationLayer={false}
-          />
-        ))}
-      </Document>
+      {url && (
+        <Document
+          file={url}
+          options={{ workerSrc: "/pdf.worker.js" }}
+          onLoadSuccess={onDocumentLoadSuccess}
+        >
+          {numPages &&
+            Array.from(new Array(numPages), (el, index) => (
+              <ErrorBoundary key={`page_${index + 1}`}>
+                <Page
+                  width={window.innerWidth >= 1500 ? 1800 : 750}
+                  key={`page_${index + 1}`}
+                  pageNumber={index + 1}
+                  renderTextLayer={false}
+                  renderAnnotationLayer={false}
+                />
+              </ErrorBoundary>
+            ))}
+        </Document>
+      )}
       {/* <p>
         Page {pageNumber} of {numPages}
       </p> */}
@@ -52,7 +53,7 @@ const PDFDocument = ({ url }) => {
 };
 
 PDFDocument.propTypes = {
-  url: PropTypes.object,
+  url: PropTypes.instanceOf(Blob),
 };
 
 export default PDFDocument;
