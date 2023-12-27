@@ -4,14 +4,14 @@ describe("Test Press Reader", () => {
     cy.visit("/");
   });
 
-  xit("changes pages", () => {
+  it("changes pages", () => {
     cy.get("[aria-label='footer-search']").click();
     cy.get("[aria-label='footer-list']").click();
     cy.get("[aria-label='footer-settings']").click();
     cy.get("[aria-label='footer-share']").click();
   });
 
-  xit("changes languages", () => {
+  it("changes languages", () => {
     cy.get("[aria-label='footer-settings']").click();
     cy.get("[aria-label='settings-English']").click();
     cy.contains("Settings");
@@ -21,7 +21,7 @@ describe("Test Press Reader", () => {
     cy.contains("Configuración");
   });
 
-  xit("makes a selection and clears it after", () => {
+  it("makes a selection and clears it after", () => {
     // Arrange
     cy.get("[aria-label='footer-settings']").click();
     cy.get("[aria-label='settings-English']").click();
@@ -94,7 +94,7 @@ describe("Test Press Reader", () => {
     cy.get("[type='text']").should("have.value", "");
   });
 
-  xit("makes a selection and navigate through the results", () => {
+  it("makes a selection and navigate through the results", () => {
     // Arrange
     cy.get("[aria-label='footer-settings']").click();
     cy.get("[aria-label='settings-English']").click();
@@ -124,7 +124,7 @@ describe("Test Press Reader", () => {
     cy.get("[aria-label='footer-share']").click();
   });
 
-  xit("enables local folder in Desktop", () => {
+  it("enables local folder in Desktop", () => {
     // Arrange
     cy.viewport(1600, 900);
     cy.get("[aria-label='footer-settings']").click();
@@ -172,5 +172,31 @@ describe("Test Press Reader", () => {
 
     // Assert
     cy.findByText("Last prefetched: 20231203").should("exist");
+  });
+
+  it("handles an error when prefetching last session in Mobile", () => {
+    // Arrange
+    cy.get("[aria-label='footer-settings']").click();
+    cy.get("[aria-label='settings-English']").click();
+    // Stub localStorage.setItem to throw an error
+    cy.window().then((win) => {
+      cy.stub(win.localStorage, "setItem", () => {
+        throw new Error("Simulated localStorage error");
+      });
+    });
+
+    // Interact
+    cy.findByText("Prefetch last session").click();
+
+    // Wait for the uncaught exception
+    cy.on("uncaught:exception", (err) => {
+      // Assert that the error message contains the expected text
+      expect(err.message).to.include("Simulated localStorage error");
+      return false;
+    });
+    cy.contains("Settings");
+    cy.contains("Last prefetched: 00000000").should("exist");
+    cy.get(".download-error").should("exist");
+    cy.get(".download-downloaded").should("not.exist");
   });
 });
