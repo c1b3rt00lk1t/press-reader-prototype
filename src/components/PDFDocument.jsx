@@ -24,6 +24,9 @@ const PDFDocument = ({ url }) => {
     setNumPages(numPages);
   };
 
+  console.log("url", url);
+  console.log("numPages", numPages);
+
   return (
     <div>
       <Document
@@ -49,7 +52,7 @@ const PDFDocument = ({ url }) => {
 };
 
 PDFDocument.propTypes = {
-  url: PropTypes.string.isRequired,
+  url: PropTypes.object,
 };
 
 export default PDFDocument;
