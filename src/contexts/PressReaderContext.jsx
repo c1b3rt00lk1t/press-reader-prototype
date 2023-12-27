@@ -151,11 +151,13 @@ export const PressReaderContextProvider = ({ children }) => {
   //returns an array of all subnodes of the target nodes provided via an array
   const flatDictionary = (type) => (targets) => {
     return targets.reduce((acc, target) => {
-      return acc.concat(
-        flatItems[type]
-          .filter((zone) => zone.path.includes(`/${target}`))
-          .map((zone) => zone.item)
-      );
+      return Object.keys(flatItems).length
+        ? acc.concat(
+            flatItems[type]
+              .filter((zone) => zone.path.includes(`/${target}`))
+              .map((zone) => zone.item)
+          )
+        : [];
     }, []);
   };
 
