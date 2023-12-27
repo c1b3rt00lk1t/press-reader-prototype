@@ -76,7 +76,7 @@ const Post = () => {
 
   useEffect(() => {
     writeInClipboard(data[indexItem]);
-  });
+  }, []);
 
   useEffect(() => {
     const fetchData = async (url) => {
