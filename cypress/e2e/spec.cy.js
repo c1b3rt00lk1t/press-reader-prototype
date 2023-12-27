@@ -4,14 +4,14 @@ describe("Test Press Reader", () => {
     cy.visit("/");
   });
 
-  xit("changes pages", () => {
+  it("changes pages", () => {
     cy.get("[aria-label='footer-search']").click();
     cy.get("[aria-label='footer-list']").click();
     cy.get("[aria-label='footer-settings']").click();
     cy.get("[aria-label='footer-share']").click();
   });
 
-  xit("changes languages", () => {
+  it("changes languages", () => {
     cy.get("[aria-label='footer-settings']").click();
     cy.get("[aria-label='settings-English']").click();
     cy.contains("Settings");
@@ -92,7 +92,35 @@ describe("Test Press Reader", () => {
     cy.get("#TagsOR > option:selected").should("have.text", "all");
     cy.get("#TagsAND > option:selected").should("have.text", "any");
     cy.get("[type='text']").should("have.value", "");
+  });
+
+  it("makes a selection and navigate through the results", () => {
+    // Arrange
+    cy.get("[aria-label='footer-settings']").click();
+    cy.get("[aria-label='settings-English']").click();
+    cy.get("[aria-label='footer-search']").click();
 
     // Interact
+    cy.get("#TagsOR").select("financiero");
+    cy.findByRole("button", { name: "Search" }).click();
+    cy.get("ul > :nth-child(1)").click();
+
+    //Assert
+    cy.contains("EEUU");
+    cy.contains("ECONOMÍA");
+    cy.contains("FINANCIERO");
+
+    //Interact
+    cy.get(".to-next").click();
+    //Assert
+    cy.contains("EEUU");
+    cy.contains("ECONOMÍA");
+    cy.contains("FINANCIERO");
+    cy.get(".to-previous").click();
+    //Assert
+    cy.contains("EEUU");
+    cy.contains("ECONOMÍA");
+    cy.contains("FINANCIERO");
+    cy.get("[aria-label='footer-share']").click();
   });
 });
