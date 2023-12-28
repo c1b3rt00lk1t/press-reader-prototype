@@ -9,7 +9,11 @@ export default defineConfig({
       return config;
     },
   },
-
+  env: {
+    codeCoverage: {
+      exclude: ["src/serviceWorkerRegistration.js"],
+    },
+  },
   component: {
     devServer: {
       framework: "create-react-app",
