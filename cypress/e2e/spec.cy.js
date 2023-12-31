@@ -220,6 +220,9 @@ describe("Test Press Reader", () => {
       "aria-label",
       "checked"
     );
+
+    cy.get("[aria-label='footer-list']").click();
+    cy.contains("desktop mode activated, click to select a folder");
   });
 
   it("allows to prefetch last session in Mobile", () => {
