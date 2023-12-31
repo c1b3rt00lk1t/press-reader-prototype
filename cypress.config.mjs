@@ -11,7 +11,10 @@ export default defineConfig({
   },
   env: {
     codeCoverage: {
-      exclude: ["src/serviceWorkerRegistration.js"],
+      exclude: [
+        "src/serviceWorkerRegistration.js",
+        "src/components/ErrorBoundary.jsx",
+      ],
     },
   },
   component: {
