@@ -205,26 +205,6 @@ describe("Test Press Reader", () => {
     });
   });
 
-  it("enables local folder in Desktop", () => {
-    // Arrange
-    cy.viewport(1600, 900);
-    cy.get("[aria-label='footer-settings']").click();
-    cy.get("[aria-label='settings-English']").click();
-
-    // Interact
-    cy.findByText("Desktop (select a folder)").click();
-
-    // Assert
-    cy.get(".only-wider-screen svg").should(
-      "have.attr",
-      "aria-label",
-      "checked"
-    );
-
-    cy.get("[aria-label='footer-list']").click();
-    cy.contains("desktop mode activated, click to select a folder");
-  });
-
   it("allows to prefetch last session in Mobile", () => {
     // Arrange
     cy.get("[aria-label='footer-settings']").click();
@@ -318,5 +298,35 @@ describe("Test Press Reader", () => {
     });
 
     cy.contains("Failed to load PDF file.");
+  });
+
+  it("enables local folder in Desktop", () => {
+    // Arrange
+    cy.viewport(1600, 900);
+    cy.get("[aria-label='footer-settings']").click();
+    cy.get("[aria-label='settings-English']").click();
+
+    // Interact
+    cy.findByText("Desktop (select a folder)").click();
+
+    // Assert
+    cy.get(".only-wider-screen svg").should(
+      "have.attr",
+      "aria-label",
+      "checked"
+    );
+
+    cy.get("[aria-label='footer-list']").click();
+    cy.contains("desktop mode activated, click to select a folder").click();
+
+    // Interact
+    // Select a folder in cypress/downloads
+    cy.findByText("Desktop (select a folder)").click();
+    cy.pause();
+    cy.get("[aria-label='footer-list']").click();
+    //Assert
+    cy.contains("desktop mode activated, click to select a folder").should(
+      "not.exist"
+    );
   });
 });
