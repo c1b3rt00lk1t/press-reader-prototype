@@ -117,13 +117,14 @@ describe("Test Press Reader", () => {
     cy.contains("FINANCIERO");
 
     //Interact
-    cy.get(".to-next").click();
+    cy.get("body").type("{rightArrow}");
+    // cy.get(".to-next").click();
     cy.wait(1000);
     //Assert
     cy.contains("EEUU");
     cy.contains("ECONOMÍA");
     cy.contains("FINANCIERO");
-    cy.get(".to-previous").click();
+    cy.get("body").type("{rightArrow}");
     //Assert
     cy.contains("EEUU");
     cy.contains("ECONOMÍA");
@@ -147,6 +148,8 @@ describe("Test Press Reader", () => {
     cy.wait(1000);
     cy.get(".to-next").click();
     cy.wait(1000);
+    cy.get(".to-next").click();
+    cy.get(".to-previous").click();
     cy.get(".to-next").click();
     cy.wait(1000);
     cy.get("[aria-label='footer-list']").click();
