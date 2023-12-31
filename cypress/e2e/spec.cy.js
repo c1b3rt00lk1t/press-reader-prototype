@@ -152,7 +152,49 @@ describe("Test Press Reader", () => {
     cy.get("[aria-label='footer-list']").click();
     cy.wait(1000);
     cy.contains("Junk Debt Market Is Shrinking");
-    cy.get();
+
+    // Wait for the uncaught exception
+    cy.on("uncaught:exception", (err) => {
+      expect(err.message).to.include("DOMException: Document is not focused.");
+      return false;
+    });
+  });
+
+  it("copies title and link to clipboard", () => {
+    // Arrange
+    cy.viewport(1600, 900);
+    cy.window().then((win) => {
+      cy.stub(win.navigator.clipboard, "writeText")
+        .returns(Promise.resolve())
+        .as("writeTextClipboard");
+    });
+
+    cy.window().then((win) => {
+      cy.stub(win.navigator.clipboard, "write")
+        .returns(Promise.resolve())
+        .as("writeClipboard");
+    });
+
+    cy.get("[aria-label='footer-settings']").click();
+    cy.get("[aria-label='settings-English']").click();
+    cy.get("[aria-label='footer-search']").click();
+
+    cy.get("#TagsOR").select("financiero");
+    cy.findByRole("button", { name: "Search" }).click();
+
+    // Interact
+    cy.get("ul > :nth-child(1) [aria-label='Copy link to clipboard']")
+      .focus()
+      .click();
+
+    cy.get("ul > :nth-child(1) [aria-label='Copy title to clipboard']")
+      .focus()
+      .click();
+
+    // Assert
+    cy.get("@writeTextClipboard").should("have.been.called");
+    cy.get("@writeClipboard").should("have.been.called");
+
     // Wait for the uncaught exception
     cy.on("uncaught:exception", (err) => {
       expect(err.message).to.include("DOMException: Document is not focused.");
