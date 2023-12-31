@@ -6,9 +6,12 @@ const ClipboardContext = createContext();
 
 export const ClipboardContextProvider = ({ children }) => {
   const writeTextInClipboard = (text) => {
-    navigator.clipboard.writeText(text).catch((err) => {
-      console.error("Failed to copy text: ", err);
-    });
+    navigator.clipboard.writeText(text).catch(
+      /* istanbul ignore next */
+      (err) => {
+        console.error("Failed to copy text: ", err);
+      }
+    );
   };
 
   const writeInClipboard = ({ title, date, source, url2 }) => {
@@ -28,7 +31,7 @@ export const ClipboardContextProvider = ({ children }) => {
       });
       navigator.clipboard.write([clipboardItemInput]);
     } catch (e) {
-      // Handle error with user feedback - "Copy failed!" kind of thing
+      /* istanbul ignore next */
       console.log(e);
     }
   };
