@@ -92,9 +92,15 @@ describe("Test Press Reader", () => {
     cy.get("#TagsOR > option:selected").should("have.text", "all");
     cy.get("#TagsAND > option:selected").should("have.text", "any");
     cy.get("[type='text']").should("have.value", "");
+
+    // Wait for the uncaught exception
+    cy.on("uncaught:exception", (err) => {
+      expect(err.message).to.include("DOMException: Document is not focused.");
+      return false;
+    });
   });
 
-  it("makes a selection and navigate through the results", () => {
+  it("makes a selection and navigate through some results and goes back to the items list", () => {
     // Arrange
     cy.get("[aria-label='footer-settings']").click();
     cy.get("[aria-label='settings-English']").click();
@@ -123,6 +129,35 @@ describe("Test Press Reader", () => {
     cy.contains("ECONOMÍA");
     cy.contains("FINANCIERO");
     cy.get("[aria-label='footer-share']").click();
+
+    //Interact
+    cy.get(".to-next").click();
+    cy.wait(1000);
+    cy.get(".to-next").click();
+    cy.wait(1000);
+    cy.get(".to-next").click();
+    cy.wait(1000);
+    cy.get(".to-next").click();
+    cy.wait(1000);
+    cy.get(".to-next").click();
+    cy.wait(1000);
+    cy.get(".to-next").click();
+    cy.wait(1000);
+    cy.get(".to-next").click();
+    cy.wait(1000);
+    cy.get(".to-next").click();
+    cy.wait(1000);
+    cy.get(".to-next").click();
+    cy.wait(1000);
+    cy.get("[aria-label='footer-list']").click();
+    cy.wait(1000);
+    cy.contains("Junk Debt Market Is Shrinking");
+    cy.get();
+    // Wait for the uncaught exception
+    cy.on("uncaught:exception", (err) => {
+      expect(err.message).to.include("DOMException: Document is not focused.");
+      return false;
+    });
   });
 
   it("enables local folder in Desktop", () => {
@@ -206,6 +241,7 @@ describe("Test Press Reader", () => {
 
   it("handles an error in the PDF document rendering", () => {
     // Arrange
+    cy.window().focus();
     cy.intercept(
       "GET",
       "https://firebasestorage.googleapis.com/v0/b/press-uploader-2348f.appspot.com/**",
@@ -224,6 +260,12 @@ describe("Test Press Reader", () => {
     cy.on("uncaught:exception", (err) => {
       // Assert that the error message contains the expected text
       expect(err.message).to.include("Simulated pdf content error");
+      return false;
+    });
+
+    // Wait for the uncaught exception
+    cy.on("uncaught:exception", (err) => {
+      expect(err.message).to.include("DOMException: Document is not focused.");
       return false;
     });
 
