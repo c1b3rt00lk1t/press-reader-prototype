@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Document, Page, pdfjs } from "react-pdf";
 import PropTypes from "prop-types";
+import { ErrorBoundary } from "./ErrorBoundary";
 
 // Previously using a CDN
 // pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
@@ -32,13 +33,15 @@ const PDFDocument = ({ url }) => {
         >
           {numPages &&
             Array.from(new Array(numPages), (el, index) => (
-              <Page
-                width={window.innerWidth >= 1500 ? 1800 : 750}
-                key={`page_${index + 1}`}
-                pageNumber={index + 1}
-                renderTextLayer={false}
-                renderAnnotationLayer={false}
-              />
+              <ErrorBoundary key={`page_${index + 1}`}>
+                <Page
+                  width={window.innerWidth >= 1500 ? 1800 : 750}
+                  key={`page_${index + 1}`}
+                  pageNumber={index + 1}
+                  renderTextLayer={false}
+                  renderAnnotationLayer={false}
+                />
+              </ErrorBoundary>
             ))}
         </Document>
       )}
