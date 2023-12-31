@@ -183,9 +183,10 @@ describe("Test Press Reader", () => {
     cy.get("[aria-label='settings-English']").click();
     // Stub localStorage.setItem to throw an error
     cy.window().then((win) => {
-      cy.stub(win.localStorage, "setItem", () => {
+      function fn() {
         throw new Error("Simulated localStorage error");
-      });
+      }
+      cy.stub(win.localStorage, "setItem").callsFake(fn);
     });
 
     // Interact
