@@ -7,7 +7,6 @@ import PropTypes from "prop-types";
 // Good advise found here: https://stackoverflow.com/questions/65740268/create-react-app-how-to-copy-pdf-worker-js-file-from-pdfjs-dist-build-to-your
 
 import pdfjsWorker from "pdfjs-dist/build/pdf.worker.entry";
-import { ErrorBoundary } from "./ErrorBoundary";
 
 pdfjs.GlobalWorkerOptions.workerSrc = pdfjsWorker;
 
@@ -33,15 +32,13 @@ const PDFDocument = ({ url }) => {
         >
           {numPages &&
             Array.from(new Array(numPages), (el, index) => (
-              <ErrorBoundary key={`page_${index + 1}`}>
-                <Page
-                  width={window.innerWidth >= 1500 ? 1800 : 750}
-                  key={`page_${index + 1}`}
-                  pageNumber={index + 1}
-                  renderTextLayer={false}
-                  renderAnnotationLayer={false}
-                />
-              </ErrorBoundary>
+              <Page
+                width={window.innerWidth >= 1500 ? 1800 : 750}
+                key={`page_${index + 1}`}
+                pageNumber={index + 1}
+                renderTextLayer={false}
+                renderAnnotationLayer={false}
+              />
             ))}
         </Document>
       )}
