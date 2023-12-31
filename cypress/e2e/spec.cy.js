@@ -112,6 +112,7 @@ describe("Test Press Reader", () => {
 
     //Interact
     cy.get(".to-next").click();
+    cy.wait(1000);
     //Assert
     cy.contains("EEUU");
     cy.contains("ECONOMÍA");
