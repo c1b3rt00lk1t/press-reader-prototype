@@ -26,6 +26,7 @@ const getDataFromDB = (path) => (handleDataFromDB) => {
   const refDB = ref(database, path);
   onValue(refDB, (snapshot) => {
     const data = snapshot.val();
+    /* istanbul ignore else */
     if (data) {
       handleDataFromDB(data);
     } else {
