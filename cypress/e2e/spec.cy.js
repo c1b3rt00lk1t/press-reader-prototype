@@ -203,4 +203,30 @@ describe("Test Press Reader", () => {
     cy.get(".download-error").should("exist");
     cy.get(".download-downloaded").should("not.exist");
   });
+
+  it("handles an error in the PDF document rendering", () => {
+    // Arrange
+    cy.intercept(
+      "GET",
+      "https://firebasestorage.googleapis.com/v0/b/press-uploader-2348f.appspot.com/**",
+      {
+        statusCode: 200,
+        body: "Invalid PDF content",
+      }
+    ).as("pdfRequest");
+    cy.get("[aria-label='footer-list']").click();
+
+    //Interact
+    cy.get("ul > :nth-child(1)").click();
+    cy.wait("@pdfRequest");
+
+    // Wait for the uncaught exception
+    cy.on("uncaught:exception", (err) => {
+      // Assert that the error message contains the expected text
+      expect(err.message).to.include("Simulated pdf content error");
+      return false;
+    });
+
+    cy.contains("Failed to load PDF file.");
+  });
 });
