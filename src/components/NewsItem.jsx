@@ -61,6 +61,7 @@ const NewsItem = ({ item }) => {
           <button
             className="phone-hide"
             onClick={handleTitleClick(item)}
+            aria-label="Copy title to clipboard"
             style={{
               backgroundColor: "white",
               color: "darkblue",
@@ -72,6 +73,7 @@ const NewsItem = ({ item }) => {
           </button>{" "}
           <button
             className="phone-hide"
+            aria-label="Copy link to clipboard"
             onClick={handleLinkClick(item)}
             style={{
               backgroundColor: "white",
