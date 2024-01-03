@@ -46,6 +46,17 @@ The app leverages on the following technical pillars:
 - End-to-end testing is done with Cypress.
 - Pdfs are downloaded from primary or secondary Firebase projects depending on the size, on the prefetch context and on the availability of the projects, in order to balance the load and remain in the free tier.
 
+### Code coverage
+
+A +97% of code coverage is achieved by using an E2E test strategy with Cypress. This is combined with some specific components test with Cypress as well.
+
+<p align="center">
+<img src="https://github.com/c1b3rt00lk1t/press-reader-prototype/blob/demo/images/specs_execution.png?raw=true" width="50%" >
+</p>
+<p align="center">
+<img src="https://github.com/c1b3rt00lk1t/press-reader-prototype/blob/demo/images/current_code_coverage.png?raw=true" width="50%" >
+</p>
+
 ### Functional description
 
 The app allows a user to access a set of pdfs tagged using <a href="https://github.com/c1b3rt00lk1t/press-uploader-prototype/">Press Uploader</a>:
