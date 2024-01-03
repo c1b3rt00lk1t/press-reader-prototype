@@ -296,6 +296,47 @@ describe("Test Press Reader", () => {
     cy.get(".download-completed").should("exist");
   });
 
+  it("allows to change prefetching settings", () => {
+    // Arrange
+    cy.get("[aria-label='footer-settings']").click();
+    cy.get("[aria-label='settings-English']").click();
+
+    // Intercept GET requests and respond with a predefined response
+    cy.intercept(
+      "GET",
+      "https://firebasestorage.googleapis.com/v0/b/press-uploader-2348f.appspot.com/**",
+      {
+        statusCode: 200,
+        body: "Mocked Response",
+      }
+    ).as("getRequests");
+
+    // Interact
+    cy.findByText("Always prefetch last session (once)").click();
+
+    // Assert
+    cy.findByText("Always prefetch last session (once)").then((div) => {
+      cy.wrap(div).find("svg").should("have.attr", "aria-label", "checked");
+    });
+    cy.findByText("Always prefetch last session").then((div) => {
+      cy.wrap(div).find("svg").should("have.attr", "aria-label", "unchecked");
+    });
+
+    cy.wait("@getRequests");
+
+    // Interact
+    cy.findByText("Always prefetch last session").click();
+
+    // Assert
+    cy.findByText("Always prefetch last session (once)").then((div) => {
+      cy.wrap(div).find("svg").should("have.attr", "aria-label", "unchecked");
+    });
+    cy.findByText("Always prefetch last session").then((div) => {
+      cy.wrap(div).find("svg").should("have.attr", "aria-label", "checked");
+    });
+    cy.wait("@getRequests");
+  });
+
   it("handles an error when prefetching last session in Mobile", () => {
     // Arrange
     cy.get("[aria-label='footer-settings']").click();
