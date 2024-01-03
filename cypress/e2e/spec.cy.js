@@ -4,14 +4,14 @@ describe("Test Press Reader", () => {
     cy.visit("/");
   });
 
-  xit("changes pages", () => {
+  it("changes pages", () => {
     cy.get("[aria-label='footer-search']").click();
     cy.get("[aria-label='footer-list']").click();
     cy.get("[aria-label='footer-settings']").click();
     cy.get("[aria-label='footer-share']").click();
   });
 
-  xit("changes languages", () => {
+  it("changes languages", () => {
     cy.get("[aria-label='footer-settings']").click();
     cy.get("[aria-label='settings-English']").click();
     cy.contains("Settings");
@@ -21,7 +21,7 @@ describe("Test Press Reader", () => {
     cy.contains("Configuración");
   });
 
-  xit("makes a selection and clears it after", () => {
+  it("makes a selection and clears it after", () => {
     // Arrange
     cy.get("[aria-label='footer-settings']").click();
     cy.get("[aria-label='settings-English']").click();
@@ -114,7 +114,50 @@ describe("Test Press Reader", () => {
     });
   });
 
-  xit("makes a selection and navigate through some results and goes back to the items list", () => {
+  it("selects by text in all possible scenarios and orders", () => {
+    // Arrange
+    cy.get("[aria-label='footer-settings']").click();
+    cy.get("[aria-label='settings-English']").click();
+    cy.get("[aria-label='footer-search']").click();
+    cy.findByRole("button", { name: "Search" }).click();
+    cy.get("[aria-label='footer-search']").click();
+    cy.findByText("Clear").click();
+
+    // Interact
+    cy.get("[type='text']").type("china");
+    cy.get(":nth-child(7) > .horizontal > :nth-child(1) > input").click();
+    cy.findByRole("button", { name: "Search" }).click();
+    cy.get("[aria-label='footer-search']").click();
+
+    // Arrange
+    cy.findByText("Clear").click();
+
+    // Interact
+    cy.get("[type='text']").type("gas");
+    cy.get(":nth-child(7) > .horizontal > :nth-child(2) > input").click();
+    cy.findByRole("button", { name: "Search" }).click();
+    cy.get("[aria-label='footer-search']").click();
+
+    // Arrange
+    cy.findByText("Clear").click();
+
+    // Interact
+    cy.get("[type='text']").type("tipos");
+    cy.get(":nth-child(7) > .horizontal > :nth-child(3) > input").click();
+    cy.findByRole("button", { name: "Search" }).click();
+    cy.get("[aria-label='footer-search']").click();
+
+    // Arrange
+    cy.findByText("Clear").click();
+
+    // Interact
+    cy.get("[type='text']").type("Expansión");
+    cy.get(":nth-child(7) > .horizontal > :nth-child(1) > input").click();
+    cy.findByRole("button", { name: "Search" }).click();
+    cy.get("[aria-label='footer-search']").click();
+  });
+
+  it("makes a selection and navigate through some results and goes back to the items list", () => {
     // Arrange
     cy.get("[aria-label='footer-settings']").click();
     cy.get("[aria-label='settings-English']").click();
@@ -176,7 +219,7 @@ describe("Test Press Reader", () => {
     });
   });
 
-  xit("copies title and link to clipboard", () => {
+  it("copies title and link to clipboard", () => {
     // Arrange
     cy.viewport(1600, 900);
     cy.window().then((win) => {
@@ -218,7 +261,7 @@ describe("Test Press Reader", () => {
     });
   });
 
-  xit("allows to prefetch last session in Mobile", () => {
+  it("allows to prefetch last session in Mobile", () => {
     // Arrange
     cy.get("[aria-label='footer-settings']").click();
     cy.get("[aria-label='settings-English']").click();
@@ -253,7 +296,7 @@ describe("Test Press Reader", () => {
     cy.get(".download-completed").should("exist");
   });
 
-  xit("handles an error when prefetching last session in Mobile", () => {
+  it("handles an error when prefetching last session in Mobile", () => {
     // Arrange
     cy.get("[aria-label='footer-settings']").click();
     cy.get("[aria-label='settings-English']").click();
@@ -280,7 +323,7 @@ describe("Test Press Reader", () => {
     cy.get(".download-downloaded").should("not.exist");
   });
 
-  xit("handles an error in the PDF document rendering", () => {
+  it("handles an error in the PDF document rendering", () => {
     // Arrange
     cy.window().focus();
     cy.intercept(
@@ -313,7 +356,7 @@ describe("Test Press Reader", () => {
     cy.contains("Failed to load PDF file.");
   });
 
-  xit("enables local folder in Desktop", () => {
+  it("enables local folder in Desktop", () => {
     // Arrange
     cy.viewport(1600, 900);
     cy.get("[aria-label='footer-settings']").click();
