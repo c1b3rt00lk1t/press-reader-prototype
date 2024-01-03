@@ -337,6 +337,53 @@ describe("Test Press Reader", () => {
     cy.wait("@getRequests");
   });
 
+  it("allows to prefetch on submit", () => {
+    // Arrange
+    cy.get("[aria-label='footer-settings']").click();
+    cy.get("[aria-label='settings-English']").click();
+
+    // Intercept GET requests and respond with a predefined response
+    cy.intercept(
+      "GET",
+      "https://firebasestorage.googleapis.com/v0/b/press-uploader-2348f.appspot.com/**",
+      {
+        statusCode: 404,
+        body: "Mocked Response",
+      }
+    ).as("getRequests");
+
+    // Interact
+    cy.findByText("Prefetch on Search").click();
+
+    // Assert
+    cy.findByText("Prefetch on Search").then((div) => {
+      cy.wrap(div).find("svg").should("have.attr", "aria-label", "checked");
+    });
+
+    // Interact
+    cy.get("[aria-label='footer-search']").click();
+
+    cy.findByText("Clear").click();
+
+    cy.get("[type='text']").type("gas");
+    cy.get(":nth-child(7) > .horizontal > :nth-child(2) > input").click();
+    cy.findByRole("button", { name: "Search" }).click();
+    cy.wait("@getRequests");
+    cy.get("ul > :nth-child(1)").click();
+    cy.wait("@getRequests");
+    cy.intercept(
+      "GET",
+      "https://firebasestorage.googleapis.com/v0/b/press-uploader-2348f.appspot.com/**",
+      {
+        statusCode: 402,
+        body: "Mocked Response",
+      }
+    ).as("getRequests2");
+
+    cy.get("body").type("{rightArrow}");
+    cy.wait("@getRequests2");
+  });
+
   it("handles an error when prefetching last session in Mobile", () => {
     // Arrange
     cy.get("[aria-label='footer-settings']").click();
