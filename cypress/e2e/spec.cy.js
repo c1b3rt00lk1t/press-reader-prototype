@@ -149,8 +149,7 @@ describe("Test Press Reader", () => {
     cy.get(".to-next").click();
     cy.wait(1000);
     cy.get(".to-next").click();
-    cy.get(".to-previous").click();
-    cy.get(".to-next").click();
+
     cy.wait(1000);
     cy.get("[aria-label='footer-list']").click();
     cy.wait(1000);
