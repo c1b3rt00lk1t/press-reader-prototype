@@ -11,7 +11,11 @@ Frontend mobile-first PWA to distribute tagged pdf documents across an organizat
 
 ### Available demo online
 
-A working version of the mobile/desktop app can be found <a href="https://press-reader-demo.web.app/" target="_blank">here</a>.
+A working version of the mobile/desktop app can be found <a href="https://press-reader-demo.web.app/" target="_blank">here</a>. Check it in your mobile device scanning the QR code:
+
+<p align="center">
+<img src="https://github.com/c1b3rt00lk1t/press-reader-prototype/blob/demo/images/qrcode_press_reader.png?raw=true" width="15%" height="15%" >
+</p>
 
 ### Basic usage
 
