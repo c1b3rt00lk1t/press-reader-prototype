@@ -24,7 +24,15 @@ A working version of the mobile/desktop app can be found <a href="https://press-
 
 ### Cloc stats
 
-![cloc stats](https://github.com/c1b3rt00lk1t/press-reader-prototype/blob/demo/images/cloc_stats.png?raw=true)
+<p align="center">
+<img src="https://github.com/c1b3rt00lk1t/press-reader-prototype/blob/demo/images/cloc_stats.png?raw=true" width="75%" >
+</p>
+
+### Lighthouse score
+
+<p align="center">
+<img src="https://github.com/c1b3rt00lk1t/press-reader-prototype/blob/demo/images/lighthouse_stats.png?raw=true" width="75%" >
+</p>
 
 ### Key technical features
 
@@ -55,10 +63,10 @@ The app leverages on the following technical pillars:
 A +97% of code coverage is achieved by using an E2E test strategy with Cypress. This is combined with some specific components test with Cypress as well.
 
 <p align="center">
-<img src="https://github.com/c1b3rt00lk1t/press-reader-prototype/blob/demo/images/specs_execution.png?raw=true" width="50%" >
+<img src="https://github.com/c1b3rt00lk1t/press-reader-prototype/blob/demo/images/specs_execution.png?raw=true" width="75%" >
 </p>
 <p align="center">
-<img src="https://github.com/c1b3rt00lk1t/press-reader-prototype/blob/demo/images/current_code_coverage.png?raw=true" width="50%" >
+<img src="https://github.com/c1b3rt00lk1t/press-reader-prototype/blob/demo/images/current_code_coverage.png?raw=true" width="75%" >
 </p>
 
 ### Functional description
