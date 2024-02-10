@@ -76,7 +76,8 @@ ul {
 .news-item-source {
   font-size: var(--small-screen-em-small);
   text-transform: uppercase;
-  color: rgb(170, 170, 170);
+  color: #7e0000;
+  /* color: rgb(170, 170, 170); */
 }
 
 /* Connected */
